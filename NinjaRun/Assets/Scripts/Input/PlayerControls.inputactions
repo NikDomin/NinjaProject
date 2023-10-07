@@ -6,15 +6,6 @@
             "id": "5ff65e71-1e2d-474c-86a6-e8a439f0490c",
             "actions": [
                 {
-                    "name": "TouchInput",
-                    "type": "PassThrough",
-                    "id": "91b2b565-bed3-4f36-a32d-084477e28a91",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "PrimaryContact",
                     "type": "PassThrough",
                     "id": "e0ea4c04-40f2-4c4c-90ee-dcf085ba07b7",
@@ -31,25 +22,23 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "PrimaryStartPosition",
+                    "type": "Value",
+                    "id": "2e2ded7e-a8ab-4cb4-aba7-3d8d7bf8552d",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "0f10ca65-0942-46f7-af33-fa6de5486da7",
-                    "path": "<Touchscreen>/primaryTouch",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TouchInput",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a09af7c1-5b6a-4b16-81fd-5b37f792c58d",
-                    "path": "<Touchscreen>/primaryTouch/indirectTouch",
-                    "interactions": "",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "PrimaryContact",
@@ -64,6 +53,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PrimaryPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4cef3252-bbaa-4ac4-b7db-5a84a15bab2c",
+                    "path": "<Touchscreen>/primaryTouch/startPosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryStartPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

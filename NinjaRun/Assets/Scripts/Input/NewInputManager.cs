@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Threading.Tasks;
 using Assets.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,10 +10,10 @@ namespace Assets.Scripts.Input
     public class NewInputManager : MonoBehaviour
     {
         //new
-        private PlayerInput playerInput;
+        //private PlayerInput playerInput;
 
 
-        [SerializeField] private InputActionReference primaryTouch, touchPosition;
+        [SerializeField] private InputActionReference primaryTouch, touchPosition, startPosition;
 
         public UnityEvent<Vector2, float> OnStartTouch;
         public UnityEvent<Vector2, float> OnEndTouch;
@@ -21,32 +22,31 @@ namespace Assets.Scripts.Input
 
         private void Awake()
         {
-            playerInput = GetComponent<PlayerInput>();
 
             mainCamera = Camera.main;
         }
 
         private void OnEnable()
         {
-            touchPosition.action.performed += StartTouchPrimary;
-            touchPosition.action.canceled += EndTouchPrimary;
+            primaryTouch.action.started += StartTouchPrimary;
+            primaryTouch.action.canceled += EndTouchPrimary;
         }
 
         private void OnDisable()
         {
-            touchPosition.action.performed -= StartTouchPrimary;
-            touchPosition.action.canceled -= EndTouchPrimary;
+            primaryTouch.action.started -= StartTouchPrimary;
+            primaryTouch.action.canceled -= EndTouchPrimary;
 
         }
 
         //Test
         private void Update()
         {
-            touchPosition.action.ReadValue<Vector2>();
-            if (touchPosition.action.WasReleasedThisFrame())
-            {
-                Debug.Log("Touch release ");
-            }
+            //primaryTouch.action.ReadValue<Vector2>();
+            //if (primaryTouch.action.WasReleasedThisFrame())
+            //{
+            //    Debug.Log("Touch release ");
+            //}
         }
 
         private void EndTouchPrimary(InputAction.CallbackContext ctx)
@@ -58,13 +58,14 @@ namespace Assets.Scripts.Input
 
         private void StartTouchPrimary(InputAction.CallbackContext ctx)
         {
-            OnEndTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, touchPosition.action.ReadValue<Vector2>()), (float)ctx.startTime);
+            
+            OnEndTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, startPosition.action.ReadValue<Vector2>()), (float)ctx.startTime);
             Debug.Log("Start touch");
 
             //Test
-            Vector3 position = mainCamera.ScreenToWorldPoint(touchPosition.action.ReadValue<Vector2>());
-            position.z = 0;
-            transform.position = position;
+            //Vector3 position = mainCamera.ScreenToWorldPoint(startPosition.action.ReadValue<Vector2>());
+            //position.z = 0;
+            //transform.position = position;
         }
 
         public Vector2 PrimaryPosition()

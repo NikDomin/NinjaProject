@@ -29,6 +29,7 @@ namespace Assets.Scripts.Movement
             endTime = time;
 
             DetectSwipe();
+            ResetAllValue();
         }
 
         private void DetectSwipe()
@@ -38,6 +39,15 @@ namespace Assets.Scripts.Movement
             {
                 Debug.DrawLine(startPosition, endPosition, Color.red, 5f);
             }
+
+        }
+
+        private void ResetAllValue()
+        {
+            startPosition = Vector2.zero;
+            endPosition = Vector2.zero;
+            startTime = 0;
+            endTime = 0;
 
         }
     }
