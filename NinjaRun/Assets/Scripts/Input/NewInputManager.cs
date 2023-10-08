@@ -11,7 +11,7 @@ namespace Assets.Scripts.Input
     {
         //new
         //private PlayerInput playerInput;
-
+        //private PlayerControls playerControls;
 
         [SerializeField] private InputActionReference primaryTouch, touchPosition, startPosition;
 
@@ -28,6 +28,12 @@ namespace Assets.Scripts.Input
 
         private void OnEnable()
         {
+            //playerControls = new PlayerControls();
+            //playerControls.Enable();
+            //playerControls.Touch.PrimaryContact.started += StartTouchPrimary;
+            //playerControls.Touch.PrimaryContact.canceled += EndTouchPrimary;
+
+
             primaryTouch.action.started += StartTouchPrimary;
             primaryTouch.action.canceled += EndTouchPrimary;
         }
@@ -37,6 +43,10 @@ namespace Assets.Scripts.Input
             primaryTouch.action.started -= StartTouchPrimary;
             primaryTouch.action.canceled -= EndTouchPrimary;
 
+            //playerControls.Touch.PrimaryContact.started -= StartTouchPrimary;
+            //playerControls.Touch.PrimaryContact.canceled -= EndTouchPrimary;
+
+            //playerControls.Disable();
         }
 
         //Test
@@ -51,15 +61,16 @@ namespace Assets.Scripts.Input
 
         private void EndTouchPrimary(InputAction.CallbackContext ctx)
         {
-            OnStartTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, touchPosition.action.ReadValue<Vector2>()), (float)ctx.startTime);
+            OnEndTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, touchPosition.action.ReadValue<Vector2>()), (float)ctx.startTime);
             Debug.Log("End touch");
 
         }
 
-        private void StartTouchPrimary(InputAction.CallbackContext ctx)
+        private async void StartTouchPrimary(InputAction.CallbackContext ctx)
         {
-            
-            OnEndTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, startPosition.action.ReadValue<Vector2>()), (float)ctx.startTime);
+            await Task.Delay(10);
+
+            OnStartTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, startPosition.action.ReadValue<Vector2>()), (float)ctx.startTime);
             Debug.Log("Start touch");
 
             //Test
