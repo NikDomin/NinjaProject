@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Utils
 {
-    public class ScreenUtils : MonoBehaviour
+    public class ScreenUtils
     {
         public static Vector3 ScreenToWorld(Camera camera, Vector3 position)
         {

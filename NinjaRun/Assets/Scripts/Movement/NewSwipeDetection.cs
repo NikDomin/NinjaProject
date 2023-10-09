@@ -1,19 +1,33 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Threading.Tasks;
 using Assets.Scripts.Input;
 using UnityEngine;
 
 namespace Assets.Scripts.Movement
 {
+    public enum ForceType
+    {
+        withoutDrag,
+        withDrag,
+    }
     public class NewSwipeDetection : MonoBehaviour
     {
+        public event Action OnSwipe;
 
         [SerializeField] private float minimumDistance = 0.2f;
         [SerializeField] private float maximumTime = 1f;
         [SerializeField, Range(0,1f)] private float directionThreshold = 0.9f;
+        [field: SerializeField] public float impactsStrength { get; private set; }
+        [field: SerializeField] public ForceType forceType { get; private set; }
+    
 
         [SerializeField] private GameObject trail;
+
+        public Vector3 directionSwipe { get; private set; }
+
         private NewInputManager playerInput;
+        public Rigidbody2D _rigidbody2D { get; private set; }
 
         private Vector2 startPosition;
         private float startTime;
@@ -28,6 +42,7 @@ namespace Assets.Scripts.Movement
         private void Awake()
         {
             playerInput = GetComponent<NewInputManager>();
+            _rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
         #region SwipeHandler
@@ -69,7 +84,6 @@ namespace Assets.Scripts.Movement
         
         private void SwipeStart(Vector2 position, float time)
         {
-            Debug.Log("Swipe start");
             alreadyStartTouch = true;
 
             startPosition = position;
@@ -83,7 +97,6 @@ namespace Assets.Scripts.Movement
 
         private void SwipeEnd(Vector2 position, float time)
         {
-            Debug.Log("Swipe end");
             alreadyEndTouch = true;
 
             endPosition = position;
@@ -94,6 +107,7 @@ namespace Assets.Scripts.Movement
             StopCoroutine(trailCoroutine);
 
             DetectSwipe();
+
             //ResetAllValue();
         }
 
@@ -103,12 +117,30 @@ namespace Assets.Scripts.Movement
                 (endTime - startTime) <= maximumTime)
             {
                 Debug.DrawLine(startPosition, endPosition, Color.red, 5f);
+
+                directionSwipe = endPosition - startPosition;
+                OnSwipe.Invoke();
             }
 
-            //Detect direction with dot product
-            Vector3 direction = endPosition - startPosition;
-            Vector2 normalizedDirection = new Vector2(direction.x, direction.y).normalized;
-            SwipeDirection(normalizedDirection);
+
+            ////Detect direction with dot product
+           
+
+            //Vector2 normalizedDirection = new Vector2(directionSwipe.x, directionSwipe.y).normalized;
+            ////SwipeDirection(normalizedDirection);
+
+
+            ////Add force 
+            //_rigidbody2D.gravityScale = 1;
+            //if(forceType == ForceType.withoutDrag)
+            //    _rigidbody2D.AddForce(directionSwipe * impactsStrength , ForceMode2D.Impulse);
+            //if (forceType == ForceType.withDrag)
+            //{
+            //    _rigidbody2D.velocity = Vector3.zero;
+            //    _rigidbody2D.angularVelocity = 0;
+
+            //    _rigidbody2D.AddForce(directionSwipe * impactsStrength, ForceMode2D.Impulse);
+            //}
         }
         
 
