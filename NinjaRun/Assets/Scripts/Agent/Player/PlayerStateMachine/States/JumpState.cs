@@ -44,6 +44,8 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
                 playerState.SwipeDetection._rigidbody2D.velocity = Vector3.zero;
                 playerState.SwipeDetection._rigidbody2D.angularVelocity = 0;
 
+                //playerState.SwipeDetection._rigidbody2D.velocity = playerState.SwipeDetection.directionSwipe *
+                //                                                   playerState.SwipeDetection.impactsStrength;
                 playerState.SwipeDetection._rigidbody2D.AddForce(playerState.SwipeDetection.directionSwipe * playerState.SwipeDetection.impactsStrength, ForceMode2D.Impulse);
             }
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Threading.Tasks;
 using Assets.Scripts.Movement;
 using UnityEngine;
 
@@ -44,9 +45,21 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
             playerState.SwipeDetection.OnSwipe += TryJumpSwitching;
 
             playerState.SwipeDetection._rigidbody2D.gravityScale = 1;
-            //playerState.MovementComponent._rigidbody2D.velocity = Vector3.zero;
-            //playerState.MovementComponent._rigidbody2D.angularVelocity = 0;
+
+            //playerState.MovementComponent._rigidbody2D.simulated = false;
+
+            playerState.MovementComponent._rigidbody2D.velocity = Vector3.zero;
+            playerState.MovementComponent._rigidbody2D.angularVelocity = 0;
+            //SimulatedCD();
+
         }
+
+        private async void SimulatedCD()
+        {
+            await Task.Delay(100);
+            playerState.MovementComponent._rigidbody2D.simulated = true;
+        }
+
 
         public override void ExitState()
         {
@@ -69,7 +82,9 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
             TryOnWallSwitching();
             TryFlySwitching();
 
-            playerState.MovementComponent._rigidbody2D.AddForce(playerState.transform.right*playerState.MovementComponent.Speed * Time.deltaTime);
+            //playerState.MovementComponent._rigidbody2D.velocity =
+            //    playerState.transform.right * playerState.MovementComponent.Speed * Time.deltaTime;
+            playerState.MovementComponent._rigidbody2D.AddForce(playerState.transform.right * playerState.MovementComponent.Speed * Time.deltaTime);
         }
 
         public void TryJumpSwitching()
@@ -89,7 +104,7 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
         public void TryFlySwitching()
         {
             //if dont on ground
-            if (PositionCheck.GroundCheck(playerState.transform.TransformPoint(playerState.MovementComponent.GroundCheckPosition),
+            if (!PositionCheck.GroundCheck(playerState.transform.TransformPoint(playerState.MovementComponent.GroundCheckPosition),
                 playerState.MovementComponent.GroundCheckRadius, playerState.MovementComponent.GroundLayer))
             {
                 //dont on wall check

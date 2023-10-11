@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe79dbfb5aa6234ca48f877f72065ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 300
+  <Speed>k__BackingField: 150
   <GroundCheckRadius>k__BackingField: 0.22
   <GroundLayer>k__BackingField:
     serializedVersion: 2
