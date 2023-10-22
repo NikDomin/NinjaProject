@@ -20,6 +20,7 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
             base.EnterState();
 
             Jump();
+            playerState.PlayerAnimator.Anim.SetTrigger(playerState.PlayerAnimator.StartJumpKey);
 
             TryFlySwitching();
         }
@@ -44,9 +45,10 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
                 playerState.SwipeDetection._rigidbody2D.velocity = Vector3.zero;
                 playerState.SwipeDetection._rigidbody2D.angularVelocity = 0;
 
-                //playerState.SwipeDetection._rigidbody2D.velocity = playerState.SwipeDetection.directionSwipe *
-                //                                                   playerState.SwipeDetection.impactsStrength;
-                playerState.SwipeDetection._rigidbody2D.AddForce(playerState.SwipeDetection.directionSwipe * playerState.SwipeDetection.impactsStrength, ForceMode2D.Impulse);
+                //playerState.SwipeDetection._rigidbody2D.AddForce(/*playerState.SwipeDetection.directionSwipe*/normalizedDirection * playerState.SwipeDetection.impactsStrength, ForceMode2D.Impulse);
+                playerState.SwipeDetection._rigidbody2D.velocity = new Vector2(
+                    normalizedDirection.x * playerState.SwipeDetection.impactsStrength,
+                    normalizedDirection.y * playerState.SwipeDetection.impactsStrength);
             }
         }
 

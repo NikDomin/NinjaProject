@@ -8,6 +8,7 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine
     {
         public NewSwipeDetection SwipeDetection { get; private set; }
         public MovementComponent MovementComponent { get; private set; }
+        public PlayerAnimator PlayerAnimator { get; private set; }
 
         public PlayerStateMachine StateMachine;
         public RunState RunState { get; set; }
@@ -19,6 +20,7 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine
         {
             SwipeDetection = GetComponent<NewSwipeDetection>();
             MovementComponent = GetComponent<MovementComponent>();
+            PlayerAnimator = GetComponent<PlayerAnimator>();
 
             StateMachine= new PlayerStateMachine();
 

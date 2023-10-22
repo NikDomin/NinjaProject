@@ -43,13 +43,15 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
         {
             base.EnterState();
             playerState.SwipeDetection.OnSwipe += TryJumpSwitching;
+            playerState.PlayerAnimator.Anim.SetBool(playerState.PlayerAnimator.IsRunningKey, true);
+
 
             playerState.SwipeDetection._rigidbody2D.gravityScale = 1;
 
             //playerState.MovementComponent._rigidbody2D.simulated = false;
 
             playerState.MovementComponent._rigidbody2D.velocity = Vector3.zero;
-            playerState.MovementComponent._rigidbody2D.angularVelocity = 0;
+            //playerState.MovementComponent._rigidbody2D.angularVelocity = 0;
             //SimulatedCD();
 
         }
@@ -65,6 +67,8 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
         {
             base.ExitState();
             playerState.SwipeDetection.OnSwipe -= TryJumpSwitching;
+            playerState.PlayerAnimator.Anim.SetBool(playerState.PlayerAnimator.IsRunningKey, false);
+
         }
 
         public override void FrameUpdate()
@@ -82,9 +86,10 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
             TryOnWallSwitching();
             TryFlySwitching();
 
-            //playerState.MovementComponent._rigidbody2D.velocity =
-            //    playerState.transform.right * playerState.MovementComponent.Speed * Time.deltaTime;
-            playerState.MovementComponent._rigidbody2D.AddForce(playerState.transform.right * playerState.MovementComponent.Speed * Time.deltaTime);
+           
+            //playerState.MovementComponent._rigidbody2D.AddForce(Vector2.right * playerState.MovementComponent.Speed * Time.deltaTime, ForceMode2D.Force);
+            playerState.MovementComponent._rigidbody2D.velocity =
+                new Vector2(playerState.MovementComponent.Speed * Time.deltaTime, 0);
         }
 
         public void TryJumpSwitching()

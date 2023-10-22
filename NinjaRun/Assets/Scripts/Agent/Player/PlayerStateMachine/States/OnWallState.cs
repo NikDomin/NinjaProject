@@ -22,6 +22,8 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
 
             playerState.SwipeDetection.OnSwipe += TryJumpSwitching;
 
+            playerState.PlayerAnimator.Anim.SetTrigger(playerState.PlayerAnimator.OnWallTriggerKey);
+
             playerState.MovementComponent._rigidbody2D.gravityScale = 0;
             playerState.MovementComponent._rigidbody2D.velocity = Vector3.zero;
             playerState.MovementComponent._rigidbody2D.angularVelocity = 0;
@@ -31,6 +33,8 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
         {
             base.ExitState();
             playerState.SwipeDetection.OnSwipe -= TryJumpSwitching;
+
+            playerState.PlayerAnimator.Anim.SetTrigger(playerState.PlayerAnimator.EndWallTriggerKey);
         }
 
         public override void FrameUpdate()
