@@ -24,29 +24,6 @@ namespace Assets.Scripts.Agent.Player
             swipeDetection = GetComponent<NewSwipeDetection>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
-        private void Update()
-        {
-            
-            //if(isGrounded)
-            //    Debug.Log("Detect ground");
-            //isOnWall = PositionCheck.WallCheck(transform.TransformPoint(WallCheckPosition), transform.right, RayLenght,
-            //    GroundLayer);
-            //if(isOnWall)
-            //    Debug.Log("On Wall");
-        }
-
-        private void FixedUpdate()
-        {
-           
-
-            //if (isOnWall)
-            //{
-            //    _rigidbody2D.velocity = Vector3.zero;
-            //    _rigidbody2D.angularVelocity = 0;
-            //    _rigidbody2D.gravityScale = 0;
-            //}
-
-        }
         private void OnDrawGizmos()
         {
             Gizmos.DrawWireSphere(transform.TransformPoint(GroundCheckPosition), GroundCheckRadius);
