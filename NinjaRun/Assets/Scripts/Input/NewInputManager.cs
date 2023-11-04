@@ -10,10 +10,14 @@ namespace Assets.Scripts.Input
     public class NewInputManager : MonoBehaviour
     {
         //new
-        //private PlayerInput playerInput;
+        public static NewInputManager Instance;
+        public static PlayerInput PlayerInput;
         //private PlayerControls playerControls;
 
         [SerializeField] private InputActionReference primaryTouch, touchPosition, startPosition;
+
+        //new
+        private InputAction _primaryTouch, _touchPosition, _startPosition;
 
         public UnityEvent<Vector2, float> OnStartTouch;
         public UnityEvent<Vector2, float> OnEndTouch;
@@ -22,31 +26,43 @@ namespace Assets.Scripts.Input
 
         private void Awake()
         {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
 
+            PlayerInput = GetComponent<PlayerInput>();
             mainCamera = Camera.main;
+
+
+            //new
+            _primaryTouch = PlayerInput.actions["PrimaryContact"];
+            _touchPosition = PlayerInput.actions["PrimaryPosition"];
+            _startPosition = PlayerInput.actions["PrimaryStartPosition"];
         }
 
         private void OnEnable()
         {
-            //playerControls = new PlayerControls();
-            //playerControls.Enable();
-            //playerControls.Touch.PrimaryContact.started += StartTouchPrimary;
-            //playerControls.Touch.PrimaryContact.canceled += EndTouchPrimary;
 
 
-            primaryTouch.action.started += StartTouchPrimary;
-            primaryTouch.action.canceled += EndTouchPrimary;
+            //primaryTouch.action.started += StartTouchPrimary;
+            //primaryTouch.action.canceled += EndTouchPrimary;
+
+            //new
+            _primaryTouch.started += StartTouchPrimary;
+            _primaryTouch.canceled += EndTouchPrimary;
         }
 
         private void OnDisable()
         {
-            primaryTouch.action.started -= StartTouchPrimary;
-            primaryTouch.action.canceled -= EndTouchPrimary;
+            //primaryTouch.action.started -= StartTouchPrimary;
+            //primaryTouch.action.canceled -= EndTouchPrimary;
 
-            //playerControls.Touch.PrimaryContact.started -= StartTouchPrimary;
-            //playerControls.Touch.PrimaryContact.canceled -= EndTouchPrimary;
+            //new
+            _primaryTouch.started -= StartTouchPrimary;
+            _primaryTouch.canceled -= EndTouchPrimary;
 
-            //playerControls.Disable();
+
         }
 
         //Test
@@ -61,7 +77,7 @@ namespace Assets.Scripts.Input
 
         private void EndTouchPrimary(InputAction.CallbackContext ctx)
         {
-            OnEndTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, touchPosition.action.ReadValue<Vector2>()), (float)ctx.startTime);
+            OnEndTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, _touchPosition.ReadValue<Vector2>()), (float)ctx.startTime);
             //Debug.Log("End touch");
 
         }
@@ -70,7 +86,7 @@ namespace Assets.Scripts.Input
         {
             await Task.Delay(10);
 
-            OnStartTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, startPosition.action.ReadValue<Vector2>()), (float)ctx.startTime);
+            OnStartTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, _startPosition.ReadValue<Vector2>()), (float)ctx.startTime);
 
             //Test
             //Vector3 position = mainCamera.ScreenToWorldPoint(startPosition.action.ReadValue<Vector2>());

@@ -66,6 +66,18 @@ namespace Assets.Scripts.Level
             levelPartToPutBack.SetActive(false);
             slot.LevelPartSpawned.Add(levelPartToPutBack);
         }
+
+        //private Transform RequestEndPosition(int ID)
+        //{
+        //    LevelPartSlot slot = Array.Find(levelParts, element => element.LevelPartPrefab.ID == ID);
+        //    if (slot == null)
+        //    {
+        //        Debug.LogError("Part " + ID + "not found");
+        //        return null;
+        //    }
+
+        //    return slot.LevelPartPrefab.EndTransform;
+        //}
     }
 
     [Serializable]

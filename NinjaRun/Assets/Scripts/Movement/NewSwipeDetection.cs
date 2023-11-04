@@ -11,6 +11,12 @@ namespace Assets.Scripts.Movement
         withoutDrag,
         withDrag,
     }
+    public enum JumpType
+    {
+        normalization,
+        withoutNormalization
+    }
+
     public class NewSwipeDetection : MonoBehaviour
     {
         public event Action OnSwipe;
@@ -20,13 +26,13 @@ namespace Assets.Scripts.Movement
         [SerializeField, Range(0,1f)] private float directionThreshold = 0.9f;
         [field: SerializeField] public float impactsStrength { get; private set; }
         [field: SerializeField] public ForceType forceType { get; private set; }
-    
+        [field: SerializeField] public JumpType JumpType { get; private set; }
 
         [SerializeField] private GameObject trail;
 
         public Vector3 directionSwipe { get; private set; }
 
-        private NewInputManager playerInput;
+        
         public Rigidbody2D _rigidbody2D { get; private set; }
 
         private Vector2 startPosition;
@@ -41,7 +47,7 @@ namespace Assets.Scripts.Movement
 
         private void Awake()
         {
-            playerInput = GetComponent<NewInputManager>();
+           
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
@@ -171,7 +177,7 @@ namespace Assets.Scripts.Movement
         {
             while (true)
             {
-                trail.transform.position = playerInput.PrimaryPosition();
+                trail.transform.position = NewInputManager.Instance.PrimaryPosition();
                 yield return null;
             }
         }
