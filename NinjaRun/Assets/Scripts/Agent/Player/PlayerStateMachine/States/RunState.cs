@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Threading.Tasks;
 using Assets.Scripts.Movement;
+using Assets.Scripts.Utils;
 using UnityEngine;
 
 namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
@@ -18,6 +19,11 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
     interface IOnWallState
     {
         public void TryOnWallSwitching();
+    }
+
+    interface IOnCeilingState
+    {
+        public void TryOnCeilingSwitching();
     }
 
     interface IFlyState
@@ -51,9 +57,8 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
             //playerState.MovementComponent._rigidbody2D.simulated = false;
 
             playerState.MovementComponent._rigidbody2D.velocity = Vector3.zero;
-            //playerState.MovementComponent._rigidbody2D.angularVelocity = 0;
-            //SimulatedCD();
 
+            AgentUtils.NormalSpriteDirection(playerState.transform);
         }
 
         private async void SimulatedCD()
@@ -90,6 +95,8 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
             //playerState.MovementComponent._rigidbody2D.AddForce(Vector2.right * playerState.MovementComponent.Speed * Time.deltaTime, ForceMode2D.Force);
             playerState.MovementComponent._rigidbody2D.velocity =
                 new Vector2(playerState.MovementComponent.Speed * Time.deltaTime, 0);
+
+            
         }
 
         public void TryJumpSwitching()
@@ -99,7 +106,7 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
 
         public void TryOnWallSwitching()
         {
-            if (PositionCheck.WallCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right, playerState.MovementComponent.RayLenght,
+            if (PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right, playerState.MovementComponent.WallRayLength,
                     playerState.MovementComponent.GroundLayer))
             {
                 playerState.StateMachine.ChangeState(playerState.OnWallState);
@@ -113,7 +120,7 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
                 playerState.MovementComponent.GroundCheckRadius, playerState.MovementComponent.GroundLayer))
             {
                 //dont on wall check
-                if (!PositionCheck.WallCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right, playerState.MovementComponent.RayLenght,
+                if (!PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right, playerState.MovementComponent.WallRayLength,
                         playerState.MovementComponent.GroundLayer))
                 {
                     playerState.StateMachine.ChangeState(playerState.FlyState);

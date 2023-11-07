@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Threading.Tasks;
 using Assets.Scripts.Input;
+using Assets.Scripts.Utils;
 using UnityEngine;
 
 namespace Assets.Scripts.Movement
@@ -94,7 +95,10 @@ namespace Assets.Scripts.Movement
 
             startPosition = position;
             startTime = time;
-            
+
+            //ChangeTimeScale
+            TimeManager.Instance.ChangeGameTimeScale(0.5f);
+
             //trail
             trail.SetActive(true);
             trail.transform.position = position;
@@ -107,6 +111,9 @@ namespace Assets.Scripts.Movement
 
             endPosition = position;
             endTime = time;
+
+            //ChangeTimeScale
+            TimeManager.Instance.ChangeGameTimeScale(1);
 
             //trail
             trail.SetActive(false);

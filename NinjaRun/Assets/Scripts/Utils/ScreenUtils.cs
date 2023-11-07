@@ -9,5 +9,7 @@ namespace Assets.Scripts.Utils
             position.z = camera.nearClipPlane;
             return camera.ScreenToWorldPoint(position);
         }
+
+        
     }
 }

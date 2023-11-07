@@ -9,11 +9,13 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine
         public NewSwipeDetection SwipeDetection { get; private set; }
         public MovementComponent MovementComponent { get; private set; }
         public PlayerAnimator PlayerAnimator { get; private set; }
+        public SpriteRenderer SpriteRenderer { get; private set; }
 
         public PlayerStateMachine StateMachine;
         public RunState RunState { get; set; }
         public JumpState JumpState { get; set; }
         public OnWallState OnWallState { get; set; }
+        public OnCeilingState OnCeilingState { get; set; }
         public FlyState FlyState { get; set; }
 
         private void Awake()
@@ -21,12 +23,14 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine
             SwipeDetection = GetComponent<NewSwipeDetection>();
             MovementComponent = GetComponent<MovementComponent>();
             PlayerAnimator = GetComponent<PlayerAnimator>();
+            SpriteRenderer = GetComponent<SpriteRenderer>();
 
             StateMachine= new PlayerStateMachine();
 
             RunState = new RunState(this, StateMachine);
             JumpState = new JumpState(this, StateMachine);
             OnWallState = new OnWallState(this, StateMachine);
+            OnCeilingState = new OnCeilingState(this, StateMachine);
             FlyState = new FlyState(this, StateMachine);
         }
 

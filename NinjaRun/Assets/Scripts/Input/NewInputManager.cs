@@ -80,6 +80,8 @@ namespace Assets.Scripts.Input
             OnEndTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, _touchPosition.ReadValue<Vector2>()), (float)ctx.startTime);
             //Debug.Log("End touch");
 
+            
+
         }
 
         private async void StartTouchPrimary(InputAction.CallbackContext ctx)
@@ -88,6 +90,7 @@ namespace Assets.Scripts.Input
 
             OnStartTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, _startPosition.ReadValue<Vector2>()), (float)ctx.startTime);
 
+           
             //Test
             //Vector3 position = mainCamera.ScreenToWorldPoint(startPosition.action.ReadValue<Vector2>());
             //position.z = 0;

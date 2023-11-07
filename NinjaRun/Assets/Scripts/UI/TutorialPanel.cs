@@ -8,12 +8,12 @@ namespace Assets.Scripts.UI
     {
         private void OnEnable()
         {
-            PauseManager.Instance.PauseGame();
+            TimeManager.Instance.PauseGame();
         }
 
         private void OnDisable()
         {
-            PauseManager.Instance.UnpauseGame();
+            TimeManager.Instance.UnpauseGame();
         }
 
         public override void EnablePanel()

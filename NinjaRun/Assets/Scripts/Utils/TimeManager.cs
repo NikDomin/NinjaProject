@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Assets.Scripts.Utils
 {
-    public class PauseManager : MonoBehaviour
+    public class TimeManager : MonoBehaviour
     {
 
-        public static PauseManager Instance;
+        public static TimeManager Instance;
 
         private void Awake()
         {
@@ -20,17 +20,17 @@ namespace Assets.Scripts.Utils
         public void PauseGame()
         {
            Time.timeScale = 0f;
-
-          
         }
 
         public void UnpauseGame()
         {
             Time.timeScale = 1f;
-
-           
         }
 
+        public void ChangeGameTimeScale(float speed)
+        {
+            Time.timeScale = speed;
+        }
 
     }
 }

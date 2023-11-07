@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Threading.Tasks;
 using Assets.Scripts.Movement;
+using Assets.Scripts.Utils;
 using UnityEngine;
 
 namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
 {
-    public class FlyState : BasedState, IRunState, IOnWallState, IJumpState
+    public class FlyState : BasedState, IRunState, IOnWallState, IJumpState, IOnCeilingState
     {
         private PlayerState playerState;
         private PlayerStateMachine stateMachine;
@@ -57,8 +58,11 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
         {
             base.PhysicUpdate();
 
+            AgentUtils.SpriteDirection(playerState.transform, playerState.SwipeDetection.directionSwipe );
+
             TryRunSwitching();
             TryOnWallSwitching();
+            TryOnCeilingSwitching();
         }
 
         public void TryRunSwitching()
@@ -73,7 +77,7 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
 
         public void TryOnWallSwitching()
         {
-            if (PositionCheck.WallCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right, playerState.MovementComponent.RayLenght,
+            if (PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right * playerState.transform.localScale.x, playerState.MovementComponent.WallRayLength,
                    playerState.MovementComponent.GroundLayer) && isCanCling)
             {
                 playerState.StateMachine.ChangeState(playerState.OnWallState);
@@ -83,6 +87,14 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
         public void TryJumpSwitching()
         {
             playerState.StateMachine.ChangeState(playerState.JumpState);
+        }
+
+        public void TryOnCeilingSwitching()
+        {
+            if (PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.CeilingCheckPosition), playerState.transform.up, playerState.MovementComponent.CeilRayLength, playerState.MovementComponent.GroundLayer) && isCanCling)
+            {
+                playerState.StateMachine.ChangeState(playerState.OnCeilingState);
+            }
         }
     }
 }
