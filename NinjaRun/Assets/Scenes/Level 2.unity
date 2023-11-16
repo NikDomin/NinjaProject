@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 92876905}
   - component: {fileID: 92876904}
   - component: {fileID: 92876903}
+  - component: {fileID: 92876909}
   m_Layer: 8
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -366,6 +367,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &92876909
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92876901}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &93428344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,6 +1070,8 @@ GameObject:
   m_Component:
   - component: {fileID: 637260860}
   - component: {fileID: 637260861}
+  - component: {fileID: 637260862}
+  - component: {fileID: 637260863}
   m_Layer: 8
   m_Name: ExclamationPoint
   m_TagString: Untagged
@@ -1122,6 +1146,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &637260862
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637260859}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f4b72559eece5c4dac5be1ee0238f08, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &637260863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637260859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c243ffb81abb32449b58f39ad90062de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &662011087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11023,6 +11080,7 @@ GameObject:
   - component: {fileID: 1183388296}
   - component: {fileID: 1183388295}
   - component: {fileID: 1183388294}
+  - component: {fileID: 1183388300}
   m_Layer: 8
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -11186,6 +11244,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1183388300
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183388292}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1231490901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11595,6 +11674,7 @@ GameObject:
   - component: {fileID: 1387168398}
   - component: {fileID: 1387168397}
   - component: {fileID: 1387168396}
+  - component: {fileID: 1387168402}
   m_Layer: 8
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -11758,6 +11838,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1387168402
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387168394}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1400845474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12882,6 +12983,8 @@ GameObject:
   - component: {fileID: 1760865479}
   - component: {fileID: 1760865478}
   - component: {fileID: 1760865480}
+  - component: {fileID: 1760865482}
+  - component: {fileID: 1760865481}
   m_Layer: 8
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -13079,6 +13182,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1760865481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760865472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d5c4a181a866a47bb7f7608676776a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exclamationPoint: {fileID: 637260860}
+  TimeToPrepareAttack: 1000
+--- !u!114 &1760865482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760865472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5373f8975f9f5a2428afc1eed397f905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  detectPoint: {x: 4.26, y: 0}
+  size: {x: 7.23, y: 2.3}
 --- !u!4 &1788981701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2092414651149786503, guid: 7c9c1a9f7eccc1941923f770bddc74c8, type: 3}
