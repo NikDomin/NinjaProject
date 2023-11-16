@@ -864,8 +864,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: LowerTorso/FirstLegStart/bone_6
+    attribute: m_LocalEulerAngles.z
+    path: LowerTorso/UpperTorso
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -875,7 +875,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: LowerTorso/FirstLegStart/bone_6
+    path: LowerTorso/UpperTorso
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -884,8 +884,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: LowerTorso/FirstLegStart/bone_6
+    attribute: m_LocalEulerAngles.x
+    path: LowerTorso/UpperTorso
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1015,7 +1015,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: LowerTorso/UpperTorso
+    path: LowerTorso/FirstLegStart/bone_6
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1025,7 +1025,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: LowerTorso/UpperTorso
+    path: LowerTorso/FirstLegStart/bone_6
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1035,7 +1035,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: LowerTorso/UpperTorso
+    path: LowerTorso/FirstLegStart/bone_6
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using Assets.Scripts.Input;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Utils
 {

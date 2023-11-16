@@ -13,6 +13,7 @@ namespace Assets.Scripts.Agent.Player
         public readonly int EndWallTriggerKey = Animator.StringToHash("endWallTrigger");
         public readonly int OnCeilTriggerKey = Animator.StringToHash("OnCeilTrigger");
         public readonly int EndCeilTriggerKey = Animator.StringToHash("endCeilTrigger");
+        public readonly int AttackTriggerKey = Animator.StringToHash("AttackTrigger ");
 
         private void Awake()
         {

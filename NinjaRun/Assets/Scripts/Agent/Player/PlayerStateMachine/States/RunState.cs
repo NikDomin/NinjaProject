@@ -31,6 +31,11 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
         public void TryFlySwitching();
     }
 
+    interface IAttackState
+    {
+        public void TryAttackSwitching();
+    }
+
     public class RunState : BasedState, IJumpState, IOnWallState, IFlyState
     {
         private PlayerState playerState;

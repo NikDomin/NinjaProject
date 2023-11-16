@@ -6,13 +6,14 @@ using UnityEngine;
 
 namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
 {
-    public class FlyState : BasedState, IRunState, IOnWallState, IJumpState, IOnCeilingState
+    public class FlyState : BasedState, IRunState, IOnWallState, IJumpState, IOnCeilingState, IAttackState
     {
         private PlayerState playerState;
         private PlayerStateMachine stateMachine;
 
         private bool isCanCling;
         private bool isCanRun;
+
         public FlyState(PlayerState player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             playerState = player;
@@ -24,9 +25,9 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
             base.EnterState();
             isCanCling = false;
             isCanRun = false;
+
             DetectCdOnWall();
             DetectCdOnRun();
-
 
             playerState.SwipeDetection._rigidbody2D.gravityScale = 1;
 
@@ -63,6 +64,7 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
             TryRunSwitching();
             TryOnWallSwitching();
             TryOnCeilingSwitching();
+            TryAttackSwitching();
         }
 
         public void TryRunSwitching()
@@ -95,6 +97,17 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
             {
                 playerState.StateMachine.ChangeState(playerState.OnCeilingState);
             }
+        }
+
+        public void TryAttackSwitching()
+        {
+
+            var colliders = playerState.AgentBoxDetection.OverlapBox();
+            if(colliders.Length == 0)
+                return;
+            playerState.AttackComponent.TargetCollider2Ds = colliders;
+
+            playerState.StateMachine.ChangeState(playerState.AttackState);
         }
     }
 }

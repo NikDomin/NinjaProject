@@ -91,10 +91,6 @@ namespace Assets.Scripts.Input
             OnStartTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, _startPosition.ReadValue<Vector2>()), (float)ctx.startTime);
 
            
-            //Test
-            //Vector3 position = mainCamera.ScreenToWorldPoint(startPosition.action.ReadValue<Vector2>());
-            //position.z = 0;
-            //transform.position = position;
         }
 
         public Vector2 PrimaryPosition()

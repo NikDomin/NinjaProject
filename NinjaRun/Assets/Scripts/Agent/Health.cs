@@ -8,10 +8,11 @@ namespace Assets.Scripts.Agent
     {
         public UnityEvent OnDead;
 
-        public void Hit()
+        public void GetHit()
         {
-            Destroy(gameObject);
             OnDead.Invoke();
+
+            Destroy(gameObject);
         }
     }
 }

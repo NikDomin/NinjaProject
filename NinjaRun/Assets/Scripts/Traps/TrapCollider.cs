@@ -13,13 +13,13 @@ namespace Assets.Scripts.Traps
             //if (collision.gameObject.layer == playerLayer)
             //{
             //    var collisionHealth = collision.gameObject.GetComponent<Health>();
-            //    collisionHealth.Hit();
+            //    collisionHealth.GetHit();
             //}
 
             if ((playerLayer & (1 << collision.gameObject.layer)) != 0)
             {
                 var collisionHealth = collision.gameObject.GetComponent<Health>();
-                collisionHealth.Hit();
+                collisionHealth.GetHit();
             }
         }
     }
