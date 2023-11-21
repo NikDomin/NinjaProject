@@ -50,6 +50,8 @@ namespace Assets.Scripts.Agent.Player
             //AttackEffect.gameObject.SetActive(true);
             var effect = attackEffectObjectPool.Get();
             effect.transform.position = transform.position;
+            //effect scale
+            AgentUtils.SpriteDirection(effect.transform, transform);
 
             GameUtils.Timer(OnEndEffect, effectTime);
 

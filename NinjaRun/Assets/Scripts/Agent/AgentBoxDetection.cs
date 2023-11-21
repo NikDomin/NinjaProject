@@ -5,9 +5,13 @@ namespace Assets.Scripts.Agent
 {
     public class AgentBoxDetection : MonoBehaviour
     {
-        [SerializeField] private LayerMask detectLayerMask;
-        [SerializeField] private Vector2 detectPoint;
-        [SerializeField] private Vector2 size;
+        [SerializeField] private bool debug;
+
+        [field: SerializeField] public LayerMask detectLayerMask { get; private set; }
+        [field: SerializeField] public Vector2 detectPoint { get; private set; }
+        [field: SerializeField] public Vector2 size { get; private set; }
+
+        [SerializeField] private Color debugColor;
         private Vector2 offset;
 
         public Collider2D[] OverlapBox()
@@ -20,22 +24,25 @@ namespace Assets.Scripts.Agent
             return Physics2D.OverlapBoxAll(offset, size, 0f, detectLayerMask);
         }
 
-        //private void FixedUpdate()
-        //{
-        //    var collires = OverlapBox();
-        //    if (collires.Length == 0)
-        //        return;
+        public Collider2D[] OverlapBox(float detectPointX, float detectPointY, float sizeX, float sizeY, LayerMask _detectLayerMask)
+        {
+            Vector2 _offset = Vector2.zero;
+            _offset.Set(
+                transform.position.x + detectPointX * transform.localScale.x,
+                transform.position.y + detectPointY
+                );
 
-        //    foreach (var item in collires)
-        //    {
-        //        Debug.Log(item.name);
-        //    }
-        //}
+            return Physics2D.OverlapBoxAll(_offset, new Vector2(sizeX,sizeY), 0f, _detectLayerMask);
+        }
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube((transform.position + (Vector3)detectPoint) * transform.localScale.x,  size);
+            if (!debug)
+                return;
+
+            Gizmos.color = debugColor;
+            Gizmos.DrawWireCube(((transform.position + (Vector3)detectPoint)) * transform.localScale.x, size);
+
         }
     }
 }

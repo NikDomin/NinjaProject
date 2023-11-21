@@ -15,6 +15,17 @@ namespace Assets.Scripts.Utils
             transform.localScale = scale;
         }
 
+        public static void SpriteDirection(Transform targetTransform, Transform gameObjectTransform)
+        {
+            Vector2 scale = targetTransform.localScale;
+            if (gameObjectTransform.localScale.x > 0)
+                scale.x = 1;
+            else if (gameObjectTransform.localScale.x < 0)
+                scale.x = -1;
+            targetTransform.localScale = scale;
+
+        }
+
         public static void NormalSpriteDirection(Transform transform)
         {
             if (transform.localScale.x == -1)

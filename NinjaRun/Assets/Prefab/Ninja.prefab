@@ -85,6 +85,10 @@ GameObject:
   - component: {fileID: 8108421511935773308}
   - component: {fileID: 8108421511935773256}
   - component: {fileID: 8108421511935773263}
+  - component: {fileID: 2020839938}
+  - component: {fileID: 2020839939}
+  - component: {fileID: 2020839940}
+  - component: {fileID: 5790668731503570773}
   m_Layer: 7
   m_Name: Ninja
   m_TagString: Untagged
@@ -148,7 +152,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -745149403
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: bfa30a61533d4a844a6e4cb240dfaaf7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -347,6 +351,62 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2020839938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108421511935773309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b6c021c92f4ac498441c85150bb6aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetCollider2Ds: []
+  AttackEffect: {fileID: 7859433378311441108, guid: 69c7b7d90123e8a49933108271a5ca9b, type: 3}
+  effectTime: 2000
+--- !u!114 &2020839939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108421511935773309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9654028bd90360342b01ea6ef76aea98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2020839940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108421511935773309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5373f8975f9f5a2428afc1eed397f905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <detectLayerMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
+  <detectPoint>k__BackingField: {x: 0, y: 0}
+  <size>k__BackingField: {x: 0, y: 0}
+--- !u!114 &5790668731503570773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108421511935773309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4292cd28ba36c4f84cdf1f444ec58a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8108421511954646115
 GameObject:
   m_ObjectHideFlags: 0
