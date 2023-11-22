@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Assets.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,7 @@ namespace Assets.Scripts.UI
         public override void EnablePanel()
         {
             base.EnablePanel();
+            GameUtils.SceneNumber(SceneManager.GetActiveScene());
         }
 
         public override void DisablePanel()
@@ -20,6 +22,11 @@ namespace Assets.Scripts.UI
         {
             DisablePanel();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        public void ToMainMenu()
+        {
+            SceneManager.LoadScene("ChooseLevel");
         }
     }
 }
