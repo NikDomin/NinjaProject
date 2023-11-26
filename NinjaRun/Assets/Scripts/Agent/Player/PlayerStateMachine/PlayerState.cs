@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Agent.Player.PlayerStateMachine.States;
+﻿using Agent;
+using Assets.Scripts.Agent.Player.PlayerStateMachine.States;
 using Assets.Scripts.Movement;
 using UnityEngine;
 

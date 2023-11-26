@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using Assets.Scripts.Input;
+﻿using Assets.Scripts.Input;
 using UnityEngine;
 
-namespace Assets.Scripts.UI
+namespace UI
 {
     public abstract class Panel : MonoBehaviour
     {

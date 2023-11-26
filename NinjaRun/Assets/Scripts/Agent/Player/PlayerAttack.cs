@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using Assets.Scripts.Agent;
+using Assets.Scripts.Agent.Player;
 using Assets.Scripts.ObjectsPool;
 using Assets.Scripts.Utils;
 using UnityEngine;
 
-namespace Assets.Scripts.Agent.Player
+namespace Agent.Player
 {
     public class PlayerAttack : AttackComponent
     {
@@ -12,12 +12,16 @@ namespace Assets.Scripts.Agent.Player
         [SerializeField] private Transform AttackEffect;
         [SerializeField] private int effectTime;
 
+        private AgentBoxDetection agentBoxDetection;
         private GameObjectPool attackEffectObjectPool;
+
+        #region Mono
 
         private void Awake()
         {
             animationHandler = GetComponent<PlayerAnimationHandler>();
-
+            agentBoxDetection = GetComponent<AgentBoxDetection>();
+            
             attackEffectObjectPool = new GameObjectPool(AttackEffect.gameObject, 2);
         }
 
@@ -34,13 +38,19 @@ namespace Assets.Scripts.Agent.Player
             
         }
 
+        #endregion
+
+        #region Attack
+
         private void StartAttack()
         {
+            TargetCollider2Ds = agentBoxDetection.OverlapBox();
+            
             if (TargetCollider2Ds == null)
                 return;
             if(TargetCollider2Ds.Length == 0)
                 return;
-
+            
             Attack(TargetCollider2Ds);
         }
         protected override void Attack(Collider2D[] targetCollider2Ds)
@@ -60,15 +70,15 @@ namespace Assets.Scripts.Agent.Player
             foreach (var item in targetCollider2Ds)
             {
                 if (item.TryGetComponent(out IDamageable damageable))
-                {
                     damageable.Damage();
-                }
             }
 
             TargetCollider2Ds = null;
 
             void OnEndEffect() => attackEffectObjectPool.Return(effect);
         }
+
+        #endregion
 
      
     }

@@ -14210,10 +14210,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyHolder (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 6803228438609109514, guid: e6d5c86f94ffe184a82a0edec3a2c878, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6803228438609109515, guid: e6d5c86f94ffe184a82a0edec3a2c878, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -14608,46 +14604,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2020839938, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: effectTime
-      value: 1200
-      objectReference: {fileID: 0}
-    - target: {fileID: 2020839940, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: debug
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2020839940, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: debugColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2020839940, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: debugColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2020839940, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: debugColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2020839940, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: debugColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2020839940, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: <size>k__BackingField.x
-      value: 2.43
-      objectReference: {fileID: 0}
-    - target: {fileID: 2020839940, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: <size>k__BackingField.y
-      value: 4.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 2020839940, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: <detectPoint>k__BackingField.x
-      value: 1.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 2020839940, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: <detectLayerMask>k__BackingField.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
     - target: {fileID: 8108421511935773254, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
       propertyPath: trail
       value: 
@@ -14655,10 +14611,6 @@ PrefabInstance:
     - target: {fileID: 8108421511935773257, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
       propertyPath: m_RootOrder
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8108421511935773257, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8108421511935773257, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
       propertyPath: m_LocalPosition.x

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
+using Agent;
 using Assets.Scripts.Utils;
 using UnityEngine;
 
@@ -26,28 +27,14 @@ namespace Assets.Scripts.Agent.Enemy
         private Collider2D[] playerCollider2Ds;
         private Collider2D[] checkForPlayer;
 
+        #region Mono
+
         private void Awake()
         {
             //checkPlayerDetection = GetComponent<AgentBoxDetection>();
             enemyAi = GetComponent<EnemyAI>();
             exclamationEventHandler = exclamationPoint.gameObject.GetComponent<EnemyAnimationEventHandler>();
         }
-
-        
-        //private void OnEnable()
-        //{
-        //    exclamationEventHandler.OnEndExclamationPoint += StartAttackPlayer;
-        //    enemyAi.EnemyEventHandler.OnEndAttack += EndAttack;
-        //    enemyAi.EnemyEventHandler.OnMoveAttack += MoveAttack;
-        //    enemyAi.EnemyEventHandler.OnAttack += AttackPlayer;
-        //}
-        //private void OnDisable()
-        //{
-        //    exclamationEventHandler.OnEndExclamationPoint -= StartAttackPlayer;
-        //    enemyAi.EnemyEventHandler.OnEndAttack -= EndAttack;
-        //    enemyAi.EnemyEventHandler.OnMoveAttack -= MoveAttack;
-        //    enemyAi.EnemyEventHandler.OnAttack -= AttackPlayer;
-        //}
 
         private void Start()
         {
@@ -66,6 +53,8 @@ namespace Assets.Scripts.Agent.Enemy
             enemyAi.EnemyEventHandler.OnAttack -= AttackPlayer;
         }
 
+        #endregion
+
         protected override void DetectPlayer()
         {
             base.DetectPlayer();
@@ -75,12 +64,11 @@ namespace Assets.Scripts.Agent.Enemy
             if (Attacking)
                 return;
 
-            playerCollider2Ds = checkPlayerDetection.OverlapBox();
-            if(playerCollider2Ds == null)
+            int colliderCount = checkPlayerDetection.OverlapBoxNonAlloc(checkPlayerDetection.Buffer);
+            
+            if (colliderCount == 0)
                 return;
-            if (playerCollider2Ds.Length == 0)
-                return;
-
+            
             TryAttack();
         }
 
@@ -119,12 +107,8 @@ namespace Assets.Scripts.Agent.Enemy
 
         private bool CheckForPlayerInBox()
         {
-            checkForPlayer = checkPlayerDetection.OverlapBox();
-            if (checkForPlayer == null)
-            {
-                //DeniedAttack();
-                return false;
-            }
+            int playerColliderCountCheck = checkPlayerDetection.OverlapBoxNonAlloc(checkPlayerDetection.Buffer);
+            
             if (checkForPlayer.Length == 0)
             {
                 //DeniedAttack();

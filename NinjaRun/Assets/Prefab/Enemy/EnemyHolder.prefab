@@ -221,11 +221,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
-  <detectLayerMask>k__BackingField:
+  <DetectLayerMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 128
-  <detectPoint>k__BackingField: {x: 7.4, y: 0}
-  <size>k__BackingField: {x: 12, y: 2.02}
+  <DetectPoint>k__BackingField: {x: 8.85, y: 0}
+  <Size>k__BackingField: {x: 17.43, y: 2.39}
   debugColor: {r: 1, g: 0.6216517, b: 0.013207495, a: 1}
 --- !u!114 &6803228437389277329
 MonoBehaviour:
@@ -283,11 +283,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
-  <detectLayerMask>k__BackingField:
+  <DetectLayerMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 128
-  <detectPoint>k__BackingField: {x: 1.76, y: 0}
-  <size>k__BackingField: {x: 3.48, y: 2.37}
+  <DetectPoint>k__BackingField: {x: 2.52, y: 0}
+  <Size>k__BackingField: {x: 3.7, y: 2.28}
   debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &6803228437849417082
 GameObject:

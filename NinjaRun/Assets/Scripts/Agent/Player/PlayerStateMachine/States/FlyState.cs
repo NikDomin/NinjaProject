@@ -101,11 +101,15 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
 
         public void TryAttackSwitching()
         {
-
-            var colliders = playerState.AgentBoxDetection.OverlapBox();
-            if(colliders.Length == 0)
+            var colliders = playerState.AgentBoxDetection.OverlapBoxNonAlloc(playerState.AgentBoxDetection.Buffer);
+            if (colliders == 0)
                 return;
-            playerState.AttackComponent.TargetCollider2Ds = colliders;
+            // playerState.AttackComponent.TargetCollider2Ds = playerState.AgentBoxDetection.Buffer;
+            
+            // var colliders = playerState.AgentBoxDetection.OverlapBox();
+            // if(colliders.Length == 0)
+            //     return;
+            // playerState.AttackComponent.TargetCollider2Ds = colliders;
 
             playerState.StateMachine.ChangeState(playerState.AttackState);
         }

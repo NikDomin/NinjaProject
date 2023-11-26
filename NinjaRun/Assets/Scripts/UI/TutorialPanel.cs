@@ -1,19 +1,26 @@
-﻿using System.Collections;
-using Assets.Scripts.Utils;
+﻿using Assets.Scripts.Utils;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace Assets.Scripts.UI
+namespace UI
 {
     public class TutorialPanel : Panel
     {
+        [SerializeField] private Button acceptButton;
+        
         private void OnEnable()
         {
             TimeManager.Instance.PauseGame();
+            
+            acceptButton.onClick.AddListener(DisablePanel);
         }
 
         private void OnDisable()
         {
             TimeManager.Instance.UnpauseGame();
+            
+            acceptButton.onClick.RemoveListener(DisablePanel);
+
         }
 
         public override void EnablePanel()

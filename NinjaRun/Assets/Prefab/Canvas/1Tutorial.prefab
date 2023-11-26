@@ -120,19 +120,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 919566631436636457}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 919566631498978420}
-        m_TargetAssemblyTypeName: Assets.Scripts.UI.TutorialPanel, Assembly-CSharp
-        m_MethodName: DisablePanel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &919566631498978416
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b227803afae3a44bbb7e570f9c38aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  acceptButton: {fileID: 919566631436636456}
 --- !u!1 &919566632560948863
 GameObject:
   m_ObjectHideFlags: 0

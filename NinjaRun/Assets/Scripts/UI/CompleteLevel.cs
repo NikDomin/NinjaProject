@@ -1,20 +1,29 @@
-﻿using System.Collections;
-using Assets.Scripts.Utils;
+﻿using Assets.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-namespace Assets.Scripts.UI
+namespace UI
 {
     public class CompleteLevel : Panel
     {
-
+        [SerializeField] private Button homeButton;
+        [SerializeField] private Button nextLevelButton;
+        
         private void OnEnable()
         {
             TimeManager.Instance.PauseGame();
+            
+            homeButton.onClick.AddListener(ToMainMenu);
+            nextLevelButton.onClick.AddListener(ToNextLevel);
         }
         private void OnDisable()
         {
             TimeManager.Instance.UnpauseGame();
+            
+            homeButton.onClick.RemoveListener(ToMainMenu);
+            nextLevelButton.onClick.RemoveListener(ToNextLevel);
+
         }
 
         public override void EnablePanel()
@@ -27,14 +36,18 @@ namespace Assets.Scripts.UI
             base.DisablePanel();
         }
 
-        public void ToMainMenu()
+        #region ButtonsListeners
+
+        private void ToMainMenu()
         {
             SceneManager.LoadScene("ChooseLevel");
         }
 
-        public void ToNextLevel()
+        private void ToNextLevel()
         {
             SceneManager.LoadScene("Level " + (GameUtils.SceneNumber(SceneManager.GetActiveScene())+1));
         }
+
+        #endregion
     }
 }

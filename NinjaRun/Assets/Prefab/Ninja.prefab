@@ -365,7 +365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetCollider2Ds: []
   AttackEffect: {fileID: 7859433378311441108, guid: 69c7b7d90123e8a49933108271a5ca9b, type: 3}
-  effectTime: 2000
+  effectTime: 1200
 --- !u!114 &2020839939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,11 +390,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5373f8975f9f5a2428afc1eed397f905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <detectLayerMask>k__BackingField:
+  debug: 1
+  <DetectLayerMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 0
-  <detectPoint>k__BackingField: {x: 0, y: 0}
-  <size>k__BackingField: {x: 0, y: 0}
+    m_Bits: 256
+  <DetectPoint>k__BackingField: {x: 1.05, y: 0}
+  <Size>k__BackingField: {x: 1.6, y: 3.75}
+  debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &5790668731503570773
 MonoBehaviour:
   m_ObjectHideFlags: 0

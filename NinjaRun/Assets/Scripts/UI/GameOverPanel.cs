@@ -1,32 +1,44 @@
-﻿using System.Collections;
-using Assets.Scripts.Utils;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-namespace Assets.Scripts.UI
+namespace UI
 {
     public class GameOverPanel : Panel
     {
+        [SerializeField] private Button homeButton;
+        [SerializeField] private Button restartButton;
+        
         public override void EnablePanel()
         {
             base.EnablePanel();
-            GameUtils.SceneNumber(SceneManager.GetActiveScene());
+
+            homeButton.onClick.AddListener(ToMainMenu);
+            restartButton.onClick.AddListener(ResetLevel);
         }
 
         public override void DisablePanel()
         {
             base.DisablePanel();
+            
+            homeButton.onClick.RemoveListener(ToMainMenu);
+            restartButton.onClick.RemoveListener(ResetLevel);
         }
 
-        public void ResetLevel()
+
+        #region ButtonsListeners
+
+        private void ResetLevel()
         {
             DisablePanel();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        public void ToMainMenu()
+        private void ToMainMenu()
         {
             SceneManager.LoadScene("ChooseLevel");
         }
+
+        #endregion
     }
 }

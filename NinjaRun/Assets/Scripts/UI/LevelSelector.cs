@@ -1,17 +1,19 @@
-﻿using System.Collections;
-using Assets.Scripts.Input;
+﻿using Assets.Scripts.Input;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Assets.Scripts.UI
+namespace UI
 {
     public class LevelSelector : MonoBehaviour
     {
         [SerializeField] private int level;
-
+        
         private void Start()
         {
             NewInputManager.PlayerInput.SwitchCurrentActionMap("UI");
+            
+            GetComponentInChildren<TextMeshProUGUI>().text = level.ToString();
         }
 
         public void LoadScene()
