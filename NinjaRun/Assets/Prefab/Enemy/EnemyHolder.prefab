@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 6803228437389277331}
   - component: {fileID: 6803228437389277332}
   - component: {fileID: 6803228437389277334}
+  - component: {fileID: 61596845}
   m_Layer: 8
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -108,9 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e28d1abc08d9cc842814d11155c05def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftCorner: {fileID: 6803228438279885132}
-  rightCorner: {fileID: 6803228438073442789}
-  runSpeed: 300
 --- !u!50 &6803228437389277341
 Rigidbody2D:
   serializedVersion: 4
@@ -289,6 +287,21 @@ MonoBehaviour:
   <DetectPoint>k__BackingField: {x: 2.52, y: 0}
   <Size>k__BackingField: {x: 3.7, y: 2.28}
   debugColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &61596845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6803228437389277336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0907230f3a94409a853a06f90ffa33ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftCorner: {fileID: 6803228438279885132}
+  rightCorner: {fileID: 6803228438073442789}
+  runSpeed: 300
 --- !u!1 &6803228437849417082
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,8 +531,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21169698c120deb408c194dc215bcb4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 6803228437389277337}
-  DeadTransform: {fileID: 6803228437849417086}
+  enemy: {fileID: 6803228437389277337}
+  deadTransform: {fileID: 6803228437849417086}
   animationEventHandler: {fileID: 6803228437849417083}
 --- !u!1 &6803228438680502371
 GameObject:

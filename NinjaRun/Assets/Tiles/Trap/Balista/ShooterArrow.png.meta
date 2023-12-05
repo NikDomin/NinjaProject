@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf6f19726ff4ea14b859747e71c401ba
+guid: 3b1680c4450aec840b243498e726952e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -113,269 +113,131 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Trap_Spike_Run_0
+      name: ShooterArrow_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 32
-        height: 32
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cce026572f0bf3e4a9cba86f4dc16bad
-      internalID: 1336018952
+      spriteID: 742aceb6951add042acb9b3ce4749c9b
+      internalID: 1125514454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Trap_Spike_Run_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 83a05a8ab514b19498a24c85be6758e2
-      internalID: -1038448323
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trap_Spike_Run_2
+      name: ShooterArrow_1
       rect:
         serializedVersion: 2
         x: 64
-        y: 96
-        width: 32
-        height: 32
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9087da3b9c99f7d4187c6ab865ff8247
-      internalID: -992620545
+      spriteID: a6a8c3120966d0947981e80615f5b406
+      internalID: -1245616408
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Trap_Spike_Run_3
+      name: ShooterArrow_2
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
-        width: 32
-        height: 32
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cf1bd6b55e34f547803ac41592333fa
-      internalID: 2123664294
+      spriteID: b271eb08651449447b6d7b8618d40b9b
+      internalID: 1174595563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Trap_Spike_Run_4
+      name: ShooterArrow_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b91aabc4025f614287a031021ea6dd3
-      internalID: -1979358652
+      spriteID: 5f889e939428aca4aa4cb71e9e2a559b
+      internalID: -1349300317
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Trap_Spike_Run_5
+      name: ShooterArrow_4
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10515a1da8fd74d4a86cd47d4192a3a5
-      internalID: 1224411017
+      spriteID: c8d8ca22e2d9df4468edaad5a5430f7f
+      internalID: -1542550330
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Trap_Spike_Run_6
+      name: ShooterArrow_5
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00d54510f2a36f74aa68ec5ea403c58b
-      internalID: -1425049985
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trap_Spike_Run_7
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9fec2a7060300764aa466ca7529ab174
-      internalID: -395090516
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trap_Spike_Run_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a6e6c643d7a8f184c8fb0190ac99f422
-      internalID: 1062408281
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trap_Spike_Run_9
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 97123a690aaf6e24bb58cc7539c9b8ab
-      internalID: -477610591
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trap_Spike_Run_10
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4de7d4f9baf25e142888c2cdd71504f5
-      internalID: 1983424464
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trap_Spike_Run_11
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ad981da2bd80be647a38fa24c987c208
-      internalID: -2020902794
+      spriteID: 70b4d58b36484b6489ade338cf71b479
+      internalID: -1702440388
       vertices: []
       indices: 
       edges: []
@@ -391,18 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Trap_Spike_Run_0: 1336018952
-      Trap_Spike_Run_1: -1038448323
-      Trap_Spike_Run_10: 1983424464
-      Trap_Spike_Run_11: -2020902794
-      Trap_Spike_Run_2: -992620545
-      Trap_Spike_Run_3: 2123664294
-      Trap_Spike_Run_4: -1979358652
-      Trap_Spike_Run_5: 1224411017
-      Trap_Spike_Run_6: -1425049985
-      Trap_Spike_Run_7: -395090516
-      Trap_Spike_Run_8: 1062408281
-      Trap_Spike_Run_9: -477610591
+      ShooterArrow_0: 1125514454
+      ShooterArrow_1: -1245616408
+      ShooterArrow_2: 1174595563
+      ShooterArrow_3: -1349300317
+      ShooterArrow_4: -1542550330
+      ShooterArrow_5: -1702440388
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,21 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Assets.Scripts.Movement
+namespace Movement
 {
     public class PatrolMovement : MonoBehaviour
     {
         [SerializeField] private Transform firstPoint;
         [SerializeField] private Transform secondPoint;
-        [SerializeField] private Transform SurikenHandler;
+        [SerializeField] private Transform surikenHandler;
         [SerializeField] private float patrolSpeed;
 
         private Transform currentPoint;
-        //private Rigidbody2D _rigidbody;
-
-        private void Awake()
-        {
-            //_rigidbody = GetComponent<Rigidbody2D>();
-        }
+        
         private void Start()
         {
             currentPoint = firstPoint;
@@ -25,13 +21,13 @@ namespace Assets.Scripts.Movement
         // Update is called once per frame
         void FixedUpdate()
         {
-            if (Vector2.Distance(SurikenHandler.position, firstPoint.position) < 1f)
+            if (Vector2.Distance(surikenHandler.position, firstPoint.position) < 1f)
                 currentPoint = secondPoint;
-            else if (Vector2.Distance(SurikenHandler.position, secondPoint.position) < 1f)
+            else if (Vector2.Distance(surikenHandler.position, secondPoint.position) < 1f)
                 currentPoint = firstPoint;
 
             float step = patrolSpeed * Time.deltaTime;
-            SurikenHandler.position = Vector2.MoveTowards(SurikenHandler.position, currentPoint.position, step);
+            surikenHandler.position = Vector2.MoveTowards(surikenHandler.position, currentPoint.position, step);
         }
     }
 }

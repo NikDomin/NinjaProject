@@ -1306,6 +1306,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2065602962}
     m_Modifications:
+    - target: {fileID: 3671491427576402963, guid: c04e789e44f67e24abb9ccfbdc110cc4, type: 3}
+      propertyPath: level
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4864951569996239908, guid: c04e789e44f67e24abb9ccfbdc110cc4, type: 3}
       propertyPath: m_Name
       value: LevelSelectButton (2)

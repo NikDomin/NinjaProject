@@ -1,20 +1,21 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Agent.Enemy;
 using Assets.Scripts.Utils;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Assets.Scripts.Agent.Enemy
+namespace Agent.Enemy
 {
     public class EnemyHolder : MonoBehaviour
     {
-        [SerializeField] private Transform Enemy;
-        [SerializeField] private Transform DeadTransform;
-        [SerializeField] private EnemyAnimationEventHandler animationEventHandler;
+        [SerializeField] protected Transform enemy;
+        [SerializeField] protected Transform deadTransform;
+        [SerializeField] protected EnemyAnimationEventHandler animationEventHandler;
 
         private void OnEnable()
         {
             animationEventHandler.OnDisableDeadBody += DisableDeadEnemy;
         }
-
+        
         private void OnDisable()
         {
             animationEventHandler.OnDisableDeadBody -= DisableDeadEnemy;
@@ -22,16 +23,16 @@ namespace Assets.Scripts.Agent.Enemy
 
         public void EnableDeadEnemy()
         {
-            if (Enemy.TryGetComponent(out EnemyAI ai))
-                AgentUtils.SpriteDirection(DeadTransform, ai.directionVector);
+            if (enemy.TryGetComponent(out EnemyAI ai))
+                AgentUtils.SpriteDirection(deadTransform, ai.DirectionVector);
             
-            DeadTransform.gameObject.SetActive(true);
-            DeadTransform.position = Enemy.position;
+            deadTransform.gameObject.SetActive(true);
+            deadTransform.position = enemy.position;
         }
 
-        public void DisableDeadEnemy()
+        private void DisableDeadEnemy()
         {
-            DeadTransform.gameObject.SetActive(false);
+            deadTransform.gameObject.SetActive(false);
         }
     }
 }

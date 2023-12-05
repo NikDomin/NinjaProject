@@ -3,6 +3,7 @@ using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
 using Agent;
+using Agent.Enemy;
 using Assets.Scripts.Utils;
 using UnityEngine;
 
@@ -18,6 +19,9 @@ namespace Assets.Scripts.Agent.Enemy
         [SerializeField] private AgentBoxDetection checkPlayerDetection;
         [SerializeField] private AgentBoxDetection AttackPlayerDetection;
 
+
+        private Rigidbody2D rigidbody2D;
+        
         private EnemyAI enemyAi;
         private EnemyAnimationEventHandler exclamationEventHandler;
 
@@ -32,6 +36,7 @@ namespace Assets.Scripts.Agent.Enemy
         private void Awake()
         {
             //checkPlayerDetection = GetComponent<AgentBoxDetection>();
+            rigidbody2D = GetComponent<Rigidbody2D>();
             enemyAi = GetComponent<EnemyAI>();
             exclamationEventHandler = exclamationPoint.gameObject.GetComponent<EnemyAnimationEventHandler>();
         }
@@ -171,7 +176,7 @@ namespace Assets.Scripts.Agent.Enemy
 
         private void MoveAttack()
         {
-            enemyAi._rigidbody2D.velocity = enemyAi.directionVector * moveAttackVelocity;
+            rigidbody2D.velocity = enemyAi.DirectionVector * moveAttackVelocity;
         }
     }
 }
