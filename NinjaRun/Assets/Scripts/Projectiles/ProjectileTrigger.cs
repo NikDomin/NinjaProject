@@ -1,6 +1,7 @@
 using System;
 using Assets.Scripts.Agent;
 using Assets.Scripts.ObjectsPool;
+using ObjectsPool;
 using UnityEngine;
 
 namespace Projectiles
@@ -11,6 +12,12 @@ namespace Projectiles
         
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private LayerMask playerLevel;
+
+        // private void OnDisable()
+        // {
+        //     ProjectilePool.Return(gameObject);
+        // }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if ((groundLayer.value & (1 << other.gameObject.layer)) > 0)

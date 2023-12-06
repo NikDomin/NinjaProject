@@ -2,6 +2,7 @@
 using Assets.Scripts.Agent.Player;
 using Assets.Scripts.ObjectsPool;
 using Assets.Scripts.Utils;
+using ObjectsPool;
 using UnityEngine;
 
 namespace Agent.Player

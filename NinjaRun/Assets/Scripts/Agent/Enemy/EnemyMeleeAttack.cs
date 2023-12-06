@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
-using Agent;
-using Agent.Enemy;
-using Assets.Scripts.Utils;
+using Assets.Scripts.Agent;
+using Assets.Scripts.Agent.Enemy;
 using UnityEngine;
 
-namespace Assets.Scripts.Agent.Enemy
+namespace Agent.Enemy
 {
     [RequireComponent(typeof(EnemyAI), typeof(AgentBoxDetection))]
     public class EnemyMeleeAttack : EnemyAttack
     {
         [SerializeField] private Transform exclamationPoint;
-        [SerializeField] private int TimeToPrepareAttack = 1000;
         [SerializeField] private int moveAttackVelocity;
         
         [SerializeField] private AgentBoxDetection checkPlayerDetection;
@@ -48,8 +45,14 @@ namespace Assets.Scripts.Agent.Enemy
             enemyAi.EnemyEventHandler.OnMoveAttack += MoveAttack;
             enemyAi.EnemyEventHandler.OnAttack += AttackPlayer;
 
-            InvokeRepeating(nameof(DetectPlayer), 1f, 0.1f);
+            // InvokeRepeating(nameof(DetectPlayer), 1f, 0.1f);
         }
+
+        private void FixedUpdate()
+        {
+            DetectPlayer();
+        }
+
         private void OnDestroy()
         {
             exclamationEventHandler.OnEndExclamationPoint -= StartAttackPlayer;
@@ -114,7 +117,7 @@ namespace Assets.Scripts.Agent.Enemy
         {
             int playerColliderCountCheck = checkPlayerDetection.OverlapBoxNonAlloc(checkPlayerDetection.Buffer);
             
-            if (checkForPlayer.Length == 0)
+            if (playerColliderCountCheck == 0)
             {
                 //DeniedAttack();
                 return false;

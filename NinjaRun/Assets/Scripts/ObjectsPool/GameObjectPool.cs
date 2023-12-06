@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using Assets.Scripts.ObjectsPool;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Assets.Scripts.ObjectsPool
+namespace ObjectsPool
 {
     public class GameObjectPool : PoolBase<GameObject>
     {

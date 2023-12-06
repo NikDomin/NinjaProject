@@ -222,8 +222,8 @@ MonoBehaviour:
   <DetectLayerMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 128
-  <DetectPoint>k__BackingField: {x: 8.85, y: 0}
-  <Size>k__BackingField: {x: 17.43, y: 2.39}
+  <DetectPoint>k__BackingField: {x: 10.49, y: 0}
+  <Size>k__BackingField: {x: 20, y: 2}
   debugColor: {r: 1, g: 0.6216517, b: 0.013207495, a: 1}
 --- !u!114 &6803228437389277329
 MonoBehaviour:
@@ -240,7 +240,6 @@ MonoBehaviour:
   Attacking: 0
   TryAttacking: 0
   exclamationPoint: {fileID: 6803228438680502372}
-  TimeToPrepareAttack: 1000
   moveAttackVelocity: 40
   checkPlayerDetection: {fileID: 6803228437389277330}
   AttackPlayerDetection: {fileID: 6803228437389277334}
@@ -302,6 +301,7 @@ MonoBehaviour:
   leftCorner: {fileID: 6803228438279885132}
   rightCorner: {fileID: 6803228438073442789}
   runSpeed: 300
+  enemyMovementType: 0
 --- !u!1 &6803228437849417082
 GameObject:
   m_ObjectHideFlags: 0

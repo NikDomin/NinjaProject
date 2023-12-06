@@ -340,7 +340,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Assets.Scripts.UI.GameOverPanel, Assembly-CSharp
+        m_TargetAssemblyTypeName: UI.GameOverPanel, Assembly-CSharp
         m_MethodName: EnablePanel
         m_Mode: 1
         m_Arguments:
