@@ -35,10 +35,10 @@ namespace Traps
 
 
 
-        private void OnDisable()
-        {
-            projectilePool.ReturnAll();
-        }
+        // private void OnDisable()
+        // {
+        //     projectilePool.ReturnAll();
+        // }
 
         public void ProjectileShoot()
         {
