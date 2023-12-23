@@ -1,16 +1,17 @@
-﻿using System.Collections;
-using Assets.Scripts.Movement;
+﻿using Assets.Scripts.Agent.Player.PlayerStateMachine;
+using Assets.Scripts.Agent.Player.PlayerStateMachine.States;
+using Movement;
 using UnityEngine;
 
-namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
+namespace Agent.Player.PlayerStateMachine.States
 {
     public class OnWallState : BasedState, IJumpState, IFlyState
     {
         private PlayerState playerState;
-        private PlayerStateMachine stateMachine;
+        private Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine stateMachine;
 
         
-        public OnWallState(PlayerState player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+        public OnWallState(PlayerState player, Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             playerState = player;
             stateMachine = playerStateMachine;
@@ -19,11 +20,11 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
         public override void EnterState()
         {
             base.EnterState();
-
             playerState.SwipeDetection.OnSwipe += TryJumpSwitching;
-
             playerState.PlayerAnimator.Anim.SetTrigger(playerState.PlayerAnimator.OnWallTriggerKey);
 
+            playerState.LandingTrigger();
+            
             playerState.MovementComponent._rigidbody2D.gravityScale = 0;
             playerState.MovementComponent._rigidbody2D.velocity = Vector3.zero;
             playerState.MovementComponent._rigidbody2D.angularVelocity = 0;

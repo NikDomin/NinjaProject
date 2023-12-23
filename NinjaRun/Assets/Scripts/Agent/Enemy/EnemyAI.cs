@@ -1,6 +1,7 @@
-﻿using Assets.Scripts.Agent.Enemy;
-using Assets.Scripts.Utils;
+﻿using Agent.Enemy.EnemyMovement;
+using Assets.Scripts.Agent.Enemy;
 using UnityEngine;
+using Utils;
 
 namespace Agent.Enemy
 {
@@ -13,14 +14,14 @@ namespace Agent.Enemy
         
         
         private EnemyAttack enemyAttack;
-        private EnemyMovement enemyMovement;
+        private EnemyAbstractMovement enemyMovement;
 
         private void Awake()
         {
             EnemyAnimator = GetComponent<EnemyAnimator>();
             EnemyEventHandler = GetComponent<EnemyAnimationEventHandler>();
             enemyAttack = GetComponent<EnemyAttack>();
-            enemyMovement = GetComponent<EnemyMovement>();
+            enemyMovement = GetComponent<EnemyAbstractMovement>();
         }
 
         private void Start()
@@ -35,10 +36,9 @@ namespace Agent.Enemy
 
         private void FixedUpdate()
         {
-
-
-
             if (enemyAttack.Attacking)
+                return;
+            if (!enemyMovement.IsCanMove)
                 return;
             
             enemyMovement.Movement();

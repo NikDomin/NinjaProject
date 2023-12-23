@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Threading.Tasks;
+using Agent.Player.PlayerStateMachine;
 using Assets.Scripts.Input;
 using Assets.Scripts.Utils;
 using UnityEngine;
+using Utils;
 
-namespace Assets.Scripts.Movement
+namespace Movement
 {
     public enum ForceType
     {
@@ -25,6 +27,25 @@ namespace Assets.Scripts.Movement
         [SerializeField] private float minimumDistance = 0.2f;
         [SerializeField] private float maximumTime = 1f;
         [SerializeField, Range(0,1f)] private float directionThreshold = 0.9f;
+        [SerializeField] private int maxSwipeCount;
+        [SerializeField] private int currentSwipeCount;
+
+        [HideInInspector] public int CurrentSwipeCount
+        {
+            get
+            {
+                if (currentSwipeCount < 0)
+                    return 0;
+                return currentSwipeCount;
+            }
+            set
+            {
+                if (value < 0)
+                    currentSwipeCount = 0;
+                else currentSwipeCount = value;
+            }
+        }
+        
         [field: SerializeField] public float impactsStrength { get; private set; }
         [field: SerializeField] public ForceType forceType { get; private set; }
         [field: SerializeField] public JumpType JumpType { get; private set; }
@@ -35,7 +56,8 @@ namespace Assets.Scripts.Movement
 
         
         public Rigidbody2D _rigidbody2D { get; private set; }
-
+        private PlayerState playerState;
+        
         private Vector2 startPosition;
         private float startTime;
         private Vector2 endPosition;
@@ -48,8 +70,16 @@ namespace Assets.Scripts.Movement
 
         private void Awake()
         {
-           
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            playerState = GetComponent<PlayerState>();
+            currentSwipeCount = maxSwipeCount;
+
+            playerState.OnLanding += ResetSwipeCount;
+        }
+
+        private void OnDestroy()
+        {
+            playerState.OnLanding -= ResetSwipeCount;
         }
 
         #region SwipeHandler
@@ -57,6 +87,12 @@ namespace Assets.Scripts.Movement
         public void SwipeStartHandler(Vector2 position, float time)
         {
             if (alreadyStartTouch)
+            {
+                AwaitStartSwipe();
+                return;
+            }
+
+            if (currentSwipeCount <= 0)
             {
                 AwaitStartSwipe();
                 return;
@@ -77,6 +113,13 @@ namespace Assets.Scripts.Movement
                 AwaitEndSwipe();
                 return;
             }
+
+            if (currentSwipeCount <= 0)
+            {
+                AwaitEndSwipe();
+                return;
+            }
+            
             SwipeEnd(position, time);
         }
 
@@ -92,10 +135,9 @@ namespace Assets.Scripts.Movement
         private void SwipeStart(Vector2 position, float time)
         {
             alreadyStartTouch = true;
-
             startPosition = position;
             startTime = time;
-
+            
             //ChangeTimeScale
             TimeManager.Instance.ChangeGameTimeScale(0.5f);
 
@@ -108,7 +150,6 @@ namespace Assets.Scripts.Movement
         private void SwipeEnd(Vector2 position, float time)
         {
             alreadyEndTouch = true;
-
             endPosition = position;
             endTime = time;
 
@@ -126,34 +167,15 @@ namespace Assets.Scripts.Movement
 
         private void DetectSwipe()
         {
+            --currentSwipeCount;
             if (Vector3.Distance(startPosition, endPosition) >= minimumDistance &&
                 (endTime - startTime) <= maximumTime)
             {
                 Debug.DrawLine(startPosition, endPosition, Color.red, 5f);
 
                 directionSwipe = endPosition - startPosition;
-                OnSwipe.Invoke();
+                OnSwipe?.Invoke();
             }
-
-
-            ////Detect direction with dot product
-           
-
-            //Vector2 normalizedDirection = new Vector2(directionSwipe.x, directionSwipe.y).normalized;
-            ////SwipeDirection(normalizedDirection);
-
-
-            ////Add force 
-            //_rigidbody2D.gravityScale = 1;
-            //if(forceType == ForceType.withoutDrag)
-            //    _rigidbody2D.AddForce(directionSwipe * impactsStrength , ForceMode2D.Impulse);
-            //if (forceType == ForceType.withDrag)
-            //{
-            //    _rigidbody2D.velocity = Vector3.zero;
-            //    _rigidbody2D.angularVelocity = 0;
-
-            //    _rigidbody2D.AddForce(directionSwipe * impactsStrength, ForceMode2D.Impulse);
-            //}
         }
         
 
@@ -187,6 +209,11 @@ namespace Assets.Scripts.Movement
                 trail.transform.position = NewInputManager.Instance.PrimaryPosition();
                 yield return null;
             }
+        }
+
+        private void ResetSwipeCount()
+        {
+            currentSwipeCount = maxSwipeCount;
         }
     }
 }

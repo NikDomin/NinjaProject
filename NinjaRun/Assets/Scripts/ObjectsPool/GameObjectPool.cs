@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.ObjectsPool;
-using UnityEngine;
+﻿using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace ObjectsPool

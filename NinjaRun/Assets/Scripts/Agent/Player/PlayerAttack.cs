@@ -1,9 +1,12 @@
-﻿using Assets.Scripts.Agent;
+﻿using System;
+using System.Collections;
+using System.Threading.Tasks;
+using Assets.Scripts.Agent;
 using Assets.Scripts.Agent.Player;
-using Assets.Scripts.ObjectsPool;
 using Assets.Scripts.Utils;
 using ObjectsPool;
 using UnityEngine;
+using Utils;
 
 namespace Agent.Player
 {
@@ -11,10 +14,12 @@ namespace Agent.Player
     {
         private PlayerAnimationHandler animationHandler;
         [SerializeField] private Transform AttackEffect;
-        [SerializeField] private int effectTime;
+        [SerializeField] private float effectTime;
 
         private AgentBoxDetection agentBoxDetection;
         private GameObjectPool attackEffectObjectPool;
+
+        private GameObject effect;
 
         #region Mono
 
@@ -22,7 +27,6 @@ namespace Agent.Player
         {
             animationHandler = GetComponent<PlayerAnimationHandler>();
             agentBoxDetection = GetComponent<AgentBoxDetection>();
-            
             attackEffectObjectPool = new GameObjectPool(AttackEffect.gameObject, 2);
         }
 
@@ -35,10 +39,10 @@ namespace Agent.Player
         private void OnDisable()
         {
             animationHandler.OnAttack -= StartAttack;
-            attackEffectObjectPool.ReturnAll();
+            // attackEffectObjectPool.ReturnAll();
             
         }
-
+        
         #endregion
 
         #region Attack
@@ -59,14 +63,12 @@ namespace Agent.Player
             base.Attack(targetCollider2Ds);
             
             //AttackEffect.gameObject.SetActive(true);
-            var effect = attackEffectObjectPool.Get();
+            effect = attackEffectObjectPool.Get();
             effect.transform.position = transform.position;
             //effect scale
             AgentUtils.SpriteDirection(effect.transform, transform);
 
-            GameUtils.Timer(OnEndEffect, effectTime);
-
-            
+            StartCoroutine(DelayEndEffect());
 
             foreach (var item in targetCollider2Ds)
             {
@@ -75,12 +77,14 @@ namespace Agent.Player
             }
 
             TargetCollider2Ds = null;
-
-            void OnEndEffect() => attackEffectObjectPool.Return(effect);
         }
 
         #endregion
 
-     
+        private IEnumerator DelayEndEffect()
+        {
+            yield return new WaitForSeconds(effectTime);
+            attackEffectObjectPool.Return(effect);
+        }
     }
 }

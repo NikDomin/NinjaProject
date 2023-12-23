@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.Components
+namespace Components
 {
     public class EnterTriggerComponent : MonoBehaviour
     {

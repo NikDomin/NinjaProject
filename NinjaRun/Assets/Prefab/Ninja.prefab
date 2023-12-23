@@ -200,6 +200,8 @@ MonoBehaviour:
   minimumDistance: 0.2
   maximumTime: 1
   directionThreshold: 0.9
+  maxSwipeCount: 2
+  currentSwipeCount: 0
   <impactsStrength>k__BackingField: 20
   <forceType>k__BackingField: 1
   <JumpType>k__BackingField: 1
@@ -291,8 +293,8 @@ MonoBehaviour:
   - {fileID: 8108421512471527705}
   - {fileID: 8108421512012921315}
   m_Bounds:
-    m_Center: {x: -0.20328295, y: -0.10446286, z: 0}
-    m_Extent: {x: 0.50431406, y: 2.093985, z: 0}
+    m_Center: {x: -0.20328295, y: -0.10446262, z: 0}
+    m_Extent: {x: 0.50431406, y: 2.0939853, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0

@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Input;
+﻿using System;
+using Assets.Scripts.Input;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,6 +14,11 @@ namespace UI
         {
             NewInputManager.PlayerInput.SwitchCurrentActionMap("UI");
             
+            GetComponentInChildren<TextMeshProUGUI>().text = level.ToString();
+        }
+
+        private void OnValidate()
+        {
             GetComponentInChildren<TextMeshProUGUI>().text = level.ToString();
         }
 

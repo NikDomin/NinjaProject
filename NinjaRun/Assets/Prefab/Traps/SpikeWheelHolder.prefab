@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 4230431574111437230}
   - component: {fileID: 4230431574111437224}
   - component: {fileID: 4230431574111437227}
-  - component: {fileID: 4230431574111437218}
+  - component: {fileID: 2959297392949412803}
   m_Layer: 0
   m_Name: SpikeWheel_0
   m_TagString: Untagged
@@ -275,7 +275,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
---- !u!114 &4230431574111437218
+--- !u!114 &2959297392949412803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,13 +284,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4230431574111437269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0907230f3a94409a853a06f90ffa33ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 09c23e8300ae4582a98a5f8f8b6472fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   leftCorner: {fileID: 4230431573774050950}
   rightCorner: {fileID: 4230431574451745480}
-  runSpeed: 500
-  enemyMovementType: 1
+  runSpeed: 350
 --- !u!1 &4230431574451745483
 GameObject:
   m_ObjectHideFlags: 0

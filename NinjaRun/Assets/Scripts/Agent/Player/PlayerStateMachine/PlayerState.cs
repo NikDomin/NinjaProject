@@ -1,9 +1,12 @@
-﻿using Agent;
+﻿using System;
+using Agent.Player.PlayerStateMachine.States;
+using Assets.Scripts.Agent;
+using Assets.Scripts.Agent.Player;
 using Assets.Scripts.Agent.Player.PlayerStateMachine.States;
-using Assets.Scripts.Movement;
+using Movement;
 using UnityEngine;
 
-namespace Assets.Scripts.Agent.Player.PlayerStateMachine
+namespace Agent.Player.PlayerStateMachine
 {
     public class PlayerState : MonoBehaviour
     {
@@ -16,13 +19,15 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine
         //time
         public PlayerAnimationHandler AnimationHandler { get; private set; }
 
-        public PlayerStateMachine StateMachine;
+        public Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine StateMachine;
         public RunState RunState { get; set; }
         public JumpState JumpState { get; set; }
         public OnWallState OnWallState { get; set; }
         public OnCeilingState OnCeilingState { get; set; }
         public FlyState FlyState { get; set; }
         public AttackState AttackState { get; set; }
+
+        public event Action OnLanding;
 
         private void Awake()
         {
@@ -34,7 +39,7 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine
             AttackComponent = GetComponent<AttackComponent>();
             AnimationHandler = GetComponent<PlayerAnimationHandler>();
 
-            StateMachine= new PlayerStateMachine();
+            StateMachine= new Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine();
 
             RunState = new RunState(this, StateMachine);
             JumpState = new JumpState(this, StateMachine);
@@ -57,6 +62,11 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine
         private void FixedUpdate()
         {
             StateMachine.CurrentState.PhysicUpdate();
+        }
+
+        public void LandingTrigger()
+        {
+            OnLanding?.Invoke();
         }
     }
 }

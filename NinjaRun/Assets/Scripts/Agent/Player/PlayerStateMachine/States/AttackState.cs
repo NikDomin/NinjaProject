@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Movement;
+﻿using Agent.Player.PlayerStateMachine;
+using Agent.Player.PlayerStateMachine.States;
 
 
 namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States

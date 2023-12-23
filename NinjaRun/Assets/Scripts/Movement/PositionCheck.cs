@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Movement
+namespace Movement
 {
     public class PositionCheck
     {
@@ -13,6 +12,17 @@ namespace Assets.Scripts.Movement
         public static bool ObstacleCheck(Vector3 position, Vector2 direction, float length, LayerMask layer)
         {
             return Physics2D.Raycast(position, direction, length, layer);
+        }
+
+        public static bool PlatformCheck(Vector3 position, Vector2 direction, float length, LayerMask layer)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(position, direction, length, layer);
+
+            if (hit.transform.TryGetComponent(out PlatformEffector2D platformEffector2D))
+            {
+                return true;
+            }
+            else return false;
         }
 
     }

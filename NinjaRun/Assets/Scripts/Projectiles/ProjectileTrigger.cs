@@ -1,6 +1,5 @@
 using System;
 using Assets.Scripts.Agent;
-using Assets.Scripts.ObjectsPool;
 using ObjectsPool;
 using UnityEngine;
 

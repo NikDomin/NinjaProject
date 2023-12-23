@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Threading.Tasks;
-using Assets.Scripts.Movement;
-using Assets.Scripts.Utils;
+﻿using System.Threading.Tasks;
+using Assets.Scripts.Agent.Player.PlayerStateMachine;
+using Movement;
 using UnityEngine;
+using Utils;
 
-namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
+namespace Agent.Player.PlayerStateMachine.States
 {
     interface IJumpState
     {
@@ -39,12 +39,12 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
     public class RunState : BasedState, IJumpState, IOnWallState, IFlyState
     {
         private PlayerState playerState;
-        private PlayerStateMachine stateMachine;
+        private Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine stateMachine;
 
         private bool isGrounded = false;
 
 
-        public RunState(PlayerState player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+        public RunState(PlayerState player, Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             playerState = player;
             stateMachine = playerStateMachine;
@@ -56,13 +56,11 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
             playerState.SwipeDetection.OnSwipe += TryJumpSwitching;
             playerState.PlayerAnimator.Anim.SetBool(playerState.PlayerAnimator.IsRunningKey, true);
 
-
+            playerState.LandingTrigger();
+            
             playerState.SwipeDetection._rigidbody2D.gravityScale = 1;
-
-            //playerState.MovementComponent._rigidbody2D.simulated = false;
-
             playerState.MovementComponent._rigidbody2D.velocity = Vector3.zero;
-
+            
             AgentUtils.NormalSpriteDirection(playerState.transform);
         }
 
@@ -112,7 +110,9 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
         public void TryOnWallSwitching()
         {
             if (PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right, playerState.MovementComponent.WallRayLength,
-                    playerState.MovementComponent.GroundLayer))
+                    playerState.MovementComponent.GroundLayer) && 
+                !PositionCheck.PlatformCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition),
+                    playerState.transform.right, playerState.MovementComponent.WallRayLength, playerState.MovementComponent.GroundLayer))
             {
                 playerState.StateMachine.ChangeState(playerState.OnWallState);
             }

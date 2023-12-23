@@ -72,7 +72,7 @@ namespace Agent.Enemy
             if (Attacking)
                 return;
 
-            int colliderCount = checkPlayerDetection.OverlapBoxNonAlloc(checkPlayerDetection.Buffer);
+            int colliderCount = checkPlayerDetection.OverlapBoxNonAlloc();
             
             if (colliderCount == 0)
                 return;
@@ -115,7 +115,7 @@ namespace Agent.Enemy
 
         private bool CheckForPlayerInBox()
         {
-            int playerColliderCountCheck = checkPlayerDetection.OverlapBoxNonAlloc(checkPlayerDetection.Buffer);
+            int playerColliderCountCheck = checkPlayerDetection.OverlapBoxNonAlloc();
             
             if (playerColliderCountCheck == 0)
             {

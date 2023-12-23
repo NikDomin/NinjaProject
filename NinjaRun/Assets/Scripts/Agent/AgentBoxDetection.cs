@@ -38,7 +38,7 @@ namespace Agent
             return Physics2D.OverlapBoxAll(_offset, new Vector2(sizeX,sizeY), 0f, _detectLayerMask);
         }
 
-        public int OverlapBoxNonAlloc(Collider2D[] _buffer)
+        public int OverlapBoxNonAlloc()
         {
             offset.Set(
                     transform.position.x + DetectPoint.x * transform.localScale.x, 

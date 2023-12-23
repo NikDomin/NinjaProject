@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
-using Assets.Scripts.Movement;
+using Agent.Player.PlayerStateMachine;
+using Agent.Player.PlayerStateMachine.States;
+using Movement;
 using UnityEngine;
 
 namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States

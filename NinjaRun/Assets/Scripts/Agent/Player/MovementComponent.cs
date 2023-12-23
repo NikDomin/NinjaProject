@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using Assets.Scripts.Movement;
-using Assets.Scripts.Utils;
+﻿using Movement;
 using UnityEngine;
 
-namespace Assets.Scripts.Agent.Player
+namespace Agent.Player
 {
     public class MovementComponent : MonoBehaviour
     {

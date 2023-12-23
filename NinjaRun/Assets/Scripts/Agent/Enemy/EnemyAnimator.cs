@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Agent.Enemy
+namespace Agent.Enemy
 {
     public class EnemyAnimator : MonoBehaviour
     {
@@ -9,7 +8,8 @@ namespace Assets.Scripts.Agent.Enemy
 
         public readonly int IsRunningKey = Animator.StringToHash("isRunning");
         public readonly int AttackTriggerKey = Animator.StringToHash("AttackTrigger");
-
+        public readonly int DropOutKey = Animator.StringToHash("isDropOut");
+        
         private void Awake()
         {
             Anim = GetComponent<Animator>();

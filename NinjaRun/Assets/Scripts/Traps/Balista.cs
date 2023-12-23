@@ -1,17 +1,20 @@
-using System;
-using Assets.Scripts.ObjectsPool;
 using ObjectsPool;
 using Projectiles;
 using UnityEngine;
+using Utils;
 
 namespace Traps
 {
-    enum Direction
+    public enum Direction
     {
         down,
         right,
         up,
-        left
+        left,
+        upRight,
+        upLeft,
+        downRight,
+        downLeft,
     }
     public class Balista: MonoBehaviour
     {
@@ -33,12 +36,10 @@ namespace Traps
             InvokeRepeating(nameof(StartAttack), 1f, reloadTime);
         }
 
-
-
-        // private void OnDisable()
-        // {
-        //     projectilePool.ReturnAll();
-        // }
+        private void OnValidate()
+        {
+            transform.rotation = GameUtils.GetRotation(GameUtils.GetDirection(balistaDirection));
+        }
 
         public void ProjectileShoot()
         {
@@ -48,7 +49,7 @@ namespace Traps
             projectile.transform.position = transform.position;
             
             var projectileMovement = projectile.GetComponent<ProjectileMovement>();
-            projectileMovement.DirectionVector = GetProjectileDirection(projectileMovement.DirectionVector);
+            projectileMovement.DirectionVector = GameUtils.GetDirection(balistaDirection);
 
             projectile.GetComponent<ProjectileTrigger>().ProjectilePool = projectilePool;
 
@@ -58,18 +59,6 @@ namespace Traps
         {
             animator.SetTrigger(ShootingKey);
         }
-
-        private Vector3 GetProjectileDirection(Vector3 startDirection)
-        {
-            if (balistaDirection == Direction.down)
-                startDirection = Vector3.down;
-            else if (balistaDirection == Direction.right)
-                startDirection = Vector3.right;
-            else if (balistaDirection == Direction.up)
-                startDirection = Vector3.up;
-            else if (balistaDirection == Direction.left)
-                startDirection = Vector3.left;
-            return startDirection;
-        }
+        
     }
 }

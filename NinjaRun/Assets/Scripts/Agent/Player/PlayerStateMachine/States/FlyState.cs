@@ -1,20 +1,20 @@
-﻿using System.Collections;
-using System.Threading.Tasks;
-using Assets.Scripts.Movement;
+﻿using System.Threading.Tasks;
+using Assets.Scripts.Agent.Player.PlayerStateMachine;
 using Assets.Scripts.Utils;
-using UnityEngine;
+using Movement;
+using Utils;
 
-namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
+namespace Agent.Player.PlayerStateMachine.States
 {
     public class FlyState : BasedState, IRunState, IOnWallState, IJumpState, IOnCeilingState, IAttackState
     {
         private PlayerState playerState;
-        private PlayerStateMachine stateMachine;
+        private Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine stateMachine;
 
         private bool isCanCling;
         private bool isCanRun;
 
-        public FlyState(PlayerState player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+        public FlyState(PlayerState player, Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             playerState = player;
             stateMachine = playerStateMachine;
@@ -80,7 +80,9 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
         public void TryOnWallSwitching()
         {
             if (PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right * playerState.transform.localScale.x, playerState.MovementComponent.WallRayLength,
-                   playerState.MovementComponent.GroundLayer) && isCanCling)
+                   playerState.MovementComponent.GroundLayer) && isCanCling &&
+                !PositionCheck.PlatformCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right * playerState.transform.localScale.x, playerState.MovementComponent.WallRayLength,
+                    playerState.MovementComponent.GroundLayer))
             {
                 playerState.StateMachine.ChangeState(playerState.OnWallState);
             }
@@ -93,7 +95,9 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
 
         public void TryOnCeilingSwitching()
         {
-            if (PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.CeilingCheckPosition), playerState.transform.up, playerState.MovementComponent.CeilRayLength, playerState.MovementComponent.GroundLayer) && isCanCling)
+            if (PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.CeilingCheckPosition), playerState.transform.up, playerState.MovementComponent.CeilRayLength, playerState.MovementComponent.GroundLayer) 
+                && isCanCling &&
+                !PositionCheck.PlatformCheck(playerState.transform.TransformPoint(playerState.MovementComponent.CeilingCheckPosition), playerState.transform.up, playerState.MovementComponent.CeilRayLength, playerState.MovementComponent.GroundLayer))
             {
                 playerState.StateMachine.ChangeState(playerState.OnCeilingState);
             }
@@ -101,7 +105,7 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
 
         public void TryAttackSwitching()
         {
-            var colliders = playerState.AgentBoxDetection.OverlapBoxNonAlloc(playerState.AgentBoxDetection.Buffer);
+            var colliders = playerState.AgentBoxDetection.OverlapBoxNonAlloc();
             if (colliders == 0)
                 return;
             // playerState.AttackComponent.TargetCollider2Ds = playerState.AgentBoxDetection.Buffer;

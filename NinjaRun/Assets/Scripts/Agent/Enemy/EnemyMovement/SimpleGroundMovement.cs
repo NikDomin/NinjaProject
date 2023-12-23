@@ -1,25 +1,15 @@
-using System;
 using UnityEngine;
 
-namespace Agent.Enemy
+namespace Agent.Enemy.EnemyMovement
 {
-    public enum EnemyMovementType
-    {
-        WithEnemyAi,
-        Simple,
-    }
-    public class EnemyMovement: MonoBehaviour
+    public class SimpleGroundMovement : MonoBehaviour
     {
         [SerializeField] private Transform leftCorner;
         [SerializeField] private Transform rightCorner;
         [SerializeField] private float runSpeed;
-
-        [SerializeField] private EnemyMovementType enemyMovementType;
         
         private Vector2 directionVector;
         private Rigidbody2D _rigidbody;
-        
-        public Action<Vector2> OnChangeDirectionVector;
 
         #region Mono
 
@@ -27,22 +17,21 @@ namespace Agent.Enemy
         {
             _rigidbody = GetComponent<Rigidbody2D>();
         }
-
         private void Start()
         {
             ChangeDirection(Vector2.right);
         }
-
+        
         private void FixedUpdate()
         {
-            if(enemyMovementType == EnemyMovementType.Simple)
-                Movement();
+            Movement();
         }
 
         #endregion
-
-        public void Movement()
+        
+        private void Movement()
         {
+            
             if(transform.position.x > rightCorner.position.x)
                 ChangeDirection(Vector2.left);
             if(transform.position.x<leftCorner.position.x)
@@ -54,7 +43,6 @@ namespace Agent.Enemy
         private void ChangeDirection(Vector2 newDirection)
         {
             directionVector = newDirection;
-            OnChangeDirectionVector?.Invoke(newDirection);
         }
     }
 }

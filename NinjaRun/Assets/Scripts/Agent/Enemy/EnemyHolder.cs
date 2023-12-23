@@ -2,6 +2,7 @@
 using Assets.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Utils;
 
 namespace Agent.Enemy
 {

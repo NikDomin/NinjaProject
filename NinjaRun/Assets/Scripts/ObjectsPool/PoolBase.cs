@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.ObjectsPool
+namespace ObjectsPool
 {
     public class PoolBase<T>
     {
@@ -45,6 +44,9 @@ namespace Assets.Scripts.ObjectsPool
 
         public void Return(T item)
         {
+            if (item == null)
+                return;
+            
             returnAction(item);
             pool.Enqueue(item);
             active.Remove(item);
