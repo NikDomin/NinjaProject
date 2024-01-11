@@ -2,10 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Assets.Scripts.Agent;
-using Assets.Scripts.Agent.Enemy;
 using UnityEngine;
 
-namespace Agent.Enemy
+namespace Agent.Enemy.EnemyAttack
 {
     [RequireComponent(typeof(EnemyAI), typeof(AgentBoxDetection))]
     public class EnemyMeleeAttack : EnemyAttack
@@ -24,9 +23,7 @@ namespace Agent.Enemy
 
         private CancellationTokenSource tokenSource = null;
         private CancellationToken token;
-
-        private Collider2D[] playerCollider2Ds;
-        private Collider2D[] checkForPlayer;
+        
 
         #region Mono
 

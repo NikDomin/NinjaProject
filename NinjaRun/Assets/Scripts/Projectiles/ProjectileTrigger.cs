@@ -1,5 +1,6 @@
 using System;
 using Assets.Scripts.Agent;
+using NewObjectPool;
 using ObjectsPool;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Projectiles
 {
     public class ProjectileTrigger: MonoBehaviour
     {
-        [NonSerialized] public GameObjectPool ProjectilePool;
+        // [NonSerialized] public PoolMono<ProjectileTrigger> ProjectilePool;
         
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private LayerMask playerLevel;
@@ -21,14 +22,14 @@ namespace Projectiles
         {
             if ((groundLayer.value & (1 << other.gameObject.layer)) > 0)
             {
-                ProjectilePool.Return(gameObject);
+                gameObject.SetActive(false);
             }
             else if ((playerLevel.value & (1 << other.gameObject.layer)) > 0)
             {
                 if (other.TryGetComponent(out Health health))
                 {
-                    health.GetHit();
-                    ProjectilePool.Return(gameObject);
+                    health.GetHit(); 
+                    gameObject.SetActive(false);
                 }
             }
         }

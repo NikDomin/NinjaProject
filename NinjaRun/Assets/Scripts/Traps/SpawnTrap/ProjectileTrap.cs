@@ -1,4 +1,5 @@
 using System;
+using NewObjectPool;
 using ObjectsPool;
 using Projectiles;
 using UnityEngine;
@@ -10,17 +11,18 @@ namespace Traps.SpawnTrap
     
     public interface ISpawnTrap
     {
-        public void Shoot(GameObjectPool objectPool, Transform trapTransform, Direction direction);
+        public void Shoot(PoolMono<ProjectileTrigger> objectPool, Transform trapTransform, Direction direction);
     }
     public class ProjectileTrap : MonoBehaviour
     {
-        [SerializeField] private GameObject objectToSpawn;
+        [SerializeField] private ProjectileTrigger objectToSpawn;
         [SerializeField] private float reloadTimeSeconds;
         [SerializeField] private Direction trapDirection;
-        [SerializeField] private int poolPreloadCount = 1; 
+        [SerializeField] private int poolPreloadCount = 1;
+        [SerializeField] private bool poolAutoExpand;
         
         private ISpawnTrap spawnTrap;
-        private GameObjectPool objectPool;
+        private PoolMono<ProjectileTrigger> projectilePool;
         private Animator animator;
         
         
@@ -28,7 +30,9 @@ namespace Traps.SpawnTrap
         
         private void Awake()
         {
-            objectPool = new GameObjectPool(objectToSpawn, poolPreloadCount);
+            projectilePool = new PoolMono<ProjectileTrigger>(objectToSpawn, poolPreloadCount);
+            projectilePool.autoExpand = poolAutoExpand;
+            
             animator = GetComponent<Animator>();
             spawnTrap = GetComponent<ISpawnTrap>();
             
@@ -37,14 +41,7 @@ namespace Traps.SpawnTrap
 
         private void OnDisable()
         {
-            try
-            {
-                objectPool.ReturnAll();
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"Disabling object pool failed at game object {gameObject.name}: {e.Message}");
-            }
+            // projectilePool.ReturnAllElement();
         }
 
         private void OnValidate()
@@ -54,7 +51,7 @@ namespace Traps.SpawnTrap
 
         public void ProjectileShoot()
         {
-           spawnTrap.Shoot(objectPool,transform,trapDirection);
+           spawnTrap.Shoot(projectilePool,transform,trapDirection);
         }
 
         private void StartAttack()

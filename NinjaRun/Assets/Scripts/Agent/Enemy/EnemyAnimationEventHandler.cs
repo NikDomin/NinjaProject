@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Agent.Enemy
+namespace Agent.Enemy
 {
     public class EnemyAnimationEventHandler : MonoBehaviour
     {

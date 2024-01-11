@@ -60,6 +60,14 @@ namespace NewObjectPool
 
         public void ReturnAllElement()
         {
+            // for (int i = 0; i < pool.Count -1; i++)
+            // {
+            //     if (pool[i].gameObject.activeInHierarchy)
+            //     {
+            //         pool[i].gameObject.SetActive(false);
+            //     }
+            // }
+            
             foreach (var mono in pool)
             {
                 if (mono.gameObject.activeInHierarchy)

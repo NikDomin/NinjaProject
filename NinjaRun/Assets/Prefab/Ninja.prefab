@@ -293,8 +293,8 @@ MonoBehaviour:
   - {fileID: 8108421512471527705}
   - {fileID: 8108421512012921315}
   m_Bounds:
-    m_Center: {x: -0.20328295, y: -0.10446262, z: 0}
-    m_Extent: {x: 0.50431406, y: 2.0939853, z: 0}
+    m_Center: {x: -0.20328343, y: -0.10446262, z: 0}
+    m_Extent: {x: 0.5043136, y: 2.0939853, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetCollider2Ds: []
   AttackEffect: {fileID: 7859433378311441108, guid: 69c7b7d90123e8a49933108271a5ca9b, type: 3}
-  effectTime: 1200
+  effectTime: 1.2
 --- !u!114 &2020839939
 MonoBehaviour:
   m_ObjectHideFlags: 0

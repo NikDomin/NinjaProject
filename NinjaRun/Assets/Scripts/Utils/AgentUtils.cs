@@ -2,7 +2,7 @@
 
 namespace Utils
 {
-    public class AgentUtils
+    public static class AgentUtils
     {
         public static void SpriteDirection(Transform transform, Vector2 direction)
         {

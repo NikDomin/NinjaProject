@@ -1,12 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using Traps;
+﻿using Traps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Utils
 {
-    public class GameUtils
+    public static class GameUtils
     {
         // public static event Action OnTimerEnd;
         

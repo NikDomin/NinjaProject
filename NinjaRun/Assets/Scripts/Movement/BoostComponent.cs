@@ -51,9 +51,6 @@ namespace Movement
                         _rigidbody2D.velocity.x + movementDirection.x * boostStrength,
                         _rigidbody2D.velocity.y + movementDirection.y * boostStrength);
                     
-                    // _rigidbody2D.velocity = new Vector2(
-                    //     _rigidbody2D.velocity.x + boostDirection.x * boostStrength,
-                    //     _rigidbody2D.velocity.y + boostDirection.y * boostStrength);
                 }
             }
         }

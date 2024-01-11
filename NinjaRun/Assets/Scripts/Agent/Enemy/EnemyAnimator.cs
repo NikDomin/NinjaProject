@@ -6,7 +6,7 @@ namespace Agent.Enemy
     {
         public Animator Anim { get; private set; }
 
-        public readonly int IsRunningKey = Animator.StringToHash("isRunning");
+        public readonly int IsMoveKey = Animator.StringToHash("isMoving");
         public readonly int AttackTriggerKey = Animator.StringToHash("AttackTrigger");
         public readonly int DropOutKey = Animator.StringToHash("isDropOut");
         

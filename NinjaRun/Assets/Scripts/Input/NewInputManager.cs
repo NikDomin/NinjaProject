@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Threading.Tasks;
-using Assets.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Utils;
 
 namespace Assets.Scripts.Input
 {

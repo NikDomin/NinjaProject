@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Assets.Scripts.Agent.Player.PlayerStateMachine;
-using Assets.Scripts.Utils;
 using Movement;
 using Utils;
 

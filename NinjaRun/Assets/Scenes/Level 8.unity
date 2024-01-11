@@ -17658,6 +17658,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1200288844}
     m_Modifications:
+    - target: {fileID: -9176689130128210689, guid: 9e21fab731a00784aa984ec0d60348e2, type: 3}
+      propertyPath: trapDirection
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -9176689130128210689, guid: 9e21fab731a00784aa984ec0d60348e2, type: 3}
+      propertyPath: reloadTimeSeconds
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7819722811873429543, guid: 9e21fab731a00784aa984ec0d60348e2, type: 3}
       propertyPath: balistaDirection
       value: 3
@@ -18984,6 +18992,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1200288844}
     m_Modifications:
+    - target: {fileID: -9176689130128210689, guid: 9e21fab731a00784aa984ec0d60348e2, type: 3}
+      propertyPath: trapDirection
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -9176689130128210689, guid: 9e21fab731a00784aa984ec0d60348e2, type: 3}
+      propertyPath: reloadTimeSeconds
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7819722811873429543, guid: 9e21fab731a00784aa984ec0d60348e2, type: 3}
       propertyPath: reloadTime
       value: 3
@@ -19106,6 +19122,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1200288844}
     m_Modifications:
+    - target: {fileID: -9176689130128210689, guid: 9e21fab731a00784aa984ec0d60348e2, type: 3}
+      propertyPath: trapDirection
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -9176689130128210689, guid: 9e21fab731a00784aa984ec0d60348e2, type: 3}
+      propertyPath: reloadTimeSeconds
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7819722811873429543, guid: 9e21fab731a00784aa984ec0d60348e2, type: 3}
       propertyPath: reloadTime
       value: 5
@@ -19545,6 +19569,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1200288844}
     m_Modifications:
+    - target: {fileID: -9176689130128210689, guid: 9e21fab731a00784aa984ec0d60348e2, type: 3}
+      propertyPath: trapDirection
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -9176689130128210689, guid: 9e21fab731a00784aa984ec0d60348e2, type: 3}
+      propertyPath: reloadTimeSeconds
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7819722811873429543, guid: 9e21fab731a00784aa984ec0d60348e2, type: 3}
       propertyPath: balistaDirection
       value: 3

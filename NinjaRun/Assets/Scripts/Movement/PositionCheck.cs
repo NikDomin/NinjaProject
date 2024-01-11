@@ -2,7 +2,7 @@
 
 namespace Movement
 {
-    public class PositionCheck
+    public static class PositionCheck
     {
         public static bool GroundCheck(Vector3 position, float radius, LayerMask layer)
         {

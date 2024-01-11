@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7819722811873429544}
   - component: {fileID: 7819722811873429545}
-  - component: {fileID: 7819722811873429543}
   - component: {fileID: 7819722811873429542}
+  - component: {fileID: -9176689130128210689}
+  - component: {fileID: 4353333725591937799}
   m_Layer: 0
   m_Name: Balista
   m_TagString: Untagged
@@ -86,21 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7819722811873429543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7819722811873429546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c089053c8764513ad699aae7ca07b7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrow: {fileID: 2097265887028662682, guid: b9891ade680932346be3aa5e0b7e9cd9, type: 3}
-  reloadTime: 2
-  balistaDirection: 0
 --- !u!95 &7819722811873429542
 Animator:
   serializedVersion: 5
@@ -122,3 +108,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-9176689130128210689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7819722811873429546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf290dfdf13a4794bfa3231f55e159f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 1336111370537799447, guid: b9891ade680932346be3aa5e0b7e9cd9, type: 3}
+  reloadTimeSeconds: 2
+  trapDirection: 0
+  poolPreloadCount: 3
+  poolAutoExpand: 1
+--- !u!114 &4353333725591937799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7819722811873429546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f1980d2ad64207a6a2ebc05f1f8401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

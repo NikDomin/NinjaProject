@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Threading.Tasks;
+﻿using System.Collections;
 using Assets.Scripts.Agent;
 using Assets.Scripts.Agent.Player;
-using Assets.Scripts.Utils;
 using ObjectsPool;
 using UnityEngine;
 using Utils;

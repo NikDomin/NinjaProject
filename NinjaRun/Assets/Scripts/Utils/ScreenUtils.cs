@@ -1,10 +1,8 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Utils
+namespace Utils
 {
-    public class ScreenUtils
+    public static class ScreenUtils
     {
         public static Vector3 ScreenToWorld(Camera camera, Vector3 position)
         {

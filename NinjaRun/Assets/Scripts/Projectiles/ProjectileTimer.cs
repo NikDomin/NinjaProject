@@ -6,7 +6,7 @@ namespace Projectiles
     [RequireComponent(typeof(ProjectileTrigger))]
     public class ProjectileTimer : MonoBehaviour
     {
-        [SerializeField] private int timeToLive;
+        [SerializeField] private float timeToLive;
         private ProjectileTrigger projectileTrigger;
         
         private void Awake()
@@ -22,7 +22,7 @@ namespace Projectiles
         private IEnumerator DelayReturnObject()
         {
             yield return new WaitForSeconds(timeToLive);
-            projectileTrigger.ProjectilePool.Return(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

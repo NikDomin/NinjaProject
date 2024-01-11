@@ -1,5 +1,4 @@
 ﻿using Agent.Enemy.EnemyMovement;
-using Assets.Scripts.Agent.Enemy;
 using UnityEngine;
 using Utils;
 
@@ -13,14 +12,14 @@ namespace Agent.Enemy
         public EnemyAnimationEventHandler EnemyEventHandler { get; private set; }
         
         
-        private EnemyAttack enemyAttack;
+        private EnemyAttack.EnemyAttack enemyAttack;
         private EnemyAbstractMovement enemyMovement;
 
         private void Awake()
         {
             EnemyAnimator = GetComponent<EnemyAnimator>();
             EnemyEventHandler = GetComponent<EnemyAnimationEventHandler>();
-            enemyAttack = GetComponent<EnemyAttack>();
+            enemyAttack = GetComponent<EnemyAttack.EnemyAttack>();
             enemyMovement = GetComponent<EnemyAbstractMovement>();
         }
 
@@ -45,7 +44,7 @@ namespace Agent.Enemy
             
             AgentUtils.SpriteDirection(transform, DirectionVector);
 
-            EnemyAnimator.Anim.SetBool(EnemyAnimator.IsRunningKey, true);
+            EnemyAnimator.Anim.SetBool(EnemyAnimator.IsMoveKey, true);
         }
 
         private void ChangeDirectionVector(Vector2 direction)

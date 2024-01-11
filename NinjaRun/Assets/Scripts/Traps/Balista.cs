@@ -51,7 +51,7 @@ namespace Traps
             var projectileMovement = projectile.GetComponent<ProjectileMovement>();
             projectileMovement.DirectionVector = GameUtils.GetDirection(balistaDirection);
 
-            projectile.GetComponent<ProjectileTrigger>().ProjectilePool = projectilePool;
+            // projectile.GetComponent<ProjectileTrigger>().ProjectilePool = projectilePool;
 
         }
 

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Threading.Tasks;
 using Agent.Player.PlayerStateMachine;
 using Assets.Scripts.Input;
-using Assets.Scripts.Utils;
 using UnityEngine;
 using Utils;
 
@@ -68,6 +67,8 @@ namespace Movement
 
         private Coroutine trailCoroutine;
 
+        #region Mono
+
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -81,6 +82,8 @@ namespace Movement
         {
             playerState.OnLanding -= ResetSwipeCount;
         }
+
+        #endregion
 
         #region SwipeHandler
 
@@ -131,6 +134,10 @@ namespace Movement
 
         #endregion
 
+        public void RefreshCurrentSwipeCount()
+        {
+            currentSwipeCount = maxSwipeCount;
+        }
         
         private void SwipeStart(Vector2 position, float time)
         {

@@ -1,7 +1,4 @@
-﻿using Assets.Scripts.Agent.Enemy;
-using Assets.Scripts.Utils;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 using Utils;
 
 namespace Agent.Enemy

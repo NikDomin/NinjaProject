@@ -5,7 +5,7 @@ namespace Agent.Enemy.EnemyMovement
 {
     public abstract class EnemyAbstractMovement: MonoBehaviour
     {
-        public bool IsCanMove;
+        [HideInInspector] public bool IsCanMove;
         
         public Action<Vector2> OnChangeDirectionVector;
         

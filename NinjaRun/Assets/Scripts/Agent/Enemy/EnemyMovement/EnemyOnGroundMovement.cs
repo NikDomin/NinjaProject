@@ -30,7 +30,7 @@ namespace Agent.Enemy.EnemyMovement
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        private void Start()
+        private void OnEnable()
         {
             ChangeDirection(Vector2.right);
         }
