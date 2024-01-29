@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Level;
 using UnityEngine;
 
-namespace Assets.Scripts.Level
+namespace Level
 {
     public class LevelPool : MonoBehaviour
     {

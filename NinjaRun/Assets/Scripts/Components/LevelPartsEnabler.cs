@@ -16,6 +16,8 @@ namespace Components
 
         private void Awake()
         {
+            // if (originalLevelPartsList.Count == 0)
+            //     this.enabled = false;
             foreach (var item in originalLevelPartsList)
                 item.gameObject.SetActive(false);
         }

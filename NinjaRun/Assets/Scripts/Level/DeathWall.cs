@@ -1,18 +1,18 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Level
+namespace Level
 {
     public class DeathWall : MonoBehaviour
     {
+        public static DeathWall deathWall;
         [SerializeField] private Transform player;
         [SerializeField] private float speed, pullEfect, length = 100f;
-
         private float startPosX, temp, distance;
         private Rigidbody2D _rigidbody2D;
 
         private void Awake()
         {
+            deathWall = this;
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
 

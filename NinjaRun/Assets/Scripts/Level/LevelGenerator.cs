@@ -1,12 +1,14 @@
-﻿using System.Collections;
+﻿
+using Assets.Scripts.Level;
 using UnityEngine;
 
-namespace Assets.Scripts.Level
+namespace Level
 {
     public class LevelGenerator : MonoBehaviour
     {
         [SerializeField] private Transform player;
         [SerializeField] private float distanceSpawnLevelPart = 200f;
+        [SerializeField] private float Xoffset;
         [SerializeField] private int IdToSpawn;
 
         private LevelPool levelPool;
@@ -41,8 +43,10 @@ namespace Assets.Scripts.Level
 
         private Transform SpawnLevelPart(Vector3 spawnPosition, int id)
         {
+            Vector3 offset = new Vector3(spawnPosition.x + Xoffset, spawnPosition.y, spawnPosition.z);
+            
             var gm = levelPool.RequestLevelPart(id);
-            gm.transform.position = spawnPosition;
+            gm.transform.position = offset;
 
             endTransform = gm.GetComponent<LevelPart>().EndTransform;
 

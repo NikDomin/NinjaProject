@@ -14,6 +14,8 @@ namespace Components
      
         private void Start()
         {
+            // if (originalLevelPartsList.Count == 0)
+            //     this.enabled = false;
             alreadyDisabledLevelParts.Add(transform);
             InvokeRepeating(nameof(TryDisableLevelParts), 0, invokeCD);
         }
