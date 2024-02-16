@@ -663,7 +663,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1750875037, guid: 5f688ac5d91a102468a0734f15cf3585, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5f688ac5d91a102468a0734f15cf3585, type: 3}
 --- !u!1 &269311201
 GameObject:
@@ -2298,6 +2299,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -2480,7 +2482,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ninja
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1810419568, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
 --- !u!4 &811525045 stripped
 Transform:

@@ -1,10 +1,12 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Level
 {
     public class EntityRandomSpawner: MonoBehaviour
     {
-        private Spawnable[] spawnables;
+        [SerializeField] private Spawnable[] spawnables;
         
         private void OnEnable()
         {
@@ -20,7 +22,7 @@ namespace Level
                 totalWeight += spawnable.spawnWeight;
             }
 
-            float randomValue = Random.Range(0f, totalWeight);
+            int randomValue = Random.Range(0, Convert.ToInt32(totalWeight));
             float cumulativeWeight = 0f;
 
             foreach (Spawnable spawnable in spawnables)
@@ -29,8 +31,9 @@ namespace Level
 
                 if (randomValue <= cumulativeWeight)
                 {
-                    Instantiate(spawnable.prefab, transform.position, Quaternion.identity);
-                    break;
+                    // Instantiate(spawnable.prefab, transform.position, Quaternion.identity);
+                    spawnable.prefab.SetActive(true);
+                    return;
                 }
             }
         }
@@ -40,6 +43,6 @@ namespace Level
     public class Spawnable
     {
         public GameObject prefab;
-        public float spawnWeight;
+        public float spawnWeight = 1;
     }
 }

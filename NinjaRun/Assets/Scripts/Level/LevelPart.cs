@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Level
+namespace Level
 {
     public class LevelPart : MonoBehaviour
     {

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1083852912819310235}
   - component: {fileID: 1083852912819310232}
   - component: {fileID: 1083852912819310234}
+  - component: {fileID: 1641947435}
   m_Layer: 0
   m_Name: LevelBorderPool
   m_TagString: Untagged
@@ -63,4 +64,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   distanceSpawnLevelPart: 40
-  IdToSpawn: 0
+  Xoffset: 0
+--- !u!114 &1641947435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083852912819310233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddeafbbbd25a413aa3c373120f87f714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idToSpawn: 0

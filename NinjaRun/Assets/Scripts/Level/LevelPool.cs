@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Scripts.Level;
 using UnityEngine;
 
 namespace Level
@@ -28,7 +27,7 @@ namespace Level
 
         private void InstantiateNewLevelPart(LevelPartSlot levelPartSlot)
         {
-            LevelPart levelPartSpawned = Instantiate(levelPartSlot.LevelPartPrefab);
+            LevelPart levelPartSpawned = Instantiate(levelPartSlot.LevelPartPrefab, this.transform);
             levelPartSpawned.gameObject.SetActive(false);
             levelPartSlot.LevelPartSpawned.Add(levelPartSpawned.gameObject);
         }
@@ -65,6 +64,17 @@ namespace Level
 
             levelPartToPutBack.SetActive(false);
             slot.LevelPartSpawned.Add(levelPartToPutBack);
+        }
+
+        public int GetLevelPartsCount()
+        {
+            int count = 0;
+            foreach (var item in levelParts)
+            {
+                count++;
+            }
+
+            return count;
         }
 
         //private Transform RequestEndPosition(int ID)

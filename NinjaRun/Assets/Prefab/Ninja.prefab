@@ -89,7 +89,6 @@ GameObject:
   - component: {fileID: 2020839939}
   - component: {fileID: 2020839940}
   - component: {fileID: 5790668731503570773}
-  - component: {fileID: 1810419568}
   m_Layer: 7
   m_Name: Ninja
   m_TagString: Untagged
@@ -294,8 +293,8 @@ MonoBehaviour:
   - {fileID: 8108421512471527705}
   - {fileID: 8108421512012921315}
   m_Bounds:
-    m_Center: {x: -0.20328343, y: -0.10446262, z: 0}
-    m_Extent: {x: 0.5043136, y: 2.0939853, z: 0}
+    m_Center: {x: -0.20328295, y: -0.10446286, z: 0}
+    m_Extent: {x: 0.50431406, y: 2.093985, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -412,97 +411,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4292cd28ba36c4f84cdf1f444ec58a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1810419568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8108421511935773309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d29ae919ff94ed69c9b0fc0973d1bf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableDistance: 100
-  originalLevelPartsList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  invokeCD: 0.3
 --- !u!1 &8108421511954646115
 GameObject:
   m_ObjectHideFlags: 0
