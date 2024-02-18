@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Agent;
 using UnityEngine;
 
 namespace Assets.Scripts.Agent

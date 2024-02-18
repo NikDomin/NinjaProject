@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.Agent
+namespace Agent
 {
     public class Health : MonoBehaviour
     {
@@ -12,7 +11,7 @@ namespace Assets.Scripts.Agent
         {
             OnDead.Invoke();
 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

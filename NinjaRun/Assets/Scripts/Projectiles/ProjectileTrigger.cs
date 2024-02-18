@@ -1,4 +1,5 @@
 using System;
+using Agent;
 using Assets.Scripts.Agent;
 using NewObjectPool;
 using ObjectsPool;

@@ -12,6 +12,7 @@ namespace Agent.Enemy
         private void OnEnable()
         {
             animationEventHandler.OnDisableDeadBody += DisableDeadEnemy;
+            enemy.gameObject.SetActive(true);
         }
         
         private void OnDisable()
