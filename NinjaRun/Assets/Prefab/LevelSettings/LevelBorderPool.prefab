@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1083852912819310235}
-  - component: {fileID: 1083852912819310232}
   - component: {fileID: 1083852912819310234}
   - component: {fileID: 1641947435}
+  - component: {fileID: 4589277520435605565}
   m_Layer: 0
   m_Name: LevelBorderPool
   m_TagString: Untagged
@@ -34,22 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1083852912819310232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1083852912819310233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99db232d088b0954782b75b6ef85561f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelParts:
-  - LevelPartPrefab: {fileID: 2487991665845940463, guid: 64223ed1dff986f45b939889dd023458, type: 3}
-    LevelPartSpawned: []
-    <CountOnScreen>k__BackingField: 10
 --- !u!114 &1083852912819310234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,3 +62,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idToSpawn: 0
+--- !u!114 &4589277520435605565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083852912819310233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0022a47b4624e58bec1a0a4b329d0a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelPartSlots:
+  - levelPart: {fileID: 2487991665845940463, guid: 64223ed1dff986f45b939889dd023458, type: 3}
+    <poolPreloadCount>k__BackingField: 5

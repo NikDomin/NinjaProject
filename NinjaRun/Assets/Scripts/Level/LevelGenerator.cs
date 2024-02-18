@@ -14,20 +14,25 @@ namespace Level
         [SerializeField] private float distanceSpawnLevelPart = 200f;
         [SerializeField] private float Xoffset;
 
-        private LevelPool levelPool;
+        // private LevelPool levelPool;
         private Transform endTransform;
         private ILevelPartSpawner levelPartSpawner;
+
+        private NewLevelPool newLevelPool;
         
         public int levelPartsCount { get; private set; }
         private void Awake()
         {
-            levelPool = GetComponent<LevelPool>();
+            // levelPool = GetComponent<LevelPool>();
+            newLevelPool = GetComponent<NewLevelPool>();
             levelPartSpawner = GetComponent<ILevelPartSpawner>();
+            
+            
         }
 
         private void Start()
         {
-            levelPartsCount = levelPool.GetLevelPartsCount();
+            levelPartsCount = newLevelPool.GetLevelPartsCount();
             
             endTransform = transform;
         }
@@ -62,10 +67,10 @@ namespace Level
         {
             Vector3 offset = new Vector3(spawnPosition.x + Xoffset, spawnPosition.y, spawnPosition.z);
             
-            var gm = levelPool.RequestLevelPart(id);
-            gm.transform.position = offset;
+            LevelPart levelPart = newLevelPool.GetLevelPart(id);
+            levelPart.transform.position = offset;
 
-            endTransform = gm.GetComponent<LevelPart>().EndTransform;
+            endTransform = levelPart.EndTransform;
 
             // return gm.transform;
         }

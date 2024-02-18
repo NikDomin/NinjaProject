@@ -7,13 +7,13 @@ namespace Level
         [SerializeField] private float disableDistance;
         [SerializeField] private float invokeCD;
         
-        private LevelPool levelPool;
+        private NewLevelPool levelPool;
         private LevelPart levelPart;
         
 
         private void Awake()
         {
-            levelPool = GetComponentInParent<LevelPool>();
+            levelPool = GetComponentInParent<NewLevelPool>();
             levelPart = GetComponent<LevelPart>();
         }
 
@@ -26,7 +26,7 @@ namespace Level
         {
             if (transform.position.x + disableDistance < DeathWall.deathWall.transform.position.x)
             {
-                levelPool.PutLevelPartIntoLevelSlot(gameObject, levelPart.ID);
+                gameObject.SetActive(false);
             }
         }
     }

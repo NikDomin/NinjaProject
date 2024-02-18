@@ -25080,6 +25080,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -25410,6 +25411,10 @@ PrefabInstance:
       propertyPath: trail
       value: 
       objectReference: {fileID: 485026787}
+    - target: {fileID: 8108421511935773254, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
+      propertyPath: maxSwipeCount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8108421511935773257, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
       propertyPath: m_RootOrder
       value: 0

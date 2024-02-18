@@ -597,8 +597,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1235226034}
   - component: {fileID: 1235226033}
-  - component: {fileID: 1235226032}
   - component: {fileID: 1235226035}
+  - component: {fileID: 1235226036}
   m_Layer: 0
   m_Name: Level Generator
   m_TagString: Untagged
@@ -606,52 +606,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1235226032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235226031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99db232d088b0954782b75b6ef85561f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelParts:
-  - LevelPartPrefab: {fileID: 2733713296888066160, guid: a14f9dde9a8c6fe44824792a302d6240, type: 3}
-    LevelPartSpawned: []
-    <CountOnScreen>k__BackingField: 2
-  - LevelPartPrefab: {fileID: 4077185844611807992, guid: 477016bda0c19dd42a4f0f5111487d04, type: 3}
-    LevelPartSpawned: []
-    <CountOnScreen>k__BackingField: 2
-  - LevelPartPrefab: {fileID: 8450885812179021663, guid: 9987c96b5aeccb74eadcb9c67a195b03, type: 3}
-    LevelPartSpawned: []
-    <CountOnScreen>k__BackingField: 2
-  - LevelPartPrefab: {fileID: 7629404035007029791, guid: 811dfac4afe90204f8ec2fed8e2d4a41, type: 3}
-    LevelPartSpawned: []
-    <CountOnScreen>k__BackingField: 2
-  - LevelPartPrefab: {fileID: 3847200279422786393, guid: af6ed015647b99543826c8193bd3d21f, type: 3}
-    LevelPartSpawned: []
-    <CountOnScreen>k__BackingField: 2
-  - LevelPartPrefab: {fileID: -6090805686854692687, guid: 33c59f8bc7414044b82a0f7b680acc66, type: 3}
-    LevelPartSpawned: []
-    <CountOnScreen>k__BackingField: 2
-  - LevelPartPrefab: {fileID: -2938081939950140671, guid: 1f52ee7eb57340a4cbb3c459df41b5b8, type: 3}
-    LevelPartSpawned: []
-    <CountOnScreen>k__BackingField: 2
-  - LevelPartPrefab: {fileID: 5412260922719173503, guid: b159eb2b36e0d064d95e240d8f8d3f06, type: 3}
-    LevelPartSpawned: []
-    <CountOnScreen>k__BackingField: 2
-  - LevelPartPrefab: {fileID: 8908703463165745939, guid: 30e41024f262ad94194636325b82f8ac, type: 3}
-    LevelPartSpawned: []
-    <CountOnScreen>k__BackingField: 2
-  - LevelPartPrefab: {fileID: 5756524637516239912, guid: 0b233f59b80e5164fb89368bec0841b2, type: 3}
-    LevelPartSpawned: []
-    <CountOnScreen>k__BackingField: 2
-  - LevelPartPrefab: {fileID: 3281994289492614019, guid: 5b7638812f8c2d04985e00856c7a854e, type: 3}
-    LevelPartSpawned: []
-    <CountOnScreen>k__BackingField: 2
 --- !u!114 &1235226033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,6 +648,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046743dbc11f4803be2f51968ad5b249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1235226036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235226031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0022a47b4624e58bec1a0a4b329d0a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelPartSlots:
+  - levelPart: {fileID: 2733713296888066160, guid: a14f9dde9a8c6fe44824792a302d6240, type: 3}
+    <poolPreloadCount>k__BackingField: 2
+  - levelPart: {fileID: 4077185844611807992, guid: 477016bda0c19dd42a4f0f5111487d04, type: 3}
+    <poolPreloadCount>k__BackingField: 2
+  - levelPart: {fileID: 8450885812179021663, guid: 9987c96b5aeccb74eadcb9c67a195b03, type: 3}
+    <poolPreloadCount>k__BackingField: 2
+  - levelPart: {fileID: 7629404035007029791, guid: 811dfac4afe90204f8ec2fed8e2d4a41, type: 3}
+    <poolPreloadCount>k__BackingField: 2
+  - levelPart: {fileID: 3847200279422786393, guid: af6ed015647b99543826c8193bd3d21f, type: 3}
+    <poolPreloadCount>k__BackingField: 2
+  - levelPart: {fileID: -6090805686854692687, guid: 33c59f8bc7414044b82a0f7b680acc66, type: 3}
+    <poolPreloadCount>k__BackingField: 2
+  - levelPart: {fileID: -2938081939950140671, guid: 1f52ee7eb57340a4cbb3c459df41b5b8, type: 3}
+    <poolPreloadCount>k__BackingField: 2
+  - levelPart: {fileID: 5412260922719173503, guid: b159eb2b36e0d064d95e240d8f8d3f06, type: 3}
+    <poolPreloadCount>k__BackingField: 2
+  - levelPart: {fileID: 8908703463165745939, guid: 30e41024f262ad94194636325b82f8ac, type: 3}
+    <poolPreloadCount>k__BackingField: 2
+  - levelPart: {fileID: 5756524637516239912, guid: 0b233f59b80e5164fb89368bec0841b2, type: 3}
+    <poolPreloadCount>k__BackingField: 2
+  - levelPart: {fileID: 3281994289492614019, guid: 5b7638812f8c2d04985e00856c7a854e, type: 3}
+    <poolPreloadCount>k__BackingField: 2
 --- !u!1001 &1373790074
 PrefabInstance:
   m_ObjectHideFlags: 0
