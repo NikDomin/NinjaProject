@@ -12,6 +12,7 @@ namespace Coins
             if (coins < 0)
             {
                 Debug.LogError("you can't add a negative amount of coins");
+                return;
             }
             
             CurrentCoins += coins;
@@ -19,8 +20,11 @@ namespace Coins
 
         public void RemoveCoins(int coins)
         {
-            if(coins < 0)
+            if (coins < 0)
+            {
+                Debug.LogError("you can't remove a negative amount of coins");
                 return;
+            }
 
             CurrentCoins -= coins;
         }
