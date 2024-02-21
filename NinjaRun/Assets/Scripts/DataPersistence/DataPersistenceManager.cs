@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DataPersistence.Data;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DataPersistence
 {
@@ -24,51 +25,62 @@ namespace DataPersistence
         
         #region Mono
 
+        private void Awake()
+        {
+            
+            if (instance != null)
+            {
+                Debug.LogError("Found more than one Data Persistence Manager in the scene. Destroying the newest one.");
+                Destroy(gameObject);
+                return;
+            }
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            
+            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+        }
+        
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            
+        }
+        
         private void Start()
         {
             
-            dataPersistenceObjects = FindAllDataPersistenceObjects();
-            LoadGame();
+         
         }
 
         private void OnApplicationQuit()
         {
             SaveGame();
         }        
-        
-        private void Awake()
-        {
-            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
-            
-            if (instance != null)
-            {
-                Debug.LogError("Found more than one Data Persistence Manager in the scene. Destroying the newest one.");
-                Destroy(this.gameObject);
-                return;
-            }
-            instance = this;
-            // DontDestroyOnLoad(this.gameObject);
-            //
-            // if (disableDataPersistence)
-            // {
-            //     Debug.LogWarning("Data persistence is currently disabled!");
-            // }
-            // this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);//Application.persistentDataPath standard Unity AnimationData storage directory
-            //
-            // InitializeSelectedProfileID();
-            
-        }
 
         #endregion
         
         
 
-        public void NewGame()
+        private void NewGame()
         {
             gameData = new GameData();
         }
 
-        public void LoadGame()
+        
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            Debug.Log("OnSceneLoaded");
+            dataPersistenceObjects = FindAllDataPersistenceObjects();
+            LoadGame();
+        }
+        
+        private void LoadGame()
         {
             //Load data from a file
             gameData = dataHandler.Load();
@@ -88,6 +100,13 @@ namespace DataPersistence
 
         public void SaveGame()
         {
+            // if we don't have any AnimationData to save, log a warning here
+            if (this.gameData == null)
+            {
+                Debug.LogWarning("No AnimationData was found. A New Game needs to be started before AnimationData can be saved.");
+                return;
+            }
+            
             foreach (var item in dataPersistenceObjects)
             {
                 item.SaveData(gameData);
