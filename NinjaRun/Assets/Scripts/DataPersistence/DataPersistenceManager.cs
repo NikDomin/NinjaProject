@@ -10,6 +10,8 @@ namespace DataPersistence
     {
         [Header("File Storage Config")] 
         [SerializeField] private string fileName;
+
+        [SerializeField] private bool useEncryption;
         
         private GameData gameData;
         private FileDataHandler dataHandler;
@@ -36,7 +38,7 @@ namespace DataPersistence
         
         private void Awake()
         {
-            this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
             
             if (instance != null)
             {
