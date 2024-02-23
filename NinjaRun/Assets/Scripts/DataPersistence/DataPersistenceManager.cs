@@ -9,6 +9,9 @@ namespace DataPersistence
 {
     public class DataPersistenceManager : MonoBehaviour
     {
+        [Header("Debugging")] 
+        [SerializeField] private bool disableDataPersistence = false;
+        
         [Header("File Storage Config")] 
         [SerializeField] private string fileName;
 
@@ -34,8 +37,12 @@ namespace DataPersistence
                 Destroy(gameObject);
                 return;
             }
+            if(disableDataPersistence)
+                Debug.LogWarning("Data Persistence is currently disabled");
+            
             instance = this;
             DontDestroyOnLoad(gameObject);
+            
             
             dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
         }
@@ -82,6 +89,9 @@ namespace DataPersistence
         
         private void LoadGame()
         {
+            if (disableDataPersistence)
+                return;
+            
             //Load data from a file
             gameData = dataHandler.Load();
             
@@ -100,6 +110,9 @@ namespace DataPersistence
 
         public void SaveGame()
         {
+            if (disableDataPersistence)
+                return;
+            
             // if we don't have any AnimationData to save, log a warning here
             if (this.gameData == null)
             {

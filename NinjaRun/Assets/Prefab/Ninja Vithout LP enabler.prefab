@@ -209,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8108421511935773309, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
       propertyPath: m_Name
-      value: Ninja Vithout LP enabler
+      value: Ninja
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1810419568, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
