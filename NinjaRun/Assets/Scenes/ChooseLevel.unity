@@ -943,7 +943,7 @@ GameObject:
   - component: {fileID: 618087946}
   - component: {fileID: 618087945}
   m_Layer: 5
-  m_Name: ChooseLevel
+  m_Name: ChooseLevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

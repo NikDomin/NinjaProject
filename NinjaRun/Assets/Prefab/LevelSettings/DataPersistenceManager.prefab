@@ -47,3 +47,4 @@ MonoBehaviour:
   disableDataPersistence: 0
   fileName: data.json
   useEncryption: 0
+  defaultHeroSpriteLibraryAsset: {fileID: 7108339969198208228, guid: 7272e7720f7610546b65df0ceb82f7a6, type: 3}

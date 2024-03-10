@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Agent.Player
+namespace Agent.Player
 {
     public class PlayerAnimator : MonoBehaviour
     {

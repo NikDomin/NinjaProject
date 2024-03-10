@@ -1,24 +1,33 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using DataPersistence.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.U2D.Animation;
 
 namespace DataPersistence
 {
     public class DataPersistenceManager : MonoBehaviour
     {
         [Header("Debugging")] 
-        [SerializeField] private bool disableDataPersistence = false;
+        [SerializeField] private bool disableDataPersistence;
         
         [Header("File Storage Config")] 
         [SerializeField] private string fileName;
 
         [SerializeField] private bool useEncryption;
+
+        [Header("Default values")]
+        [SerializeField] private SpriteLibraryAsset defaultHeroSpriteLibraryAsset;
+
+        public SpriteLibraryAsset DefaultHeroSpriteLibraryAsset
+        {
+            get { return defaultHeroSpriteLibraryAsset; }
+            private set { defaultHeroSpriteLibraryAsset = value; }
+        }
+        public FileDataHandler dataHandler { get; private set; }
         
         private GameData gameData;
-        private FileDataHandler dataHandler;
         private List<IDataPersistence> dataPersistenceObjects;
         
         
@@ -71,9 +80,15 @@ namespace DataPersistence
         }        
 
         #endregion
-        
-        
 
+
+        #if UNITY_EDITOR
+        public void CreateFileDataHandler()
+        {
+            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+        }
+        #endif
+        
         private void NewGame()
         {
             gameData = new GameData();

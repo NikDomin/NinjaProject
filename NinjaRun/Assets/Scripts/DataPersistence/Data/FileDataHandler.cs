@@ -82,6 +82,15 @@ namespace DataPersistence.Data
                 Debug.LogError("Error occured when trying to save data to file: " + fullPath + "\n" + e);
             }
         }
+
+        public void DeleteSaveFile()
+        {
+            string fullPath = Path.Combine(dataDirPath, dataFileName);
+            Debug.LogWarning("Delete Save File. Path: " + fullPath);
+            File.Delete(fullPath);
+        }
+
+    
         
         private string EncryptDecrypt(string data)
         {

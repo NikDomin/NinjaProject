@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &928279002350768943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1442972571583091608}
+  - component: {fileID: 2194211481677026429}
+  m_Layer: 0
+  m_Name: SpriteLibraryHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1442972571583091608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928279002350768943}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 534.9941, y: 670.8523, z: 418.0544}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2194211481677026429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928279002350768943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 716c5f48fc0b4116b83dabe05d1014d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteLibraryDictionary:
+    spriteDictionaryItems:
+    - id: 0
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 7272e7720f7610546b65df0ceb82f7a6, type: 3}
+    - id: 1
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 3ce38287ccd798a49837a362786801b4, type: 3}
+    - id: 2
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: b607f4f905b8ff141b94cbdc65f93aac, type: 3}
+    - id: 3
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 912ef3906cf0a0743afc41623fe54e40, type: 3}
+    - id: 4
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ac4b32532452bb2468da3725d6881509, type: 3}
+    - id: 5
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ed88fc8d111945d4fb2a6a7c92443590, type: 3}
+    - id: 6
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 141e97d311451e14e890d61418502202, type: 3}
+    - id: 7
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 7b2ee16c2f83b5c4b8e05b3f4ba355fb, type: 3}
