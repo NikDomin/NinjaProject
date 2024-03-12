@@ -11,6 +11,14 @@ PrefabInstance:
       propertyPath: spriteLibrary
       value: 
       objectReference: {fileID: 434705835}
+    - target: {fileID: 8108421511935773250, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: -0.20328307
+      objectReference: {fileID: 0}
+    - target: {fileID: 8108421511935773250, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
+      propertyPath: m_Bounds.m_Extent.x
+      value: 0.5043142
+      objectReference: {fileID: 0}
     - target: {fileID: 8108421511935773257, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
       propertyPath: m_RootOrder
       value: 0
