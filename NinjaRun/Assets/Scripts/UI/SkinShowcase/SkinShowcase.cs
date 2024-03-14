@@ -1,8 +1,8 @@
-using System;
 using Agent.Player;
 using Coins;
 using DataPersistence;
 using DataPersistence.Data;
+using TMPro;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 using UnityEngine.UI;
@@ -19,7 +19,8 @@ namespace UI.SkinShowcase
         [SerializeField] private SpriteLibrary spriteLibrary;
         [SerializeField] private CoinsHandler coinsHandler;
         [SerializeField] private SkinShowcaseActionHandler skinShowcaseActionHandler;
-
+        [SerializeField] private TextMeshProUGUI priceText;
+        
         [Header("Buttons")] 
         [SerializeField] private Button BuyButton;
         [SerializeField] private Button EquipButton;
@@ -28,6 +29,8 @@ namespace UI.SkinShowcase
         private SpriteLibraryAsset spriteLibrarySpriteLibraryAsset;
         private int EquipedSpriteLibraryID = -1;
 
+
+        #region MONO
 
         private void Awake()
         {
@@ -66,6 +69,13 @@ namespace UI.SkinShowcase
                 EquipButton.gameObject.SetActive(false);
             }
         }
+
+        private void OnValidate()
+        {
+            priceText.text = price.ToString();
+        }
+
+        #endregion
 
         #region SaveSystem
 
