@@ -42,7 +42,7 @@ namespace UI
 
         private void ToMainMenu()
         {
-            SceneManager.LoadScene("ChooseLevel");
+            SceneManager.LoadScene("MainMenu");
         }
 
         private void ToNextLevel()

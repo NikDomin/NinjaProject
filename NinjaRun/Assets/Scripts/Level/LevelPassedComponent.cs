@@ -9,7 +9,7 @@ namespace Level
     public class LevelPassedComponent : MonoBehaviour, IDataPersistence
     {
         [SerializeField] private bool isLevelPassed;
-        [SerializeField] private int LevelNumber;
+        [FormerlySerializedAs("LevelNumber")] [SerializeField] private string LevelName;
         
         
         private void Awake()
@@ -17,7 +17,7 @@ namespace Level
             var sceneName = SceneManager.GetActiveScene().name;
             string[] parts = sceneName.Split(' ');
             string digitString = parts[parts.Length - 1];
-            LevelNumber = int.Parse(digitString);
+            LevelName = digitString;
         }
 
         public void SetLevelPassed(bool isPassed)
@@ -27,7 +27,7 @@ namespace Level
 
         public void LoadData(GameData data)
         {
-            data.LevelPassed.TryGetValue(LevelNumber, out isLevelPassed);
+            data.LevelPassed.TryGetValue(LevelName, out isLevelPassed);
             if (isLevelPassed)
             {
                 Debug.Log("LEVEL HAS ALREADY BEEN PASSED");
@@ -36,11 +36,11 @@ namespace Level
 
         public void SaveData(GameData data)
         {
-            if (data.LevelPassed.ContainsKey(LevelNumber))
+            if (data.LevelPassed.ContainsKey(LevelName))
             {
-                data.LevelPassed.Remove(LevelNumber);
+                data.LevelPassed.Remove(LevelName);
             }
-            data.LevelPassed.Add(LevelNumber, isLevelPassed);
+            data.LevelPassed.Add(LevelName, isLevelPassed);
         }
     }
 }

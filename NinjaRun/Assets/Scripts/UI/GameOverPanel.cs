@@ -36,7 +36,7 @@ namespace UI
 
         private void ToMainMenu()
         {
-            SceneManager.LoadScene("ChooseLevel");
+            SceneManager.LoadScene("MainMenu");
         }
 
         #endregion

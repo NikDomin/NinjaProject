@@ -49,11 +49,11 @@ MonoBehaviour:
     - id: 0
       SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 7272e7720f7610546b65df0ceb82f7a6, type: 3}
     - id: 1
-      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 3ce38287ccd798a49837a362786801b4, type: 3}
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 912ef3906cf0a0743afc41623fe54e40, type: 3}
     - id: 2
       SpriteLibraryAsset: {fileID: 7108339969198208228, guid: b607f4f905b8ff141b94cbdc65f93aac, type: 3}
     - id: 3
-      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 912ef3906cf0a0743afc41623fe54e40, type: 3}
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 3ce38287ccd798a49837a362786801b4, type: 3}
     - id: 4
       SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ac4b32532452bb2468da3725d6881509, type: 3}
     - id: 5

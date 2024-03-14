@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1550607097364670312}
   - component: {fileID: 1550607097364670319}
   - component: {fileID: 1550607097364670314}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BuyButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 1550607098168445314}
   - component: {fileID: 1550607098168445324}
   - component: {fileID: 1550607098168445315}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 1550607098916259148}
   - component: {fileID: 1550607098916259139}
   - component: {fileID: 1550607098916259138}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EquipButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 1550607098919665184}
   - component: {fileID: 1550607098919665186}
   - component: {fileID: 1550607098919665185}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1550607099240511607}
   - component: {fileID: 1550607099240511600}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Showcase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +723,7 @@ MonoBehaviour:
   isPurchased: 0
   isEquipped: 0
   price: 0
-  heroLibraryAssetInShowcase: {fileID: 7108339969198208228, guid: 7272e7720f7610546b65df0ceb82f7a6, type: 3}
+  spriteLibrary: {fileID: 3498427462412629519}
   coinsHandler: {fileID: 0}
   skinShowcaseActionHandler: {fileID: 0}
   BuyButton: {fileID: 1550607097364670319}
@@ -817,27 +817,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3969739953346302715, guid: 949444a33512b5840be454c72066edc0, type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: -0.20328271
+      value: -0.20328403
       objectReference: {fileID: 0}
     - target: {fileID: 3969739953346302715, guid: 949444a33512b5840be454c72066edc0, type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: -0.10465956
+      value: -0.1044631
       objectReference: {fileID: 0}
     - target: {fileID: 3969739953346302715, guid: 949444a33512b5840be454c72066edc0, type: 3}
       propertyPath: m_Bounds.m_Center.z
-      value: -0.0009765625
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3969739953346302715, guid: 949444a33512b5840be454c72066edc0, type: 3}
       propertyPath: m_Bounds.m_Extent.x
-      value: 0.5042019
+      value: 0.5043141
       objectReference: {fileID: 0}
     - target: {fileID: 3969739953346302715, guid: 949444a33512b5840be454c72066edc0, type: 3}
       propertyPath: m_Bounds.m_Extent.y
-      value: 2.093968
+      value: 2.093985
       objectReference: {fileID: 0}
     - target: {fileID: 3969739953346302715, guid: 949444a33512b5840be454c72066edc0, type: 3}
       propertyPath: m_Bounds.m_Extent.z
-      value: 8.731149e-11
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3969739953346302717, guid: 949444a33512b5840be454c72066edc0, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 949444a33512b5840be454c72066edc0, type: 3}
@@ -846,3 +850,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 139796831229305310, guid: 949444a33512b5840be454c72066edc0, type: 3}
   m_PrefabInstance: {fileID: 2096421320277489653}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3498427462412629519 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3286243616906969594, guid: 949444a33512b5840be454c72066edc0, type: 3}
+  m_PrefabInstance: {fileID: 2096421320277489653}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

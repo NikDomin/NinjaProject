@@ -10,14 +10,14 @@ namespace DataPersistence.Data
         // public SpriteLibraryAsset HeroSpriteLibrary;
         public int HeroSpriteLibraryID;
         
-        public SerializableDictionary<int, bool> LevelPassed;
+        public SerializableDictionary<string, bool> LevelPassed;
         public SerializableDictionary<int, bool> PurchasedSkins;
         
         public GameData()
         { 
             CoinsCount = 0;
             HeroSpriteLibraryID = 0;
-            LevelPassed = new SerializableDictionary<int, bool>();
+            LevelPassed = new SerializableDictionary<string, bool>();
             PurchasedSkins = new SerializableDictionary<int, bool>();
             PurchasedSkins.Add(0, true); // add default skin
             

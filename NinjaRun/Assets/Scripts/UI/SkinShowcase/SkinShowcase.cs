@@ -1,4 +1,5 @@
 using System;
+using Agent.Player;
 using Coins;
 using DataPersistence;
 using DataPersistence.Data;
@@ -15,7 +16,7 @@ namespace UI.SkinShowcase
         [SerializeField] private bool isPurchased;
         [SerializeField] private bool isEquipped;
         [SerializeField] private int price;
-        [SerializeField] private SpriteLibraryAsset heroLibraryAssetInShowcase;
+        [SerializeField] private SpriteLibrary spriteLibrary;
         [SerializeField] private CoinsHandler coinsHandler;
         [SerializeField] private SkinShowcaseActionHandler skinShowcaseActionHandler;
 
@@ -24,6 +25,7 @@ namespace UI.SkinShowcase
         [SerializeField] private Button EquipButton;
 
         private Shop skinShop;
+        private SpriteLibraryAsset spriteLibrarySpriteLibraryAsset;
         private int EquipedSpriteLibraryID = -1;
 
 
@@ -49,7 +51,10 @@ namespace UI.SkinShowcase
 
         private void Start()
         {
-            
+            var spriteDictionary = SpriteLibraryHandler.LibraryHandler.SpriteLibraryDictionary;
+            spriteDictionary.TryGetValue(id, out spriteLibrarySpriteLibraryAsset);
+            spriteLibrary.spriteLibraryAsset = spriteLibrarySpriteLibraryAsset;
+                
             if (isPurchased)
             {
                 BuyButton.gameObject.SetActive(false);

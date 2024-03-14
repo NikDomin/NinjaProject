@@ -17,13 +17,14 @@ namespace Agent.Player
         {
             DontDestroyOnLoad(gameObject);
             LibraryHandler = this;
-        }
-
-        private void OnValidate()
-        {
-            Debug.Log("On validate SpriteLibraryDictionary");
             SpriteLibraryDictionary = spriteLibraryDictionary.ToDictionary();
         }
+
+        // private void OnValidate()
+        // {
+        //     Debug.Log("On validate SpriteLibraryDictionary");
+        //     SpriteLibraryDictionary = spriteLibraryDictionary.ToDictionary();
+        // }
     }
 
     [Serializable]

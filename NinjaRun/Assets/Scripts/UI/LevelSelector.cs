@@ -1,39 +1,44 @@
-﻿using System;
-using Assets.Scripts.Input;
+﻿using Assets.Scripts.Input;
 using DataPersistence;
 using DataPersistence.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace UI
 {
     public class LevelSelector : MonoBehaviour, IDataPersistence
     {
-        [SerializeField] private int level;
+        [FormerlySerializedAs("level")] [SerializeField] private string levelName;
         [SerializeField] private bool testIsLevelPassed;
         
         private void Start()
         {
             NewInputManager.PlayerInput.SwitchCurrentActionMap("UI");
-            
-            GetComponentInChildren<TextMeshProUGUI>().text = level.ToString();
+
+            GetComponentInChildren<TextMeshProUGUI>().text = levelName;
         }
 
         private void OnValidate()
         {
-            GetComponentInChildren<TextMeshProUGUI>().text = level.ToString();
+            GetComponentInChildren<TextMeshProUGUI>().text = levelName;
+        }
+
+        public void LoadLevel()
+        {
+            //SceneManager.LoadScene("Level 1");
+            SceneManager.LoadScene("Level " + levelName);
         }
 
         public void LoadScene()
         {
-            //SceneManager.LoadScene("Level 1");
-            SceneManager.LoadScene("Level " + level.ToString());
+            SceneManager.LoadScene(levelName);
         }
 
         public void LoadData(GameData data)
         {
-            data.LevelPassed.TryGetValue(level, out testIsLevelPassed);
+            data.LevelPassed.TryGetValue(levelName, out testIsLevelPassed);
             
         }
 
