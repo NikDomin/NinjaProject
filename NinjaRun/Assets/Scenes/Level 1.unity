@@ -607,10 +607,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   <GroundCheckPosition>k__BackingField: {x: 0.09, y: -1.7, z: 0}
-  <WallCheckPosition>k__BackingField: {x: 0.32, y: -0.02, z: 0}
   <CeilingCheckPosition>k__BackingField: {x: 0, y: 0, z: 0}
   <WallRayLength>k__BackingField: 0
   <CeilRayLength>k__BackingField: 0
+  <WallDetection>k__BackingField: {fileID: 0}
   _rigidbody2D: {fileID: 0}
 --- !u!114 &185643017
 MonoBehaviour:
@@ -2248,6 +2248,63 @@ Transform:
   m_Father: {fileID: 185643008}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1570317931
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 928279002350768943, guid: 058ab745d75e53d488b604fcf81a51a3, type: 3}
+      propertyPath: m_Name
+      value: SpriteLibraryHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442972571583091608, guid: 058ab745d75e53d488b604fcf81a51a3, type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442972571583091608, guid: 058ab745d75e53d488b604fcf81a51a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 534.9941
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442972571583091608, guid: 058ab745d75e53d488b604fcf81a51a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 670.8523
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442972571583091608, guid: 058ab745d75e53d488b604fcf81a51a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 418.0544
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442972571583091608, guid: 058ab745d75e53d488b604fcf81a51a3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442972571583091608, guid: 058ab745d75e53d488b604fcf81a51a3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442972571583091608, guid: 058ab745d75e53d488b604fcf81a51a3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442972571583091608, guid: 058ab745d75e53d488b604fcf81a51a3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442972571583091608, guid: 058ab745d75e53d488b604fcf81a51a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442972571583091608, guid: 058ab745d75e53d488b604fcf81a51a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442972571583091608, guid: 058ab745d75e53d488b604fcf81a51a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 058ab745d75e53d488b604fcf81a51a3, type: 3}
 --- !u!1 &1576625914
 GameObject:
   m_ObjectHideFlags: 0
@@ -13514,26 +13571,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2020839940, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: debug
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2020839940, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: debugColor.a
-      value: 0.99607843
-      objectReference: {fileID: 0}
-    - target: {fileID: 2020839940, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: debugColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2020839940, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: debugColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2020839940, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: debugColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8108421511935773254, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
       propertyPath: trail
       value: 

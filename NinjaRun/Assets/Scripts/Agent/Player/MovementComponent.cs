@@ -9,10 +9,11 @@ namespace Agent.Player
         [field: SerializeField] public float GroundCheckRadius { get; private set;}
         [field: SerializeField] public LayerMask GroundLayer { get; private set; }
         [field: SerializeField] public Vector3 GroundCheckPosition { get; private set;}
-        [field: SerializeField] public Vector3 WallCheckPosition { get; private set; }
         [field: SerializeField] public Vector3 CeilingCheckPosition { get; private set; }
         [field: SerializeField] public float WallRayLength { get; private set; }
         [field: SerializeField] public float CeilRayLength { get; private set; }
+        
+        [field: SerializeField] public AgentBoxDetection WallDetection { get; private set; }
 
         private NewSwipeDetection swipeDetection;
         public Rigidbody2D _rigidbody2D;
@@ -29,10 +30,6 @@ namespace Agent.Player
         private void OnDrawGizmos()
         {
             Gizmos.DrawWireSphere(transform.TransformPoint(GroundCheckPosition), GroundCheckRadius);
-
-            //Wall Line
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(transform.TransformPoint(WallCheckPosition), transform.TransformPoint(WallCheckPosition) + transform.right * WallRayLength *transform.localScale.x);
             
             //Ceiling Line
             Gizmos.color = Color.blue;

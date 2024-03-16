@@ -78,13 +78,16 @@ namespace Agent.Player.PlayerStateMachine.States
 
         public void TryOnWallSwitching()
         {
-            if (PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right * playerState.transform.localScale.x, playerState.MovementComponent.WallRayLength,
-                   playerState.MovementComponent.GroundLayer) && isCanCling &&
-                !PositionCheck.PlatformCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right * playerState.transform.localScale.x, playerState.MovementComponent.WallRayLength,
-                    playerState.MovementComponent.GroundLayer))
-            {
+            // if (PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right * playerState.transform.localScale.x, playerState.MovementComponent.WallRayLength,
+            //        playerState.MovementComponent.GroundLayer) && isCanCling &&
+            //     !PositionCheck.PlatformCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right * playerState.transform.localScale.x, playerState.MovementComponent.WallRayLength,
+            //         playerState.MovementComponent.GroundLayer))
+            // {
+            //     playerState.StateMachine.ChangeState(playerState.OnWallState);
+            // }
+            var colliders = playerState.MovementComponent.WallDetection.OverlapBoxNonAlloc();
+            if(colliders != 0 && isCanCling)
                 playerState.StateMachine.ChangeState(playerState.OnWallState);
-            }
         }
 
         public void TryJumpSwitching()
@@ -95,8 +98,7 @@ namespace Agent.Player.PlayerStateMachine.States
         public void TryOnCeilingSwitching()
         {
             if (PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.CeilingCheckPosition), playerState.transform.up, playerState.MovementComponent.CeilRayLength, playerState.MovementComponent.GroundLayer) 
-                && isCanCling &&
-                !PositionCheck.PlatformCheck(playerState.transform.TransformPoint(playerState.MovementComponent.CeilingCheckPosition), playerState.transform.up, playerState.MovementComponent.CeilRayLength, playerState.MovementComponent.GroundLayer))
+                && isCanCling )
             {
                 playerState.StateMachine.ChangeState(playerState.OnCeilingState);
             }
@@ -107,12 +109,6 @@ namespace Agent.Player.PlayerStateMachine.States
             var colliders = playerState.AgentBoxDetection.OverlapBoxNonAlloc();
             if (colliders == 0)
                 return;
-            // playerState.AttackComponent.TargetCollider2Ds = playerState.AgentBoxDetection.Buffer;
-            
-            // var colliders = playerState.AgentBoxDetection.OverlapBox();
-            // if(colliders.Length == 0)
-            //     return;
-            // playerState.AttackComponent.TargetCollider2Ds = colliders;
 
             playerState.StateMachine.ChangeState(playerState.AttackState);
         }

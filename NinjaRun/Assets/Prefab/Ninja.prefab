@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 5790668731503570773}
   - component: {fileID: 1616938866}
   - component: {fileID: 7641106889690978627}
+  - component: {fileID: 1235230251}
   m_Layer: 7
   m_Name: Ninja
   m_TagString: Untagged
@@ -226,10 +227,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   <GroundCheckPosition>k__BackingField: {x: -0.06, y: -2, z: 0}
-  <WallCheckPosition>k__BackingField: {x: 0.32, y: -0.02, z: 0}
   <CeilingCheckPosition>k__BackingField: {x: -0.05, y: 1.66, z: 0}
   <WallRayLength>k__BackingField: 0.39
   <CeilRayLength>k__BackingField: 0.39
+  <WallDetection>k__BackingField: {fileID: 1235230251}
   _rigidbody2D: {fileID: 8108421511935773253}
 --- !u!114 &8108421511935773248
 MonoBehaviour:
@@ -395,13 +396,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5373f8975f9f5a2428afc1eed397f905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   <DetectLayerMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 256
   <DetectPoint>k__BackingField: {x: 1.05, y: 0}
   <Size>k__BackingField: {x: 1.6, y: 3.75}
-  debugColor: {r: 1, g: 0, b: 0, a: 1}
+  debugColor: {r: 1, g: 0, b: 0, a: 0.99607843}
 --- !u!114 &5790668731503570773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,6 +444,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Library: []
   m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 7272e7720f7610546b65df0ceb82f7a6, type: 3}
+--- !u!114 &1235230251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108421511935773309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5373f8975f9f5a2428afc1eed397f905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debug: 1
+  <DetectLayerMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 64
+  <DetectPoint>k__BackingField: {x: 0.53, y: 0.76}
+  <Size>k__BackingField: {x: 0.62, y: 2.08}
+  debugColor: {r: 0.25560814, g: 0.9528302, b: 0.049439307, a: 1}
 --- !u!1 &8108421511954646115
 GameObject:
   m_ObjectHideFlags: 0

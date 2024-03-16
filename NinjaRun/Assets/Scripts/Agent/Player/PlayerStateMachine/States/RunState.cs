@@ -109,13 +109,16 @@ namespace Agent.Player.PlayerStateMachine.States
 
         public void TryOnWallSwitching()
         {
-            if (PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right, playerState.MovementComponent.WallRayLength,
-                    playerState.MovementComponent.GroundLayer) && 
-                !PositionCheck.PlatformCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition),
-                    playerState.transform.right, playerState.MovementComponent.WallRayLength, playerState.MovementComponent.GroundLayer))
-            {
+            // if (PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right, playerState.MovementComponent.WallRayLength,
+            //         playerState.MovementComponent.GroundLayer) && 
+            //     !PositionCheck.PlatformCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition),
+            //         playerState.transform.right, playerState.MovementComponent.WallRayLength, playerState.MovementComponent.GroundLayer))
+            // {
+            //     playerState.StateMachine.ChangeState(playerState.OnWallState);
+            // }
+            var colliders = playerState.MovementComponent.WallDetection.OverlapBoxNonAlloc();
+            if(colliders != 0)
                 playerState.StateMachine.ChangeState(playerState.OnWallState);
-            }
         }
 
         public void TryFlySwitching()
@@ -124,13 +127,17 @@ namespace Agent.Player.PlayerStateMachine.States
             if (!PositionCheck.GroundCheck(playerState.transform.TransformPoint(playerState.MovementComponent.GroundCheckPosition),
                 playerState.MovementComponent.GroundCheckRadius, playerState.MovementComponent.GroundLayer))
             {
-                //dont on wall check
-                if (!PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right, playerState.MovementComponent.WallRayLength,
-                        playerState.MovementComponent.GroundLayer))
-                {
-                    playerState.StateMachine.ChangeState(playerState.FlyState);
-                }
+                // //dont on wall check
+                // if (!PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right, playerState.MovementComponent.WallRayLength,
+                //         playerState.MovementComponent.GroundLayer))
+                // {
+                //     playerState.StateMachine.ChangeState(playerState.FlyState);
+                // }
 
+                //dont on wall check
+                var colliders = playerState.MovementComponent.WallDetection.OverlapBoxNonAlloc();
+                if(colliders == 0)
+                    playerState.StateMachine.ChangeState(playerState.FlyState);
             }
         }
     }

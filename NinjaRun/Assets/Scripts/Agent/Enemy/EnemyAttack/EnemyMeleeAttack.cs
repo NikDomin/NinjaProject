@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Agent.Enemy.EnemyMovement;
 using Assets.Scripts.Agent;
 using UnityEngine;
 
@@ -20,7 +23,8 @@ namespace Agent.Enemy.EnemyAttack
         
         private EnemyAI enemyAi;
         private EnemyAnimationEventHandler exclamationEventHandler;
-
+        [SerializeField] private EnemyAbstractMovement enemyMovement;
+        
         private CancellationTokenSource tokenSource = null;
         private CancellationToken token;
         
@@ -48,6 +52,18 @@ namespace Agent.Enemy.EnemyAttack
         private void FixedUpdate()
         {
             DetectPlayer();
+
+            if (Attacking && !enemyMovement.IsCanMove)
+            {
+                StartCoroutine(DelayZeroVelocity());
+            }
+        }
+
+        private IEnumerator DelayZeroVelocity()
+        {
+            yield return new WaitForSeconds(0.2f);
+            rigidbody2D.velocity = Vector2.zero;
+            rigidbody2D.velocity = Vector2.down;
         }
 
         private void OnDestroy()

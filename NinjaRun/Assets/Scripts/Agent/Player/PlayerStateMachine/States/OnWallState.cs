@@ -61,12 +61,17 @@ namespace Agent.Player.PlayerStateMachine.States
             if (PositionCheck.GroundCheck(playerState.transform.TransformPoint(playerState.MovementComponent.GroundCheckPosition),
                     playerState.MovementComponent.GroundCheckRadius, playerState.MovementComponent.GroundLayer))
             {
+                // //dont on wall check
+                // if (!PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right, playerState.MovementComponent.WallRayLength,
+                //         playerState.MovementComponent.GroundLayer))
+                // {
+                //     playerState.StateMachine.ChangeState(playerState.FlyState);
+                // }
+                
                 //dont on wall check
-                if (!PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right, playerState.MovementComponent.WallRayLength,
-                        playerState.MovementComponent.GroundLayer))
-                {
+                var colliders = playerState.MovementComponent.WallDetection.OverlapBoxNonAlloc();
+                if(colliders == 0)
                     playerState.StateMachine.ChangeState(playerState.FlyState);
-                }
 
             }
         }

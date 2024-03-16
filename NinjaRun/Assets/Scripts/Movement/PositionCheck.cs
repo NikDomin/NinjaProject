@@ -14,15 +14,17 @@ namespace Movement
             return Physics2D.Raycast(position, direction, length, layer);
         }
 
-        public static bool PlatformCheck(Vector3 position, Vector2 direction, float length, LayerMask layer)
+        public static bool ObstacleCheck(Vector3[] positions, Vector2 direction, float length, LayerMask layer)
         {
-            RaycastHit2D hit = Physics2D.Raycast(position, direction, length, layer);
-
-            if (hit.transform.TryGetComponent(out PlatformEffector2D platformEffector2D))
+            bool isObstacle = false;
+            foreach (var item in positions)
             {
-                return true;
+                if (Physics2D.Raycast(item, direction, length, layer))
+                {
+                    return isObstacle = true;
+                }
             }
-            else return false;
+            return isObstacle = false;
         }
 
     }
