@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Agent.Player.PlayerStateMachine;
-using Assets.Scripts.Agent.Player.PlayerStateMachine.States;
 using Movement;
 using UnityEngine;
 
@@ -20,6 +19,8 @@ namespace Agent.Player.PlayerStateMachine.States
         public override void EnterState()
         {
             base.EnterState();
+
+            StateName = "OnWallState";
             playerState.SwipeDetection.OnSwipe += TryJumpSwitching;
             playerState.PlayerAnimator.Anim.SetTrigger(playerState.PlayerAnimator.OnWallTriggerKey);
 

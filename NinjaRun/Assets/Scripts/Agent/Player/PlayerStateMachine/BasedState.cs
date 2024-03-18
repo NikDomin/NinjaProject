@@ -1,18 +1,17 @@
-﻿using System.Collections;
-using Agent.Player.PlayerStateMachine;
-using UnityEngine;
-
-namespace Assets.Scripts.Agent.Player.PlayerStateMachine
+﻿namespace Agent.Player.PlayerStateMachine
 {
     public class BasedState
     {
+        public string StateName;
+        
         protected PlayerState player;
-        protected PlayerStateMachine playerStateMachine;
+        protected Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine playerStateMachine;
 
-        public BasedState(PlayerState player, PlayerStateMachine playerStateMachine)
+        public BasedState(PlayerState player, Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine playerStateMachine)
         {
             this.player = player;
             this.playerStateMachine = playerStateMachine;
+            
         }
 
         public virtual void EnterState(){}

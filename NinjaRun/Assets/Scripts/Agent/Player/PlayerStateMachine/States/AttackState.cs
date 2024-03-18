@@ -1,15 +1,11 @@
-﻿using Agent.Player.PlayerStateMachine;
-using Agent.Player.PlayerStateMachine.States;
-
-
-namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
+﻿namespace Agent.Player.PlayerStateMachine.States
 {
     public class AttackState : BasedState, IFlyState
     {
         private PlayerState playerState;
-        private PlayerStateMachine stateMachine;
+        private Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine stateMachine;
 
-        public AttackState(PlayerState player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+        public AttackState(PlayerState player, Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             playerState = player;
             stateMachine = playerStateMachine;
@@ -18,6 +14,7 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
         public override void EnterState()
         {
             base.EnterState();
+            StateName = "AttackState";
 
             playerState.PlayerAnimator.Anim.SetTrigger(playerState.PlayerAnimator.AttackTriggerKey);
 

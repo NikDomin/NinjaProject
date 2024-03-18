@@ -63,7 +63,7 @@ namespace Agent.Enemy.EnemyAttack
         {
             yield return new WaitForSeconds(0.2f);
             rigidbody2D.velocity = Vector2.zero;
-            rigidbody2D.velocity = Vector2.down;
+            rigidbody2D.velocity = Vector2.down * 5f;
         }
 
         private void OnDestroy()

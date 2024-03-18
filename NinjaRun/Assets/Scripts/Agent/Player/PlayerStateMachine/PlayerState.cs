@@ -2,7 +2,6 @@
 using Agent.Player.PlayerStateMachine.States;
 using Assets.Scripts.Agent;
 using Assets.Scripts.Agent.Player;
-using Assets.Scripts.Agent.Player.PlayerStateMachine.States;
 using Movement;
 using UnityEngine;
 
@@ -28,6 +27,9 @@ namespace Agent.Player.PlayerStateMachine
         public AttackState AttackState { get; set; }
 
         public event Action OnLanding;
+
+
+        [SerializeField] private string currentStateName;
 
         private void Awake()
         {
@@ -58,6 +60,9 @@ namespace Agent.Player.PlayerStateMachine
         private void Update()
         {
             StateMachine.CurrentState.FrameUpdate();
+            
+            //ForDebug
+            currentStateName = StateMachine.CurrentState.StateName;
         }
         private void FixedUpdate()
         {

@@ -44,7 +44,6 @@ namespace Agent.Enemy
             
             AgentUtils.SpriteDirection(transform, DirectionVector);
 
-            EnemyAnimator.Anim.SetBool(EnemyAnimator.IsMoveKey, true);
         }
 
         private void ChangeDirectionVector(Vector2 direction)

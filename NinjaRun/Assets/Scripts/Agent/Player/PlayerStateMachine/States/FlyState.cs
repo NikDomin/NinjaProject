@@ -22,6 +22,9 @@ namespace Agent.Player.PlayerStateMachine.States
         public override void EnterState()
         {
             base.EnterState();
+
+            StateName = "FlyState";
+            
             isCanCling = false;
             isCanRun = false;
 

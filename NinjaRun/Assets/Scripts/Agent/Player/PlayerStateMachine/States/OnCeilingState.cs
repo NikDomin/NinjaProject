@@ -1,17 +1,14 @@
-﻿using System.Collections;
-using Agent.Player.PlayerStateMachine;
-using Agent.Player.PlayerStateMachine.States;
-using Movement;
+﻿using Movement;
 using UnityEngine;
 
-namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
+namespace Agent.Player.PlayerStateMachine.States
 {
     public class OnCeilingState : BasedState, IJumpState, IFlyState
     {
         private PlayerState playerState;
-        private PlayerStateMachine stateMachine;
+        private Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine stateMachine;
 
-        public OnCeilingState(PlayerState player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+        public OnCeilingState(PlayerState player, Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             playerState = player;
             stateMachine = playerStateMachine;
@@ -20,6 +17,9 @@ namespace Assets.Scripts.Agent.Player.PlayerStateMachine.States
         public override void EnterState()
         {
             base.EnterState();
+
+            StateName = "OnCeilengState";
+            
             playerState.SwipeDetection.OnSwipe += TryJumpSwitching;
             playerState.PlayerAnimator.Anim.SetTrigger(playerState.PlayerAnimator.OnCeilTriggerKey);
 

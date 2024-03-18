@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0c48d3b980c29c4b92282651a4eaf38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentStateName: 
 --- !u!95 &8108421511935773249
 Animator:
   serializedVersion: 5
@@ -296,8 +297,8 @@ MonoBehaviour:
   - {fileID: 8108421512471527705}
   - {fileID: 8108421512012921315}
   m_Bounds:
-    m_Center: {x: -0.20328277, y: -0.1044631, z: 0}
-    m_Extent: {x: 0.50431395, y: 2.093985, z: 0}
+    m_Center: {x: -0.20328301, y: -0.1044631, z: 0}
+    m_Extent: {x: 0.5043142, y: 2.093985, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -460,8 +461,8 @@ MonoBehaviour:
   <DetectLayerMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
-  <DetectPoint>k__BackingField: {x: 0.53, y: 0.76}
-  <Size>k__BackingField: {x: 0.62, y: 2.08}
+  <DetectPoint>k__BackingField: {x: 0.51, y: 0.5}
+  <Size>k__BackingField: {x: 0.58, y: 1.7}
   debugColor: {r: 0.25560814, g: 0.9528302, b: 0.049439307, a: 1}
 --- !u!1 &8108421511954646115
 GameObject:

@@ -53,6 +53,9 @@ namespace Agent.Player.PlayerStateMachine.States
         public override void EnterState()
         {
             base.EnterState();
+
+            StateName = "Run State";
+            
             playerState.SwipeDetection.OnSwipe += TryJumpSwitching;
             playerState.PlayerAnimator.Anim.SetBool(playerState.PlayerAnimator.IsRunningKey, true);
 
@@ -116,9 +119,9 @@ namespace Agent.Player.PlayerStateMachine.States
             // {
             //     playerState.StateMachine.ChangeState(playerState.OnWallState);
             // }
-            var colliders = playerState.MovementComponent.WallDetection.OverlapBoxNonAlloc();
-            if(colliders != 0)
-                playerState.StateMachine.ChangeState(playerState.OnWallState);
+            var colliders = playerState.MovementComponent.WallDetection.OverlapBox();
+            if(colliders.Length != 0)
+                playerState.StateMachine.ChangeState(playerState.FlyState);
         }
 
         public void TryFlySwitching()
@@ -135,6 +138,7 @@ namespace Agent.Player.PlayerStateMachine.States
                 // }
 
                 //dont on wall check
+                
                 var colliders = playerState.MovementComponent.WallDetection.OverlapBoxNonAlloc();
                 if(colliders == 0)
                     playerState.StateMachine.ChangeState(playerState.FlyState);
