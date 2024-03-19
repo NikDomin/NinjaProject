@@ -291,6 +291,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  damageSoundClips:
+  - {fileID: 8300000, guid: ef3f465a2a61603409376af0aa8be568, type: 3}
+  - {fileID: 8300000, guid: d3460eb7f4ba90c49b7ea4617fee06dd, type: 3}
+  - {fileID: 8300000, guid: d086b8fa6f19dd841872b36d34a4a46d, type: 3}
 --- !u!114 &2440573479343766286
 MonoBehaviour:
   m_ObjectHideFlags: 0

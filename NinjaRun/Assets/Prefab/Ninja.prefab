@@ -297,8 +297,8 @@ MonoBehaviour:
   - {fileID: 8108421512471527705}
   - {fileID: 8108421512012921315}
   m_Bounds:
-    m_Center: {x: -0.20328301, y: -0.1044631, z: 0}
-    m_Extent: {x: 0.5043142, y: 2.093985, z: 0}
+    m_Center: {x: -0.20328349, y: -0.1044631, z: 0}
+    m_Extent: {x: 0.5043137, y: 2.093985, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -357,6 +357,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  damageSoundClips:
+  - {fileID: 8300000, guid: 98ab1a77c29f1a6468d8b46ffdf09d45, type: 3}
+  - {fileID: 8300000, guid: 68277f3d62ee84e49975bd0a3d539e76, type: 3}
+  - {fileID: 8300000, guid: d381095764a033c439b4203d3a08df69, type: 3}
 --- !u!114 &2020839938
 MonoBehaviour:
   m_ObjectHideFlags: 0
