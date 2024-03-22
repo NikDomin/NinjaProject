@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Input;
-using DataPersistence;
+﻿using DataPersistence;
 using DataPersistence.Data;
+using Input;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;

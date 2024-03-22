@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utils;
 
@@ -7,7 +8,7 @@ namespace UI
 {
     public class PausePanel : Panel
     {
-        [SerializeField] private Image optionsPanel;
+        [SerializeField] private Panel settingsPanel;
         [Header("Buttons")]
         [SerializeField] private Button continueButton;
         [SerializeField] private Button homeButton;
@@ -20,11 +21,16 @@ namespace UI
             base.EnablePanel();
             
             TimeManager.Instance.PauseGame();
-
+            
             continueButton.onClick.AddListener(ContinueGame);
             homeButton.onClick.AddListener(ToMainMenu);
             optionsButton.onClick.AddListener(Options);
             
+            // testImageButton.gameObject.SetActive(false);
+            
+            // pauseButton.gameObject.SetActive(false);
+            // //pauseButton
+            // pauseButton.onClick.RemoveListener(EnablePanel);
         }
 
 
@@ -34,10 +40,17 @@ namespace UI
             base.DisablePanel();
             
             TimeManager.Instance.UnpauseGame();
-
+            
             continueButton.onClick.RemoveListener(ContinueGame);
             homeButton.onClick.RemoveListener(ToMainMenu);
             optionsButton.onClick.RemoveListener(Options);
+            
+            // testImageButton.gameObject.SetActive(true);
+            
+            // pauseButton.gameObject.SetActive(true);
+            // //pauseButton
+            // pauseButton.onClick.AddListener(EnablePanel);
+
         }
 
         private void ContinueGame()
@@ -53,7 +66,8 @@ namespace UI
         private void Options()
         {
             DisablePanel();
-            optionsButton.gameObject.SetActive(true);
+            settingsPanel.EnablePanel();
+            settingsPanel.gameObject.GetComponent<SettingsPanel>().SetPreviousPanel(this);
         }
     }
 }

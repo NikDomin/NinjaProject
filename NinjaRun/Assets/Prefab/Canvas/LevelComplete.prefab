@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7253eb5f997a745a6a85651cd226a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseButton: {fileID: 0}
   homeButton: {fileID: 8229547252318875336}
   nextLevelButton: {fileID: 8229547251594782630}
 --- !u!1 &8229547251594782616

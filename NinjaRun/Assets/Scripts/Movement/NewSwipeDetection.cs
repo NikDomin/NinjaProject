@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Threading.Tasks;
 using Agent.Player.PlayerStateMachine;
-using Assets.Scripts.Input;
+using Input;
 using UnityEngine;
 using Utils;
 

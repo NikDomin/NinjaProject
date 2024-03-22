@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4ea5163d5a963428df4d80cde23a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseButton: {fileID: 0}
   homeButton: {fileID: 5420193280356642241}
   restartButton: {fileID: 5420193280006988975}
 --- !u!1 &5420193280006988945

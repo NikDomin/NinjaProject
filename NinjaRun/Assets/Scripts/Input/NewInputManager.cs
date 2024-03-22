@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Utils;
 
-namespace Assets.Scripts.Input
+namespace Input
 {
     public class NewInputManager : MonoBehaviour
     {
