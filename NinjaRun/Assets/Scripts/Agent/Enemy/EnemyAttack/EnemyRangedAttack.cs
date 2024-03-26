@@ -4,12 +4,15 @@ using System.Threading.Tasks;
 using NewObjectPool;
 using Projectiles;
 using UnityEngine;
+using UnityEngine.Events;
 using Utils;
 
 namespace Agent.Enemy.EnemyAttack
 {
     public class EnemyRangedAttack: EnemyAttack
     {
+        public UnityEvent OnShoot;
+        
         [SerializeField] private Transform exclamationPoint;
         [SerializeField] private LayerMask playerLayer;
         [SerializeField] private LayerMask raycastLayers;
@@ -167,6 +170,7 @@ namespace Agent.Enemy.EnemyAttack
                 return;
             
             ShootProjectile(projectilePool, transform, (playerCollider.transform.position - transform.position));
+            OnShoot?.Invoke();
         }
 
         private void ShootProjectile(PoolMono<ProjectileTrigger> projectilePool, Transform objectTransform, Vector2 direction)

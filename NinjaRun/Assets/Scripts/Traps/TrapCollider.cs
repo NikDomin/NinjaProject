@@ -1,12 +1,13 @@
-﻿using System;
-using Agent;
-using Assets.Scripts.Agent;
+﻿using Agent;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Traps
 {
     public class TrapCollider : MonoBehaviour
     {
+        public UnityEvent OnTrapCollision;
+        
         [SerializeField] private LayerMask playerLayer;
         
         private Collider2D collider2D;
@@ -23,6 +24,8 @@ namespace Traps
             
             if ((playerLayer & (1 << collision.gameObject.layer)) != 0)
             {
+                OnTrapCollision?.Invoke();
+                
                 var collisionHealth = collision.gameObject.GetComponent<Health>();
                 collisionHealth.GetHit();
             }
@@ -35,6 +38,8 @@ namespace Traps
             
             if ((playerLayer & (1 << item.gameObject.layer)) != 0)
             {
+                OnTrapCollision?.Invoke();
+                
                 var collisionHealth = item.gameObject.GetComponent<Health>();
                 collisionHealth.GetHit();
             }

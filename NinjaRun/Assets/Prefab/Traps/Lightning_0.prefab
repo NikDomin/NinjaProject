@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6434856455010400510}
   - component: {fileID: 6434856455010400511}
   - component: {fileID: 391207867}
+  - component: {fileID: 8311683181188966861}
   m_Layer: 0
   m_Name: Lightning_0
   m_TagString: Untagged
@@ -127,7 +128,19 @@ MonoBehaviour:
     m_Bits: 128
   OnTrigger:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8311683181188966861}
+        m_TargetAssemblyTypeName: Sound.SoundFXHandler, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnTriggerWithCollider:
     m_PersistentCalls:
       m_Calls:
@@ -205,3 +218,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043dcf067e1240c0b1f81b1df714cd99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8311683181188966861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6434856455010400483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a888a1dc897f41eeb2599acd44f863e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXClips:
+  - {fileID: 8300000, guid: 8ce14858148c08a459f93602337335eb, type: 3}

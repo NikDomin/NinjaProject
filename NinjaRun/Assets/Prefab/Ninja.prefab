@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 1616938866}
   - component: {fileID: 7641106889690978627}
   - component: {fileID: 1235230251}
+  - component: {fileID: 6153407303486135427}
   m_Layer: 7
   m_Name: Ninja
   m_TagString: Untagged
@@ -297,8 +298,8 @@ MonoBehaviour:
   - {fileID: 8108421512471527705}
   - {fileID: 8108421512012921315}
   m_Bounds:
-    m_Center: {x: -0.20328349, y: -0.1044631, z: 0}
-    m_Extent: {x: 0.5043137, y: 2.093985, z: 0}
+    m_Center: {x: -0.20328277, y: -0.1044631, z: 0}
+    m_Extent: {x: 0.50431395, y: 2.093985, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -357,10 +358,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  damageSoundClips:
-  - {fileID: 8300000, guid: 98ab1a77c29f1a6468d8b46ffdf09d45, type: 3}
-  - {fileID: 8300000, guid: 68277f3d62ee84e49975bd0a3d539e76, type: 3}
-  - {fileID: 8300000, guid: d381095764a033c439b4203d3a08df69, type: 3}
+      - m_Target: {fileID: 6153407303486135427}
+        m_TargetAssemblyTypeName: Sound.SoundFXHandler, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2020839938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,6 +477,22 @@ MonoBehaviour:
   <DetectPoint>k__BackingField: {x: 0.51, y: 0.5}
   <Size>k__BackingField: {x: 0.58, y: 1.7}
   debugColor: {r: 0.25560814, g: 0.9528302, b: 0.049439307, a: 1}
+--- !u!114 &6153407303486135427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108421511935773309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a888a1dc897f41eeb2599acd44f863e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXClips:
+  - {fileID: 8300000, guid: ef3f465a2a61603409376af0aa8be568, type: 3}
+  - {fileID: 8300000, guid: d3460eb7f4ba90c49b7ea4617fee06dd, type: 3}
+  - {fileID: 8300000, guid: d086b8fa6f19dd841872b36d34a4a46d, type: 3}
 --- !u!1 &8108421511954646115
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 6803228437389277332}
   - component: {fileID: 6803228437389277334}
   - component: {fileID: 61596845}
+  - component: {fileID: 5018961224077514330}
+  - component: {fileID: 6852484845308815162}
   m_Layer: 8
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -173,6 +175,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5018961224077514330}
+        m_TargetAssemblyTypeName: Sound.SoundFXHandler, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6803228437389277342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,10 +253,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Attacking: 0
   TryAttacking: 0
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6852484845308815162}
+        m_TargetAssemblyTypeName: Sound.SoundFXHandler, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   exclamationPoint: {fileID: 6803228438680502372}
   moveAttackVelocity: 40
   checkPlayerDetection: {fileID: 6803228437389277330}
   AttackPlayerDetection: {fileID: 6803228437389277334}
+  enemyMovement: {fileID: 61596845}
 --- !u!114 &6803228437389277331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +338,38 @@ MonoBehaviour:
     m_Bits: 64
   groundCheckPosition: {x: 0.08, y: -1.3, z: 0}
   enemyMovementType: 0
+--- !u!114 &5018961224077514330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6803228437389277336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a888a1dc897f41eeb2599acd44f863e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXClips:
+  - {fileID: 8300000, guid: ef3f465a2a61603409376af0aa8be568, type: 3}
+  - {fileID: 8300000, guid: d3460eb7f4ba90c49b7ea4617fee06dd, type: 3}
+  - {fileID: 8300000, guid: d086b8fa6f19dd841872b36d34a4a46d, type: 3}
+--- !u!114 &6852484845308815162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6803228437389277336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a888a1dc897f41eeb2599acd44f863e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXClips:
+  - {fileID: 8300000, guid: e82bbf25f546510468b7945834cf6b6f, type: 3}
+  - {fileID: 8300000, guid: 06c01e93845ff044aa3af701271d630e, type: 3}
+  - {fileID: 8300000, guid: c067c247a5a92db49b855dd284a21369, type: 3}
 --- !u!1 &6803228437849417082
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2610429799237081812}
   - component: {fileID: 2610429799237081813}
+  - component: {fileID: 1255194194}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged
@@ -42,11 +43,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8589906275589308535, guid: 3222153b233013d4aa49d356ac39dad6, type: 2}
-  m_audioClip: {fileID: 8300000, guid: d47919e0c9391d24993f841f95a39b4d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9669960e415ea604d81fb0784634df79, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -128,3 +129,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1255194194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2610429799237081814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a27b52aa5247ad93bc53db918d2ccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundTracks:
+  - AudioClipName: ArcadeGameBGM#3_Loop
+    SongChance: 0.5
+    SongReplayChance: 0.5
+  - AudioClipName: Endless Cyber Runner
+    SongChance: 0.5
+    SongReplayChance: 0.5
+  - AudioClipName: Darksider-LT
+    SongChance: 0.5
+    SongReplayChance: 0
+  - AudioClipName: Ready_To_Flight
+    SongChance: 0.5
+    SongReplayChance: 0.3
+  - AudioClipName: Super_Dragon
+    SongChance: 0.5
+    SongReplayChance: 0
+  - AudioClipName: Zrk
+    SongChance: 0.5
+    SongReplayChance: 0.3
+  isChangeSoundTrack: 1

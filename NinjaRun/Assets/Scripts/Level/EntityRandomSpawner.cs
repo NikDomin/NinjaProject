@@ -13,7 +13,7 @@ namespace Level
             SpawnRandomObject();
         }
         
-        void SpawnRandomObject()
+        private void SpawnRandomObject()
         {
             float totalWeight = 0f;
 

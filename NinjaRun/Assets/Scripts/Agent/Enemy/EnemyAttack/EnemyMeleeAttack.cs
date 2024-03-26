@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Agent.Enemy.EnemyMovement;
 using Assets.Scripts.Agent;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Agent.Enemy.EnemyAttack
 {
     [RequireComponent(typeof(EnemyAI), typeof(AgentBoxDetection))]
     public class EnemyMeleeAttack : EnemyAttack
     {
+        public UnityEvent OnAttack;
+        
         [SerializeField] private Transform exclamationPoint;
         [SerializeField] private int moveAttackVelocity;
         
@@ -192,6 +194,7 @@ namespace Agent.Enemy.EnemyAttack
 
         private void MoveAttack()
         {
+            OnAttack?.Invoke();
             rigidbody2D.velocity = enemyAi.DirectionVector * moveAttackVelocity;
         }
     }

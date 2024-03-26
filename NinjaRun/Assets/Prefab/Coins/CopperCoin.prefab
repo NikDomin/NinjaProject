@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 598413704498610858}
   - component: {fileID: 598413704498610859}
   - component: {fileID: 598413704498610852}
+  - component: {fileID: 612366092073318486}
   m_Layer: 0
   m_Name: CopperCoin
   m_TagString: Untagged
@@ -162,6 +163,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f944531a3440628f91f882bf43050b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnPickUpCoins:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 612366092073318486}
+        m_TargetAssemblyTypeName: Sound.SoundFXHandler, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   coinsToAdd: 1
 --- !u!114 &598413704498610859
 MonoBehaviour:
@@ -196,3 +212,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &612366092073318486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598413704498610853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a888a1dc897f41eeb2599acd44f863e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXClips:
+  - {fileID: 8300000, guid: a26b7bbfc4d70df42baa11f71f82926f, type: 3}
