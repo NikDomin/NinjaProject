@@ -2,6 +2,7 @@ using System;
 using Agent;
 using Traps;
 using UnityEngine;
+using UnityEngine.Events;
 using Utils;
 
 namespace Movement
@@ -9,6 +10,8 @@ namespace Movement
     [RequireComponent(typeof(AgentBoxDetection))]
     public class BoostComponent:MonoBehaviour
     {
+        public UnityEvent OnBoost;
+        
         [SerializeField] private float boostStrength;
         [SerializeField] private Direction boostDirection;
 
@@ -51,6 +54,7 @@ namespace Movement
                         _rigidbody2D.velocity.x + movementDirection.x * boostStrength,
                         _rigidbody2D.velocity.y + movementDirection.y * boostStrength);
                     
+                    OnBoost?.Invoke();
                 }
             }
         }

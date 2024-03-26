@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 783886551491008613}
   - component: {fileID: 783886551491008612}
   - component: {fileID: 783886551491008600}
+  - component: {fileID: -216411115838321593}
   m_Layer: 0
   m_Name: Boost
   m_TagString: Untagged
@@ -118,6 +119,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86af3abaee0949b0868315b5b7be5c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBoost:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -216411115838321593}
+        m_TargetAssemblyTypeName: Sound.SoundFXHandler, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   boostStrength: 2
   boostDirection: 1
 --- !u!95 &783886551491008600
@@ -141,3 +157,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-216411115838321593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783886551491008615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a888a1dc897f41eeb2599acd44f863e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXClips:
+  - {fileID: 8300000, guid: e9bc800cb24ffc845bcc77c49ab64d31, type: 3}

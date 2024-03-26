@@ -130,14 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1041165083}
     m_Modifications:
-    - target: {fileID: 4525339524925084147, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339524974354855, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4525339525515884502, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
       propertyPath: m_Name
       value: SettingsMenu
@@ -230,10 +222,6 @@ PrefabInstance:
       propertyPath: pauseButton
       value: 
       objectReference: {fileID: 557799234}
-    - target: {fileID: 4525339525549816760, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
 --- !u!114 &27838174 stripped
@@ -3357,10 +3345,6 @@ PrefabInstance:
     - target: {fileID: 5420193279601251025, guid: b867aaeb558395a44abf5693c2d01af4, type: 3}
       propertyPath: m_Name
       value: GameOverPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 5420193279601251025, guid: b867aaeb558395a44abf5693c2d01af4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5420193279601251053, guid: b867aaeb558395a44abf5693c2d01af4, type: 3}
       propertyPath: pauseButton
