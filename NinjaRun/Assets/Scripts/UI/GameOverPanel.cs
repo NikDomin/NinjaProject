@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DataPersistence;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -31,6 +32,7 @@ namespace UI
         private void ResetLevel()
         {
             DisablePanel();
+            DataPersistenceManager.instance.SaveGame();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 

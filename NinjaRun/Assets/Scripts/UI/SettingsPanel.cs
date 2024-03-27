@@ -1,3 +1,5 @@
+using DataPersistence;
+using DataPersistence.Data;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -5,7 +7,7 @@ using Utils;
 
 namespace UI
 {
-    public class SettingsPanel : Panel
+    public class SettingsPanel : Panel, IDataPersistence
     {
         
         
@@ -37,6 +39,8 @@ namespace UI
             backButton.onClick.RemoveListener(Back);
         }
 
+        
+        
         public void SetPreviousPanel(Panel previousPanel)
         {
             this.previousPanel = previousPanel;
@@ -46,6 +50,22 @@ namespace UI
         {
             DisablePanel();
             previousPanel.EnablePanel();
+        }
+
+
+        public void LoadData(GameData data)
+        {
+            MasterVolumeSlider.value = data.MasterVolume;        
+            SoundFxVolumeSlider.value = data.SFXVolume;
+            MusicVolumeSlider.value = data.MusicVolume;
+        }
+
+        public void SaveData(GameData data)
+        {
+            data.MasterVolume = MasterVolumeSlider.value;
+            data.SFXVolume = SoundFxVolumeSlider.value;
+            data.MusicVolume = MusicVolumeSlider.value;
+            
         }
     }
 }
