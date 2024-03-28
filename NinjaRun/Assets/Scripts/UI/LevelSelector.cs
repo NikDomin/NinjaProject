@@ -12,27 +12,36 @@ namespace UI
     {
         [FormerlySerializedAs("level")] [SerializeField] private string levelName;
         [SerializeField] private bool testIsLevelPassed;
+
+        [Header("For editor only")] 
+        [SerializeField]
+        private bool isHasTextInChildren = true;
         
         private void Start()
         {
             NewInputManager.PlayerInput.SwitchCurrentActionMap("UI");
-
-            GetComponentInChildren<TextMeshProUGUI>().text = levelName;
+            
+            if(isHasTextInChildren)
+                GetComponentInChildren<TextMeshProUGUI>().text = levelName;
         }
 
         private void OnValidate()
         {
-            GetComponentInChildren<TextMeshProUGUI>().text = levelName;
+            if(isHasTextInChildren)
+                GetComponentInChildren<TextMeshProUGUI>().text = levelName;
         }
 
         public void LoadLevel()
         {
-            //SceneManager.LoadScene("Level 1");
+            //Save Game
+            DataPersistenceManager.instance.SaveGame();
             SceneManager.LoadScene("Level " + levelName);
         }
 
         public void LoadScene()
         {
+            //Save Game
+            DataPersistenceManager.instance.SaveGame();
             SceneManager.LoadScene(levelName);
         }
 

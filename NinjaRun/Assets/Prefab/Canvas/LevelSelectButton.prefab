@@ -297,6 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: 0
   testIsLevelPassed: 0
+  isHasTextInChildren: 1
 --- !u!114 &1893068551123198821
 MonoBehaviour:
   m_ObjectHideFlags: 0

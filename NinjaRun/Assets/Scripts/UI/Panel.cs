@@ -13,7 +13,10 @@ namespace UI
             NewInputManager.PlayerInput.SwitchCurrentActionMap("UI");
             
             gameObject.SetActive(true);
-            pauseButton.gameObject.SetActive(false);
+            
+            if(pauseButton != null)
+                pauseButton.gameObject.SetActive(false);
+                
         }
 
         public virtual void DisablePanel()
@@ -25,9 +28,10 @@ namespace UI
             //Fix stupid BUG when I cant press the pause button
             NewInputManager.PlayerInput.actions.Enable();
 
-            gameObject.SetActive(false); 
-            pauseButton.gameObject.SetActive(true);
-
+            gameObject.SetActive(false);
+            
+            if(pauseButton != null)
+                pauseButton.gameObject.SetActive(true);
         }
     }
 }

@@ -25,7 +25,9 @@ namespace UI
         public override void EnablePanel()
         {
             base.EnablePanel();
-            TimeManager.Instance.PauseGame();
+            
+            if(TimeManager.Instance != null) 
+                TimeManager.Instance.PauseGame();
             
             backButton.onClick.AddListener(Back);
         }
@@ -34,7 +36,8 @@ namespace UI
         {
             base.DisablePanel();
             
-            TimeManager.Instance.UnpauseGame();
+            if(TimeManager.Instance != null) 
+                TimeManager.Instance.UnpauseGame();
             
             backButton.onClick.RemoveListener(Back);
         }
@@ -49,7 +52,9 @@ namespace UI
         public void Back()
         {
             DisablePanel();
-            previousPanel.EnablePanel();
+            
+            if(previousPanel != null)
+                previousPanel.EnablePanel();
         }
 
 
