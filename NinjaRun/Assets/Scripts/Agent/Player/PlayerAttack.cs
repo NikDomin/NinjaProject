@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Agent.Enemy;
 using Assets.Scripts.Agent;
 using Assets.Scripts.Agent.Player;
 using ObjectsPool;
@@ -71,6 +72,8 @@ namespace Agent.Player
             {
                 if (item.TryGetComponent(out IDamageable damageable))
                     damageable.Damage();
+                if (item.TryGetComponent(out EnemyDeath enemyDeath))
+                    enemyDeath.PlayerRefreshSwipeCount(gameObject);
             }
 
             TargetCollider2Ds = null;

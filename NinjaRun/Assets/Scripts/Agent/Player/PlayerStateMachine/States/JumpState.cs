@@ -1,5 +1,4 @@
 ﻿using System;
-using Assets.Scripts.Agent.Player.PlayerStateMachine;
 using Movement;
 using UnityEngine;
 
