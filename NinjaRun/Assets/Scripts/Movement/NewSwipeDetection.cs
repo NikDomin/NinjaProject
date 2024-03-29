@@ -3,6 +3,7 @@ using System.Collections;
 using System.Threading.Tasks;
 using Agent.Player.PlayerStateMachine;
 using Input;
+using TMPro;
 using UnityEngine;
 using Utils;
 
@@ -23,7 +24,7 @@ namespace Movement
     {
         public event Action OnSwipe;
 
-        [SerializeField] private float minimumDistance = 0.2f;
+        [SerializeField] private float minimumDistance = 1f;
         [SerializeField] private float maximumTime = 1f;
         [SerializeField, Range(0,1f)] private float directionThreshold = 0.9f;
         [SerializeField] private int maxSwipeCount;
@@ -66,6 +67,9 @@ namespace Movement
         private bool alreadyEndTouch;
 
         private Coroutine trailCoroutine;
+        // FOR TEST
+        [SerializeField] private TextMeshProUGUI currentSwipeCountText;
+        
 
         #region Mono
 
@@ -76,6 +80,14 @@ namespace Movement
             currentSwipeCount = maxSwipeCount;
 
             playerState.OnLanding += ResetSwipeCount;
+        }
+
+        private void FixedUpdate()
+        {
+            if (currentSwipeCountText != null)
+            {
+                currentSwipeCountText.text = currentSwipeCount.ToString();
+            }
         }
 
         private void OnDestroy()
@@ -174,10 +186,13 @@ namespace Movement
 
         private void DetectSwipe()
         {
-            --currentSwipeCount;
+            Debug.Log($"Vector swipe distance: {Vector3.Distance(startPosition,endPosition)}");
+            
             if (Vector3.Distance(startPosition, endPosition) >= minimumDistance &&
                 (endTime - startTime) <= maximumTime)
             {
+                --currentSwipeCount;
+                
                 Debug.DrawLine(startPosition, endPosition, Color.red, 5f);
 
                 directionSwipe = endPosition - startPosition;
