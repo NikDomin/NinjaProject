@@ -471,6 +471,7 @@ MonoBehaviour:
   <forceType>k__BackingField: 1
   <JumpType>k__BackingField: 0
   trail: {fileID: 1369769065}
+  currentSwipeCountText: {fileID: 0}
 --- !u!114 &185643011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13647,7 +13648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3894671385847531070, guid: 7d8c50e4da0cd194d8d95721b27a6396, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 31.727463
+      value: 34.31
       objectReference: {fileID: 0}
     - target: {fileID: 3894671385847531070, guid: 7d8c50e4da0cd194d8d95721b27a6396, type: 3}
       propertyPath: m_LocalPosition.z

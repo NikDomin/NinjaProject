@@ -14,7 +14,7 @@ TagManager:
   - Ground
   - Player
   - 'Enemy '
-  - 
+  - Particle
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Level
     uniqueID: 2641301511
+    locked: 0
+  - name: Particles
+    uniqueID: 4203607041
     locked: 0

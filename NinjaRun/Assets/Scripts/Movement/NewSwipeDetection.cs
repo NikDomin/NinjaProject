@@ -186,7 +186,7 @@ namespace Movement
 
         private void DetectSwipe()
         {
-            Debug.Log($"Vector swipe distance: {Vector3.Distance(startPosition,endPosition)}");
+            // Debug.Log($"Vector swipe distance: {Vector3.Distance(startPosition,endPosition)}");
             
             if (Vector3.Distance(startPosition, endPosition) >= minimumDistance &&
                 (endTime - startTime) <= maximumTime)
