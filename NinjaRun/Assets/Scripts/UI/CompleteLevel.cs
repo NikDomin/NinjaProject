@@ -1,4 +1,5 @@
 ﻿using System;
+using DataPersistence;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -42,11 +43,13 @@ namespace UI
 
         private void ToMainMenu()
         {
+            DataPersistenceManager.instance.SaveGame();
             SceneManager.LoadScene("MainMenu");
         }
 
         private void ToNextLevel()
         {
+            DataPersistenceManager.instance.SaveGame();
             SceneManager.LoadScene("Level " + (GameUtils.SceneNumber(SceneManager.GetActiveScene())+1));
         }
 

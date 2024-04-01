@@ -93,6 +93,7 @@ namespace Movement
         private void OnDestroy()
         {
             playerState.OnLanding -= ResetSwipeCount;
+            TimeManager.Instance.ChangeGameTimeScale(1);
         }
 
         #endregion
