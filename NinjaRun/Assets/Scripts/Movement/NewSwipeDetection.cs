@@ -22,6 +22,8 @@ namespace Movement
 
     public class NewSwipeDetection : MonoBehaviour
     {
+        public event Action<Vector2> OnSwipeStart;
+        public event Action<Vector2> OnSwipeEnd;
         public event Action OnSwipe;
 
         [SerializeField] private float minimumDistance = 1f;
@@ -50,7 +52,10 @@ namespace Movement
         [field: SerializeField] public ForceType forceType { get; private set; }
         [field: SerializeField] public JumpType JumpType { get; private set; }
 
+        [Header("Trail Renderer")]
         [SerializeField] private GameObject trail;
+ 
+      
 
         public Vector3 directionSwipe { get; private set; }
 
@@ -67,6 +72,7 @@ namespace Movement
         private bool alreadyEndTouch;
 
         private Coroutine trailCoroutine;
+       
         // FOR TEST
         [SerializeField] private TextMeshProUGUI currentSwipeCountText;
         
@@ -165,6 +171,9 @@ namespace Movement
             trail.SetActive(true);
             trail.transform.position = position;
             trailCoroutine = StartCoroutine(Trail());
+
+            var cursorPosition = NewInputManager.Instance.PrimaryPosition();
+            OnSwipeStart?.Invoke(cursorPosition);
         }
 
         private void SwipeEnd(Vector2 position, float time)
@@ -179,10 +188,11 @@ namespace Movement
             //trail
             trail.SetActive(false);
             StopCoroutine(trailCoroutine);
-
+            
+            var cursorPosition = NewInputManager.Instance.PrimaryPosition();
+            OnSwipeEnd?.Invoke(cursorPosition);
+            
             DetectSwipe();
-
-            //ResetAllValue();
         }
 
         private void DetectSwipe()
@@ -233,7 +243,7 @@ namespace Movement
                 yield return null;
             }
         }
-
+        
         private void ResetSwipeCount()
         {
             currentSwipeCount = maxSwipeCount;

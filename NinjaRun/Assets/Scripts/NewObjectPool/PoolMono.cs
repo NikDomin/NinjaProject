@@ -75,6 +75,18 @@ namespace NewObjectPool
             }
         }
 
+        public List<T> GetSpecifiedNumberItems(int number)
+        {
+            List<T> itemsList = new List<T>();
+            for (int i = 0; i < number-1; i++)
+            {
+                itemsList.Add(GetFreeElement());
+            }
+
+            return itemsList;
+        }
+        
+
         private void CreatePool(int count)
         {
             pool = new List<T>();
