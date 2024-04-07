@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Level;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Agent
@@ -10,6 +11,7 @@ namespace Agent
         public void GetHit()
         {
             OnDead.Invoke();
+            EffectsHandler.Instance.EnableHitParticle(transform.position);
             
             gameObject.SetActive(false);
         }
