@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -11,7 +13,13 @@ namespace Input
         //new
         public static NewInputManager Instance;
         public static PlayerInput PlayerInput;
-        //private PlayerControls playerControls;
+
+        //Cancellation
+        public CancellationTokenSource TokenSource { get; private set; }
+        public CancellationToken Token { get; private set; }
+        
+        private bool isUseCancellationToken = false;
+        
 
         [SerializeField] private InputActionReference primaryTouch, touchPosition, startPosition;
 
@@ -29,6 +37,9 @@ namespace Input
             {
                 Instance = this;
             }
+            //Token
+            TokenSource = new CancellationTokenSource();
+            Token = TokenSource.Token;
 
             PlayerInput = GetComponent<PlayerInput>();
             mainCamera = Camera.main;
@@ -43,10 +54,6 @@ namespace Input
         private void OnEnable()
         {
 
-
-            //primaryTouch.action.started += StartTouchPrimary;
-            //primaryTouch.action.canceled += EndTouchPrimary;
-
             //new
             _primaryTouch.started += StartTouchPrimary;
             _primaryTouch.canceled += EndTouchPrimary;
@@ -54,24 +61,28 @@ namespace Input
 
         private void OnDisable()
         {
-            //primaryTouch.action.started -= StartTouchPrimary;
-            //primaryTouch.action.canceled -= EndTouchPrimary;
-
+          
             //new
             _primaryTouch.started -= StartTouchPrimary;
             _primaryTouch.canceled -= EndTouchPrimary;
-
+            
 
         }
 
-        //Test
-        private void Update()
+        private void OnDestroy()
         {
-            //primaryTouch.action.ReadValue<Vector2>();
-            //if (primaryTouch.action.WasReleasedThisFrame())
-            //{
-            //    Debug.Log("Touch release ");
-            //}
+            TokenSource.Dispose();
+            TokenSource = null;
+        }
+
+        public Vector2 PrimaryPosition()
+        {
+            return ScreenUtils.ScreenToWorld(mainCamera, touchPosition.action.ReadValue<Vector2>());
+        }
+
+        public void SwitchCancellationToken()
+        {
+            isUseCancellationToken = true;
         }
 
         private void EndTouchPrimary(InputAction.CallbackContext ctx)
@@ -88,13 +99,16 @@ namespace Input
             await Task.Delay(10);
 
             OnStartTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, _startPosition.ReadValue<Vector2>()), (float)ctx.startTime);
-
+            if (isUseCancellationToken)
+            {
+                TokenSource?.Cancel();
+                isUseCancellationToken = false;
+            }
+                
            
         }
 
-        public Vector2 PrimaryPosition()
-        {
-            return ScreenUtils.ScreenToWorld(mainCamera, touchPosition.action.ReadValue<Vector2>());
-        }
+        
+        
     }
 }

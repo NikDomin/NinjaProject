@@ -62,3 +62,17 @@ MonoBehaviour:
       SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 141e97d311451e14e890d61418502202, type: 3}
     - id: 7
       SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 7b2ee16c2f83b5c4b8e05b3f4ba355fb, type: 3}
+    - id: 8
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: aa0bb00d4370f524798bf7ebf144655e, type: 3}
+    - id: 9
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: d135649cadbe28443ba7e3d7dfc37f2f, type: 3}
+    - id: 10
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 3e399c0e6a4aab0408733abaad6ceb63, type: 3}
+    - id: 11
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 915ea8d699d186641b33701809c1e5dd, type: 3}
+    - id: 12
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 9d2575b3c6ea15f4c89cceee50a6f9ba, type: 3}
+    - id: 13
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 58cfe25108fb55f428ef8d00d9c8b02e, type: 3}
+    - id: 14
+      SpriteLibraryAsset: {fileID: 7108339969198208228, guid: c00300b519f105044a0465da0ca9992c, type: 3}

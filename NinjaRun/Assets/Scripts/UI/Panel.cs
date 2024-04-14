@@ -1,4 +1,6 @@
-﻿using Input;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Input;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +19,35 @@ namespace UI
             if(pauseButton != null)
                 pauseButton.gameObject.SetActive(false);
                 
+        }
+
+        public async virtual void EnablePanelWithDelay(int time)
+        {
+            try
+            {
+                await Delay(time);
+                NewInputManager.PlayerInput.SwitchCurrentActionMap("UI");
+                gameObject.SetActive(true);
+
+                if (pauseButton != null)
+                    pauseButton.gameObject.SetActive(false);
+            }
+            catch
+            {
+                NewInputManager.PlayerInput.SwitchCurrentActionMap("UI");
+                
+                gameObject.SetActive(true);
+                
+                if(pauseButton != null)
+                    pauseButton.gameObject.SetActive(false);
+            }
+            
+            
+        }
+
+        private async Task Delay(int time)
+        {
+            await Task.Delay(time, NewInputManager.Instance.Token);
         }
 
         public virtual void DisablePanel()

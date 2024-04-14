@@ -15,6 +15,10 @@ namespace Agent.Player
         public Dictionary<int, SpriteLibraryAsset> SpriteLibraryDictionary { get; private set; }
         private void Awake()
         {
+            if (SpriteLibraryDictionary == null)
+            {
+                LibraryHandler = this;
+            }
             DontDestroyOnLoad(gameObject);
             LibraryHandler = this;
             SpriteLibraryDictionary = spriteLibraryDictionary.ToDictionary();

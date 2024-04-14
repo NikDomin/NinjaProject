@@ -1,6 +1,6 @@
-using Sound;
 using UnityEngine;
 using UnityEngine.Events;
+using Utils;
 
 namespace Coins
 {
@@ -12,7 +12,8 @@ namespace Coins
 
         public void AddCoins()
         {
-            CoinsHandler.coinsHandler.AddCoins(coinsToAdd);
+            CoinsHandler.Instance.AddCoins(coinsToAdd);
+            PopupText.Instance.GetTextCanvas("+" + $" {coinsToAdd}", transform.position);
             OnPickUpCoins?.Invoke();
         }
     }

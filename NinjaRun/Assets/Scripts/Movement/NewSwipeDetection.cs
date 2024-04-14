@@ -52,8 +52,6 @@ namespace Movement
         [field: SerializeField] public ForceType forceType { get; private set; }
         [field: SerializeField] public JumpType JumpType { get; private set; }
 
-        [Header("Trail Renderer")]
-        [SerializeField] private GameObject trail;
  
       
 
@@ -71,7 +69,7 @@ namespace Movement
         private bool alreadyStartTouch;
         private bool alreadyEndTouch;
 
-        private Coroutine trailCoroutine;
+      
        
         // FOR TEST
         [SerializeField] private TextMeshProUGUI currentSwipeCountText;
@@ -96,6 +94,7 @@ namespace Movement
             }
         }
 
+     
         private void OnDestroy()
         {
             playerState.OnLanding -= ResetSwipeCount;
@@ -167,10 +166,7 @@ namespace Movement
             //ChangeTimeScale
             TimeManager.Instance.ChangeGameTimeScale(0.5f);
 
-            //trail
-            trail.SetActive(true);
-            trail.transform.position = position;
-            trailCoroutine = StartCoroutine(Trail());
+          
 
             var cursorPosition = NewInputManager.Instance.PrimaryPosition();
             OnSwipeStart?.Invoke(cursorPosition);
@@ -185,9 +181,6 @@ namespace Movement
             //ChangeTimeScale
             TimeManager.Instance.ChangeGameTimeScale(1);
 
-            //trail
-            trail.SetActive(false);
-            StopCoroutine(trailCoroutine);
             
             var cursorPosition = NewInputManager.Instance.PrimaryPosition();
             OnSwipeEnd?.Invoke(cursorPosition);
@@ -235,14 +228,7 @@ namespace Movement
 
         }
 
-        private IEnumerator Trail()
-        {
-            while (true)
-            {
-                trail.transform.position = NewInputManager.Instance.PrimaryPosition();
-                yield return null;
-            }
-        }
+     
         
         private void ResetSwipeCount()
         {

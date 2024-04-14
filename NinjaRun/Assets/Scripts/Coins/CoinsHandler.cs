@@ -1,3 +1,4 @@
+using System;
 using DataPersistence;
 using DataPersistence.Data;
 using UnityEngine;
@@ -6,35 +7,9 @@ namespace Coins
 {
     public class CoinsHandler : MonoBehaviour, IDataPersistence
     {
-        public static CoinsHandler coinsHandler;
+        public static CoinsHandler Instance;
+        public event Action OnChangeCoinsCount;
         [field: SerializeField] public int CurrentCoins { get; private set; }
-        
-        // #region SaveTest
-        //
-        // [SerializeField] private bool encryptionEnabled;
-        //
-        // private IDataService dataService = new JsonDataService();
-        // private long SaveTime;
-        //
-        // [ContextMenu("Serialize Json")]
-        // public void SerializeJson()
-        // {
-        //     long startTime = DateTime.Now.Ticks;
-        //     
-        //     if (dataService.SaveData("/Coins-Handler.json", CurrentCoins, encryptionEnabled))
-        //     {
-        //         SaveTime = DateTime.Now.Ticks - startTime;
-        //         Debug.Log($"Save time: {(SaveTime/1000f):N4}ms");
-        //     }
-        //     else
-        //     {
-        //         Debug.LogError("Could not save file");
-        //     }
-        // }
-        //
-        // #endregion
-        
-        
         
         public void AddCoins(int coins)
         {
@@ -45,6 +20,7 @@ namespace Coins
             }
             
             CurrentCoins += coins;
+            OnChangeCoinsCount?.Invoke();
         }
 
         public void RemoveCoins(int coins)
@@ -56,11 +32,15 @@ namespace Coins
             }
 
             CurrentCoins -= coins;
+            OnChangeCoinsCount?.Invoke();
         }
         
         private void Awake()
         {
-            coinsHandler = this;
+            if (Instance == null)
+            {
+                Instance = this;
+            }
         }
 
 
@@ -69,6 +49,7 @@ namespace Coins
         public void LoadData(GameData data)
         {
             CurrentCoins = data.CoinsCount;
+            OnChangeCoinsCount?.Invoke();
         }
 
         public void SaveData(GameData data)

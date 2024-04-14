@@ -24,7 +24,7 @@ namespace Sound
 
         private void OnDisable()
         {
-            StopCoroutine(destroyCoroutine);
+            StopAllCoroutines();
         }
 
         public void PlaySoundFxClip(AudioClip[] audioClips, float volume)

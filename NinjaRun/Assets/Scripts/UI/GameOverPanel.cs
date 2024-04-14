@@ -18,6 +18,14 @@ namespace UI
             restartButton.onClick.AddListener(ResetLevel);
         }
 
+        public override void EnablePanelWithDelay(int time)
+        {
+            base.EnablePanelWithDelay(time);
+            
+            homeButton.onClick.AddListener(ToMainMenu);
+            restartButton.onClick.AddListener(ResetLevel);
+        }
+
         public override void DisablePanel()
         {
             base.DisablePanel();
