@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 1463936986}
   - component: {fileID: 1463936985}
   - component: {fileID: 1463936984}
-  - component: {fileID: 1463936983}
+  - component: {fileID: 1463936987}
   m_Layer: 5
   m_Name: EndlessRunButton
   m_TagString: Untagged
@@ -539,20 +539,6 @@ RectTransform:
   m_AnchoredPosition: {x: -26.5, y: -6}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1463936983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463936981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bce7075547df99149b0084e564988932, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelName: Endless run
-  testIsLevelPassed: 0
 --- !u!114 &1463936984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,8 +583,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1463936983}
-        m_TargetAssemblyTypeName: UI.LevelSelector, Assembly-CSharp
+      - m_Target: {fileID: 1463936987}
+        m_TargetAssemblyTypeName: UI.SceneSelector, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
@@ -647,6 +633,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463936981}
   m_CullTransparentMesh: 1
+--- !u!114 &1463936987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463936981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac4f01b20fa4f8a93aa384bc4f44889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: Endless run
+  isHasTextInChildren: 1
 --- !u!1 &1486246710
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,6 +722,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1462127431}
     m_Modifications:
+    - target: {fileID: 1775216344, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
+      propertyPath: isChangeSizeOnThisScene
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4525339524287685973, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -1404,7 +1408,7 @@ GameObject:
   - component: {fileID: 1978211160}
   - component: {fileID: 1978211159}
   - component: {fileID: 1978211158}
-  - component: {fileID: 1978211157}
+  - component: {fileID: 1978211161}
   m_Layer: 5
   m_Name: ChooseSkinButton
   m_TagString: Untagged
@@ -1433,20 +1437,6 @@ RectTransform:
   m_AnchoredPosition: {x: 435.75, y: -6}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1978211157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1978211155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bce7075547df99149b0084e564988932, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelName: TestChooseSkin
-  testIsLevelPassed: 0
 --- !u!114 &1978211158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1491,8 +1481,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1978211157}
-        m_TargetAssemblyTypeName: UI.LevelSelector, Assembly-CSharp
+      - m_Target: {fileID: 1978211161}
+        m_TargetAssemblyTypeName: UI.SceneSelector, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
@@ -1541,6 +1531,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978211155}
   m_CullTransparentMesh: 1
+--- !u!114 &1978211161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978211155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac4f01b20fa4f8a93aa384bc4f44889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: TestChooseSkin
+  isHasTextInChildren: 1
 --- !u!1001 &2006873015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1998,20 +2002,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137601245}
   m_CullTransparentMesh: 1
---- !u!114 &3671491426699584629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4864951569136591938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bce7075547df99149b0084e564988932, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelName: ChooseLevel
-  testIsLevelPassed: 0
 --- !u!222 &4864951568362221016
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2191,8 +2181,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3671491426699584629}
-        m_TargetAssemblyTypeName: UI.LevelSelector, Assembly-CSharp
+      - m_Target: {fileID: 4864951569136591944}
+        m_TargetAssemblyTypeName: UI.SceneSelector, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
@@ -2236,7 +2226,7 @@ GameObject:
   - component: {fileID: 4864951569136591942}
   - component: {fileID: 4864951569136591943}
   - component: {fileID: 4864951569136591936}
-  - component: {fileID: 3671491426699584629}
+  - component: {fileID: 4864951569136591944}
   m_Layer: 5
   m_Name: ChooseLevelButton
   m_TagString: Untagged
@@ -2282,3 +2272,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4864951569136591944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864951569136591938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac4f01b20fa4f8a93aa384bc4f44889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: ChooseLevel
+  isHasTextInChildren: 1

@@ -1,3 +1,4 @@
+using System;
 using DataPersistence;
 using DataPersistence.Data;
 using UnityEngine;
@@ -41,6 +42,13 @@ namespace Level
                 data.LevelPassed.Remove(LevelName);
             }
             data.LevelPassed.Add(LevelName, isLevelPassed);
+
+            if (isLevelPassed && LevelName == data.levelNeedToPass)
+            {
+                int levelPassed = Convert.ToInt32(LevelName);
+                levelPassed++;
+                data.levelNeedToPass = levelPassed.ToString();
+            }
         }
     }
 }

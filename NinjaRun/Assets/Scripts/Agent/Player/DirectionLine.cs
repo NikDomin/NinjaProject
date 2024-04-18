@@ -51,8 +51,16 @@ namespace Agent.Player
         {
             while (true)
             {
+                Vector2 direction;
                 lineRenderer.SetPosition(0, transform.position);
-                Vector2 direction =  ( NewInputManager.Instance.PrimaryPosition() - startSwipePosition).normalized * 12f;
+                if (Vector2.Distance(startSwipePosition, NewInputManager.Instance.PrimaryPosition()) < 20f)
+                {
+                    direction = (NewInputManager.Instance.PrimaryPosition() - startSwipePosition)/2;
+                }
+                else
+                {
+                    direction =  ( NewInputManager.Instance.PrimaryPosition() - startSwipePosition).normalized * 12f;
+                }
                 
                 lineRenderer.SetPosition(1, transform.position + (Vector3)direction);
                 yield return null;

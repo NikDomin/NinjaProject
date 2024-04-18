@@ -25,15 +25,7 @@ namespace UI
             continueButton.onClick.AddListener(ContinueGame);
             homeButton.onClick.AddListener(ToMainMenu);
             optionsButton.onClick.AddListener(Options);
-            
-            // testImageButton.gameObject.SetActive(false);
-            
-            // pauseButton.gameObject.SetActive(false);
-            // //pauseButton
-            // pauseButton.onClick.RemoveListener(EnablePanel);
         }
-
-
 
         public override void DisablePanel()
         {
@@ -44,13 +36,6 @@ namespace UI
             continueButton.onClick.RemoveListener(ContinueGame);
             homeButton.onClick.RemoveListener(ToMainMenu);
             optionsButton.onClick.RemoveListener(Options);
-            
-            // testImageButton.gameObject.SetActive(true);
-            
-            // pauseButton.gameObject.SetActive(true);
-            // //pauseButton
-            // pauseButton.onClick.AddListener(EnablePanel);
-
         }
 
         private void ContinueGame()

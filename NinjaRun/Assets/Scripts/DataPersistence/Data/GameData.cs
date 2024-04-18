@@ -1,5 +1,4 @@
 using DataPersistence.Data.SerializableTypes;
-using UnityEngine.U2D.Animation;
 
 namespace DataPersistence.Data
 {
@@ -11,6 +10,7 @@ namespace DataPersistence.Data
         public int HeroSpriteLibraryID;
         
         public SerializableDictionary<string, bool> LevelPassed;
+        public string levelNeedToPass;
         public SerializableDictionary<int, bool> PurchasedSkins;
         
         //Settings
@@ -24,6 +24,7 @@ namespace DataPersistence.Data
             CoinsCount = 0;
             HeroSpriteLibraryID = 0;
             LevelPassed = new SerializableDictionary<string, bool>();
+            levelNeedToPass = "1";
             PurchasedSkins = new SerializableDictionary<int, bool>();
             PurchasedSkins.Add(0, true); // add default skin
             //Settings
