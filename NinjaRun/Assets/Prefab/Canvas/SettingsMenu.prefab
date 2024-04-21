@@ -386,7 +386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1775216343}
-  - component: {fileID: 1775216344}
+  - component: {fileID: 1354866302}
   m_Layer: 5
   m_Name: CameraSize
   m_TagString: Untagged
@@ -418,7 +418,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1775216344
+--- !u!114 &1354866302
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -427,10 +427,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1775216342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a82ed0a02ea54c66afabaf1f6853762a, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e41ee8d78174cb28bdb764f896d9c81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isChangeSizeOnThisScene: 1
   smallSize: {fileID: 797139608}
   mediumSize: {fileID: 2015214690}
   bigSize: {fileID: 1345520339}

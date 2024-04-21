@@ -1456,6 +1456,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1749004359}
     m_Modifications:
+    - target: {fileID: 1775216342, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1775216344, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
       propertyPath: isChangeSizeOnThisScene
       value: 0

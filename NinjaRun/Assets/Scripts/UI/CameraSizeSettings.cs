@@ -7,12 +7,16 @@ namespace UI
 {
     public class CameraSizeSettings : MonoBehaviour
     {
+        public static CameraSizeSettings Instance;
         [SerializeField] private bool isChangeSizeOnThisScene;
-        [SerializeField] private Button smallSize, mediumSize, bigSize;
+       
         private CinemachineVirtualCamera virtualCamera;
         
         private void Awake()
         {
+            if (Instance == null)
+                Instance = this;
+            
             if (!isChangeSizeOnThisScene)
             {
                 gameObject.SetActive(false);
@@ -35,21 +39,7 @@ namespace UI
             }
             
         }
-        private void OnEnable()
-        {
-            smallSize.onClick.AddListener(SetSmallCameraSize);
-            mediumSize.onClick.AddListener(SetMediumCameraSize);
-            bigSize.onClick.AddListener(SetBigCameraSize);
-        }
-        private void OnDisable()
-        {
-            smallSize.onClick.RemoveListener(SetSmallCameraSize);
-            mediumSize.onClick.RemoveListener(SetMediumCameraSize);
-            bigSize.onClick.RemoveListener(SetBigCameraSize);
-        }
-
-
-        private void SetBigCameraSize()
+        public void SetBigCameraSize()
         {
             Camera.main.GetComponent<PixelPerfectCamera>().assetsPPU = 24;
             virtualCamera.m_Lens.OrthographicSize = 22.4f;
@@ -57,7 +47,7 @@ namespace UI
             PlayerPrefs.SetFloat("VirtualCameraSize", 22.4f);
         }
 
-        private void SetMediumCameraSize()
+        public void SetMediumCameraSize()
         {
             Camera.main.GetComponent<PixelPerfectCamera>().assetsPPU = 30;
             virtualCamera.m_Lens.OrthographicSize = 18f;
@@ -65,7 +55,7 @@ namespace UI
             PlayerPrefs.SetFloat("VirtualCameraSize", 18f);
         }
 
-        private void SetSmallCameraSize()
+        public void SetSmallCameraSize()
         {
             Camera.main.GetComponent<PixelPerfectCamera>().assetsPPU = 35;
             virtualCamera.m_Lens.OrthographicSize = 15.4f;

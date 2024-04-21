@@ -5,6 +5,7 @@ namespace Level
     public class DeathWall : MonoBehaviour
     {
         public static DeathWall deathWall;
+        
         [SerializeField] private Transform player;
         [SerializeField] private float speed, pullEfect, length = 100f;
         private float startPosX, temp, distance;
@@ -46,6 +47,10 @@ namespace Level
             {
                 _rigidbody2D.velocity = new Vector2(speed * 4, 0);
             }
+            else
+            {
+                _rigidbody2D.velocity = new Vector2(speed * 10, 0);
+            }
 
             //temp = (player.position.x * (1 - pullEfect));
 
@@ -58,5 +63,6 @@ namespace Level
             //    startPosX += length;
             //}
         }
+        
     }
 }

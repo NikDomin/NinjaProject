@@ -45,6 +45,7 @@ namespace UI
         
         private void ToMainMenu()
         {
+            PlayerPrefs.SetFloat("isRestartEndlessRun", 0f);
             SceneManager.LoadScene("MainMenu");
         }
 
