@@ -131,6 +131,12 @@ namespace UI.SkinShowcase
             isEquipped = true;
 
             EquipButton.interactable = false;
+
+            Image image = EquipButton.GetComponent<Image>();
+            var imageColor = image.color;
+            imageColor.a = 0.5f;
+            image.color = imageColor;
+                
             //need to set interactable to other button
             EquipedSpriteLibraryID = id;
             DataPersistenceManager.instance.SaveGame();
@@ -143,6 +149,11 @@ namespace UI.SkinShowcase
             {
                 isEquipped = false;
                 EquipButton.interactable = true;
+                
+                Image image = EquipButton.GetComponent<Image>();
+                var imageColor = image.color;
+                imageColor.a = 1f;
+                image.color = imageColor;
             }
         }
         
