@@ -1,4 +1,3 @@
-using System;
 using Agent;
 using TMPro;
 using UnityEngine;
@@ -18,13 +17,6 @@ namespace Level
             playerTransform.GetComponent<Health>().OnDead.AddListener(StopUpdateScore);  
         }
 
-
-        private void OnDisable()
-        {
-            playerTransform.GetComponent<Health>().OnDead.RemoveListener(StopUpdateScore);  
-
-        }
-
         private void Start()
         {
             currentMaxPosition = (int)transform.position.x;
@@ -35,7 +27,6 @@ namespace Level
         {
             if(!isUpdateScore)
                 return;
-            
             if (playerTransform.position.x > currentMaxPosition)
             {
                 score++;
@@ -47,6 +38,12 @@ namespace Level
         private void StopUpdateScore()
         {
             isUpdateScore = false;
+            Social.ReportScore(score, "CgkI5fOH1boJEAIQAQ", (bool success) =>
+            {
+                
+            });
+            playerTransform.GetComponent<Health>().OnDead.RemoveListener(StopUpdateScore);  
+
         }
     }
 }

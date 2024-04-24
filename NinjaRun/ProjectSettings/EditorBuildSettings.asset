@@ -108,4 +108,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Endless run.unity
     guid: 407599c49c0cbab4f814bd991e27babe
   m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 5579d35b2700d8e4f80fd2ec693bec47, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: c77f209489342544085510a69ff20a33, type: 2}
