@@ -1,3 +1,4 @@
+using GooglePlayGames;
 using UnityEngine;
 
 namespace Services
@@ -26,9 +27,41 @@ namespace Services
             });
         }
 
-        public void TestAchi()
+        public void BeatThemAll()
         {
-            Social.ReportProgress("CgkI5fOH1boJEAIQCA", 100.0f, (bool success) =>
+            PlayGamesPlatform.Instance.IncrementAchievement("CgkI5fOH1boJEAIQAw", 1, (bool success) =>
+            {
+                
+            });
+        }
+
+        public void Slayer()
+        {
+            PlayGamesPlatform.Instance.IncrementAchievement("CgkI5fOH1boJEAIQBA", 1, (bool success) =>
+            {
+                
+            });
+        }
+        
+        public void NinjaModel()
+        {
+            Social.ReportProgress("CgkI5fOH1boJEAIQBQ", 100.0f, (bool success) =>
+            {
+                
+            });
+        }
+
+        public void BeginnerRunner()
+        {
+            Social.ReportProgress("CgkI5fOH1boJEAIQBg", 100.0f, (bool success) =>
+            {
+                
+            });
+        }
+
+        public void Cheapskate()
+        {
+            Social.ReportProgress("CgkI5fOH1boJEAIQBw", 100.0f, (bool success) =>
             {
                 
             });

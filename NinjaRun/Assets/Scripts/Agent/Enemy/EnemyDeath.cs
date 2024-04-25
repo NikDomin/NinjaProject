@@ -1,10 +1,34 @@
 using Movement;
 using UnityEngine;
+using Achievement = Services.Achievement;
 
 namespace Agent.Enemy
 {
     public class EnemyDeath : MonoBehaviour
     {
+        [field:SerializeField] public bool IsRefreshSwipeCount { get; private set; }
+        private Health enemyHealth;
+
+        #region Mono
+
+        private void Awake()
+        {
+            enemyHealth = GetComponent<Health>();
+        }
+
+        private void OnEnable()
+        {
+            enemyHealth.OnDead.AddListener(IncreaseSlayerAchievement);
+        }
+
+
+        private void OnDisable()
+        {
+            enemyHealth.OnDead.RemoveListener(IncreaseSlayerAchievement);
+        }
+
+        #endregion
+
         public void PlayerRefreshSwipeCount(GameObject player)
         {
             if(player.TryGetComponent( out NewSwipeDetection swipeDetection))
@@ -12,5 +36,10 @@ namespace Agent.Enemy
                 swipeDetection.RefreshCurrentSwipeCount();
             }
         }
+        private void IncreaseSlayerAchievement()
+        {
+            Achievement.Instance.Slayer();
+        }
+        
     }
 }

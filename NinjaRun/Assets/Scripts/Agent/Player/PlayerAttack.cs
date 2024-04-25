@@ -73,7 +73,8 @@ namespace Agent.Player
                 if (item.TryGetComponent(out IDamageable damageable))
                     damageable.Damage();
                 if (item.TryGetComponent(out EnemyDeath enemyDeath))
-                    enemyDeath.PlayerRefreshSwipeCount(gameObject);
+                    if(enemyDeath.IsRefreshSwipeCount)
+                        enemyDeath.PlayerRefreshSwipeCount(gameObject);
             }
 
             TargetCollider2Ds = null;

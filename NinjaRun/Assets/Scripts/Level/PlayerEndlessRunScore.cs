@@ -1,17 +1,21 @@
 using Agent;
+using DataPersistence;
+using DataPersistence.Data;
+using Services;
 using TMPro;
 using UnityEngine;
 
 namespace Level
 {
-    public class PlayerEndlessRunScore : MonoBehaviour
+    public class PlayerEndlessRunScore : MonoBehaviour, IDataPersistence
     {
         [SerializeField] private TextMeshProUGUI scoreText;
         [SerializeField] private Transform playerTransform;
         private int currentMaxPosition;
         private int score = 0;
         private bool isUpdateScore;
-
+        private bool isBeginnerRunnerAlreadyCompleted;
+        
         private void OnEnable()
         {
             playerTransform.GetComponent<Health>().OnDead.AddListener(StopUpdateScore);  
@@ -32,6 +36,9 @@ namespace Level
                 score++;
                 scoreText.text ="Score: " + score.ToString();
                 currentMaxPosition = (int)playerTransform.position.x;
+                
+                if(!isBeginnerRunnerAlreadyCompleted && score >= 5000)
+                    Achievement.Instance.BeginnerRunner();
             }
         }
 
@@ -44,6 +51,16 @@ namespace Level
             });
             playerTransform.GetComponent<Health>().OnDead.RemoveListener(StopUpdateScore);  
 
+        }
+
+        public void LoadData(GameData data)
+        {
+            isBeginnerRunnerAlreadyCompleted = data.IsBeginnerRunnerAlreadyComplited;
+        }
+
+        public void SaveData(GameData data)
+        {
+            data.IsBeginnerRunnerAlreadyComplited = isBeginnerRunnerAlreadyCompleted;
         }
     }
 }

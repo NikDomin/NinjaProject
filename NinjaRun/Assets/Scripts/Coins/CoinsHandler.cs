@@ -1,6 +1,7 @@
 using System;
 using DataPersistence;
 using DataPersistence.Data;
+using Services;
 using UnityEngine;
 
 namespace Coins
@@ -20,6 +21,10 @@ namespace Coins
             }
             
             CurrentCoins += coins;
+            
+            if(CurrentCoins>= 1000)
+                Achievement.Instance.Cheapskate();
+            
             OnChangeCoinsCount?.Invoke();
         }
 

@@ -2,6 +2,7 @@ using Agent.Player;
 using Coins;
 using DataPersistence;
 using DataPersistence.Data;
+using Services;
 using TMPro;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
@@ -116,6 +117,10 @@ namespace UI.SkinShowcase
 
         private void SuccessPurchase()
         {
+            skinShowcaseActionHandler.PurchasedSkinsCount++;
+            if(skinShowcaseActionHandler.PurchasedSkinsCount >= 15)
+                Achievement.Instance.NinjaModel();
+            
             isPurchased = true;
             DataPersistenceManager.instance.SaveGame();
             BuyButton.gameObject.SetActive(false);

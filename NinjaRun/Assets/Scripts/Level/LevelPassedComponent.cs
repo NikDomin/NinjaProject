@@ -1,6 +1,7 @@
 using System;
 using DataPersistence;
 using DataPersistence.Data;
+using Services;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -23,6 +24,8 @@ namespace Level
 
         public void SetLevelPassed(bool isPassed)
         {
+            if(!isLevelPassed)
+                Achievement.Instance.BeatThemAll();
             isLevelPassed = isPassed;
         }
 

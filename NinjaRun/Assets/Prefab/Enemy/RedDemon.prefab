@@ -481,6 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8250e33f819c45a7a5fdb4e5d2da6dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsRefreshSwipeCount>k__BackingField: 1
 --- !u!1 &2440573479559910107
 GameObject:
   m_ObjectHideFlags: 0
