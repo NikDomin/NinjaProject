@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataPersistence.Data;
+using GooglePlayGames.BasicApi;
+using GooglePlayGames.BasicApi.SavedGame;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D.Animation;
@@ -26,6 +28,7 @@ namespace DataPersistence
             private set { defaultHeroSpriteLibraryAsset = value; }
         }
         public FileDataHandler dataHandler { get; private set; }
+        // public CloudDataHandler CloudDataHandler { get; private set; }
         
         private GameData gameData;
         private List<IDataPersistence> dataPersistenceObjects;
@@ -54,6 +57,9 @@ namespace DataPersistence
             
             
             dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+            // CloudDataHandler = new CloudDataHandler(DataSource.ReadNetworkOnly,
+            //     ConflictResolutionStrategy.UseMostRecentlySaved, "saveData");
+            
         }
         
         private void OnEnable()
@@ -106,9 +112,18 @@ namespace DataPersistence
         {
             if (disableDataPersistence)
                 return;
-            
-            //Load data from a file
-            gameData = dataHandler.Load();
+
+            if (Social.localUser.authenticated)
+            {
+                //Try get data from cloud
+                // gameData = CloudDataHandler.Load() ?? dataHandler.Load();
+                dataHandler.Load();
+            }
+            else
+            {
+                //Load data from a file
+                gameData = dataHandler.Load();
+            }
             
             if (this.gameData == null)
             {
@@ -139,8 +154,8 @@ namespace DataPersistence
             {
                 item.SaveData(gameData);
             }
-            
-
+            //
+            // CloudDataHandler.Save(gameData);
             dataHandler.Save(gameData);
         }
 

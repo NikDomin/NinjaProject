@@ -1,6 +1,5 @@
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
-using TMPro;
 using UnityEngine;
 
 namespace Services

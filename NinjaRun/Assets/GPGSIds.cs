@@ -29,7 +29,6 @@ public static class GPGSIds
         public const string leaderboard_score = "CgkI5fOH1boJEAIQAQ"; // <GPGSID>
         public const string achievement_cheapskate = "CgkI5fOH1boJEAIQBw"; // <GPGSID>
         public const string achievement_slayer = "CgkI5fOH1boJEAIQBA"; // <GPGSID>
-        public const string achievement_test = "CgkI5fOH1boJEAIQCA"; // <GPGSID>
         public const string achievement_beginner_runner = "CgkI5fOH1boJEAIQBg"; // <GPGSID>
         public const string achievement_ninja_model = "CgkI5fOH1boJEAIQBQ"; // <GPGSID>
 
