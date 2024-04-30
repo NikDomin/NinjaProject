@@ -1,4 +1,8 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using DataPersistence;
+using DataPersistence.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -8,35 +12,55 @@ namespace UI
 {
     public class CloudSaveGameUI : MonoBehaviour
     { 
-        public string MyName;
-        public int Age;
+        
+        public static CloudSaveGameUI Instance;
         public Text LogText;
         public Text OutputText;
-        public TMP_InputField NameInputField;
-        public TMP_InputField AgeInputField;
-
+        public Text JsonText;
+        public Text TestHandlerText;
+        public Button SaveButton;
+        public Button LoadButton;
+    
+        private void Awake()
+        {
+            if (Instance == null)
+                Instance = this;
+        }
 
         private void OnEnable()
         {
-            NameInputField.onValueChanged.AddListener(OnValueChangeName); 
-            AgeInputField.onValueChanged.AddListener(OnValueChangeAge);
+            SaveButton.onClick.AddListener(Save);
+            LoadButton.onClick.AddListener(Load);
         }
-
+        
+        
         private void OnDisable()
         {
-            NameInputField.onValueChanged.RemoveListener(OnValueChangeName); 
-            AgeInputField.onValueChanged.RemoveListener(OnValueChangeAge);
-
+            SaveButton.onClick.RemoveListener(Save);
+            LoadButton.onClick.RemoveListener(Load);
         }
 
-        public void OnValueChangeName(string field)
+        private void Save()
         {
-            MyName = NameInputField.text;
+            StartCoroutine(SaveIEnumerable());
+        }
+
+        private void Load()
+        {
+            DataPersistenceManager.instance.LoadGame();
+        }
+
+        private IEnumerator SaveIEnumerable()
+        {
+            DataPersistenceManager.instance.SaveGame();
+            yield return new WaitUntil(() => DataPersistenceManager.instance.IsSaved);
+            // while (!DataPersistenceManager.instance.IsSaved)
+            // {
+            //     Debug.Log("Wait");
+            // }
             
-        }
-        public void OnValueChangeAge(string field)
-        {
-            Age = int.Parse(AgeInputField.text);
+            DataPersistenceManager.instance.IsSaved = false;
+            
         }
     }
 }

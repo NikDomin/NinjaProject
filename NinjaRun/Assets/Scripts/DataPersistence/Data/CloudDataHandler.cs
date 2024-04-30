@@ -4,172 +4,139 @@ using System.Runtime.Serialization.Formatters.Binary;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.SavedGame;
+using Level;
 using Services;
+using UI;
 using UnityEngine;
 
 namespace DataPersistence.Data
 {
     public class CloudDataHandler
     {
-        private DataSource dataSource;
-        private ConflictResolutionStrategy conflicts;
-        private string saveName = "";
-        private BinaryFormatter binaryFormatter;
 
-        private PlayerProfile playerProfile;
+        public event Action<bool> OnSaveCallback;
+        private bool isSaving;
+        private GameData gameDataToSave;
+        private GameData gameDataToLoad;
+        private GameData mainGameData;
 
-        private GameData rawData;
-
-        private GameData dataToLoad;
-        // private BackgroundController backgroundController;
-
-        public CloudDataHandler(DataSource dataSource, ConflictResolutionStrategy conflicts, string saveName)
+        public CloudDataHandler()
         {
-            this.dataSource = dataSource;
-            this.conflicts = conflicts;
-            this.saveName = saveName;
-
-            binaryFormatter = new BinaryFormatter();
+           
         }
-
-        public GameData Load()
+        
+        public void OpenSave(bool saving)
         {
-            OpenCloudSave(OnLoadResponse);
-            return dataToLoad;
-        }
-
-        private void OnLoadResponse(SavedGameRequestStatus status, ISavedGameMetadata metadata)
-        {
-            if (status == SavedGameRequestStatus.Success)
+            CloudSaveGameUI.Instance.LogText.text += "";
+            CloudSaveGameUI.Instance.LogText.text += "Open save clicked";
+            if (Social.localUser.authenticated)
             {
-                PlayGamesPlatform.Instance.SavedGame.ReadBinaryData(metadata, LoadCallback);
-            }
-            else
-            {
-                //return to use local data
-                dataToLoad = null;
-                return;
+                CloudSaveGameUI.Instance.LogText.text += "User is authenticated";
+                isSaving = saving;
+                ((PlayGamesPlatform)Social.Active).SavedGame.OpenWithAutomaticConflictResolution("MyFileName", DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLongestPlaytime, OnSavedGameOpened);
             }
         }
-
-        private void LoadCallback(SavedGameRequestStatus status, byte[] bytes)
-        {
-            if (status == SavedGameRequestStatus.Success)
-            {
-                ApplyCloudData(DeserializeSaveData(bytes), bytes.Length > 0);
-            }
-            else
-            {
-                dataToLoad = null;
-                //use local data
-            }
-        }
-
-        #region Save
-
-        public void Save(GameData data)
-        {
-            rawData = data;
-            OpenCloudSave(OnSaveResponse);
-            rawData = null;
-        }
-
-        private void OnSaveResponse(SavedGameRequestStatus status, ISavedGameMetadata metadata)
-        {
-            if (status == SavedGameRequestStatus.Success)
-            {
-                if (rawData == null)
+        private void OnSavedGameOpened(SavedGameRequestStatus status, ISavedGameMetadata meta) {
+            if (status == SavedGameRequestStatus.Success) {
+                if (isSaving)
                 {
-                    Debug.LogWarning("Raw Data is null");
-                    return;
-                }
+                    CloudSaveGameUI.Instance.LogText.text += "Status successful, attempting to save...";
+                    //convert to byte array
+                    byte[] myData = System.Text.ASCIIEncoding.ASCII.GetBytes(GetSaveString());
 
-                var data = SerializeSaveData(rawData);
-                if (data == null)
+                    //metadata
+                    SavedGameMetadataUpdate updateForMetadata = new SavedGameMetadataUpdate.Builder()
+                        .WithUpdatedDescription("Appdate game data at: " + DateTime.Now.ToString()).Build();
+          
+                    //saving
+                    ((PlayGamesPlatform)Social.Active).SavedGame.CommitUpdate(meta, updateForMetadata, myData, SaveCallback);
+                }
+                else
                 {
-                    Debug.LogWarning("SerializeSaveData is null");
-                    return;
+                    CloudSaveGameUI.Instance.LogText.text += "Status successful, attempting to load...";
+                    // //loading
+                    ((PlayGamesPlatform)Social.Active).SavedGame.ReadBinaryData(meta, LoadGameCallback);
                 }
-
-                var update = new SavedGameMetadataUpdate.Builder().Build(); 
-                //Save Data
-                PlayGamesPlatform.Instance.SavedGame.CommitUpdate(metadata,update,data, SaveCallback);
-                
-            }
-            else
-            {
-                Debug.LogError("OnSaveResponse error");
+            } else {
+                Debug.LogError("Error when try Open SavedGame");
             }
         }
+        private void LoadGameCallback(SavedGameRequestStatus status, byte[] bytes)
+        {
+            if (status == SavedGameRequestStatus.Success)
+            {
+                CloudSaveGameUI.Instance.LogText.text += "load successful, attempting to read data...";
+                string loadedData = System.Text.ASCIIEncoding.ASCII.GetString(bytes);
+                CloudSaveGameUI.Instance.JsonText.text += "String from bytes: " + loadedData;
+                //Name|age
+                LoadSaveString(loadedData);
+            }
+        }
+        private void LoadSaveString(string loadedData)
+        {
+            gameDataToLoad = JsonUtility.FromJson<GameData>(loadedData);
+            // DataPersistenceManager.instance.GameDataToLoad = gameDataToLoad;
+            DataPersistenceManager.instance.gameData = gameDataToLoad;
+            DataPersistenceManager.instance.LoadToObjects(gameDataToLoad);
+            
+            TestHandler.Instance.TestMainGameData = gameDataToLoad;
+            mainGameData = gameDataToLoad;
+            CloudSaveGameUI.Instance.JsonText.text += "";
+            CloudSaveGameUI.Instance.JsonText.text += "Data From Json: ";
+            CloudSaveGameUI.Instance.JsonText.text += "Coins From Json: " + mainGameData.CoinsCount.ToString();
+        }
 
+        private string GetSaveString()
+        {
+            return JsonUtility.ToJson(gameDataToSave,true);
+        }
+        
         private void SaveCallback(SavedGameRequestStatus status, ISavedGameMetadata metadata)
         {
-            if(status != SavedGameRequestStatus.Success)
-                Debug.LogWarning("Data is not saved because of some error");
+            bool isSave;
+            if (status == SavedGameRequestStatus.Success)
+            {
+                // DataPersistenceManager.instance.IsSaved = true;
+                isSave = true;
+                CloudSaveGameUI.Instance.LogText.text += "Successfully save to the cloud";
                 
+            }
+            else
+            {
+                isSave = false;
+                CloudSaveGameUI.Instance.LogText.text += "Fail save to the cloud";
+            }
+            OnSaveCallback?.Invoke(isSave);
+        }
+        private void Load()
+        {
+            gameDataToLoad = null;
+            OpenSave(false);
+            ///////////////////////
+            CloudSaveGameUI.Instance.JsonText.text += "Open Save End";
+            CloudSaveGameUI.Instance.JsonText.text += " ";
+            CloudSaveGameUI.Instance.JsonText.text += "Data From LoadData: ";
+            CloudSaveGameUI.Instance.JsonText.text += "Coins From LoadData: " + gameDataToLoad.CoinsCount.ToString();
+            // return gameDataToLoad;
         }
 
-        #endregion
-
-        private void OpenCloudSave(Action<SavedGameRequestStatus, ISavedGameMetadata> callbadck)
+        public void Save(GameData gameData)
         {
-            ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
-
-            if (!Social.localUser.authenticated || string.IsNullOrEmpty(saveName))
-                Debug.LogError("OpenCloudSave Error");
-
-            savedGameClient.OpenWithAutomaticConflictResolution(saveName, dataSource, conflicts, callbadck);
-
+            gameDataToSave = gameData; 
+            CloudSaveGameUI.Instance.LogText.text += "Save game clicked";
+            OpenSave(true);
         }
 
-
-        private byte[] SerializeSaveData(GameData gameData)
+        public void LoadData()
         {
-            string json = JsonUtility.ToJson(gameData);
-            try
-            {
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    binaryFormatter.Serialize(memoryStream, json);
-                    return memoryStream.GetBuffer();
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogError(e);
-                return null;
-            }
-        }
-
-        private GameData DeserializeSaveData(byte[] bytes)
-        {
-            if (bytes == null || bytes.Length == 0)
-                return null;
-            try
-            {
-                using (MemoryStream memoryStream = new MemoryStream(bytes))
-                {
-                    string json = (string)binaryFormatter.Deserialize(memoryStream);
-                    return JsonUtility.FromJson<GameData>(json);
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogError(e);
-                return null;
-            }
-        }
-
-        public void ApplyCloudData(GameData gameData, bool dataExists)
-        {
-            if (!dataExists)
-            {
-                dataToLoad = null;
-                return;//use local data
-            }
-
-            dataToLoad = gameData;
-            //load data
+            mainGameData = new GameData();
+            CloudSaveGameUI.Instance.LogText.text += "Load game clicked";
+            Load();
+            ///////////////
+            CloudSaveGameUI.Instance.OutputText.text += "";
+            CloudSaveGameUI.Instance.OutputText.text += "Hero sprite id: " + mainGameData.HeroSpriteLibraryID;
+            CloudSaveGameUI.Instance.OutputText.text += "Coin count: " + mainGameData.CoinsCount;
+            CloudSaveGameUI.Instance.OutputText.text += "level need to pass: " + mainGameData.levelNeedToPass;
         }
     }
 }

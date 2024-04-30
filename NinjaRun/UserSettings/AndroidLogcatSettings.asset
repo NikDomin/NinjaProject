@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "11f84fd0",
         "name": "com.RoflanCode.NinjaJumpRunner",
-        "processId": 9777,
+        "processId": 26484,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -36,6 +36,12 @@
             "deviceId": "11f84fd0",
             "name": "com.RoflanCode.NinjaJumpRunner",
             "processId": 9777,
+            "exited": true
+        },
+        {
+            "deviceId": "11f84fd0",
+            "name": "com.RoflanCode.NinjaJumpRunner",
+            "processId": 26484,
             "exited": false
         }
     ],

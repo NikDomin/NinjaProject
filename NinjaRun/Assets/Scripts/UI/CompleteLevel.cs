@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using DataPersistence;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -29,6 +31,12 @@ namespace UI
 
         }
 
+        private void ToNextLevel()
+        {
+            StartCoroutine(toNextLevelIEnumerable());
+        }
+
+
         public override void EnablePanel()
         {
             base.EnablePanel();
@@ -43,13 +51,32 @@ namespace UI
 
         private void ToMainMenu()
         {
+            StartCoroutine(toMainMenuIEnumerable());
+        }
+
+        private IEnumerator toMainMenuIEnumerable()
+        {
             DataPersistenceManager.instance.SaveGame();
+            yield return new WaitUntil(() => DataPersistenceManager.instance.IsSaved);
+            // while (!DataPersistenceManager.instance.IsSaved)
+            // {
+            //     Debug.Log("Wait");
+            // }
+            
+            DataPersistenceManager.instance.IsSaved = false;
             SceneManager.LoadScene("MainMenu");
         }
 
-        private void ToNextLevel()
+        private IEnumerator toNextLevelIEnumerable()
         {
             DataPersistenceManager.instance.SaveGame();
+            yield return new WaitUntil(() => DataPersistenceManager.instance.IsSaved);
+            // while (!DataPersistenceManager.instance.IsSaved)
+            // {
+            //     Debug.Log("Wait");
+            // }
+            
+            DataPersistenceManager.instance.IsSaved = false;
             SceneManager.LoadScene("Level " + (GameUtils.SceneNumber(SceneManager.GetActiveScene())+1));
         }
 

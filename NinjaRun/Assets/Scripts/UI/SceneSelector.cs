@@ -1,3 +1,4 @@
+using System.Collections;
 using DataPersistence;
 using Input;
 using TMPro;
@@ -31,7 +32,19 @@ namespace UI
 
         public void LoadScene()
         {
+            StartCoroutine(LoadWithSave());
+        }
+
+        private IEnumerator LoadWithSave()
+        {
             DataPersistenceManager.instance.SaveGame();
+            yield return new WaitUntil(() => DataPersistenceManager.instance.IsSaved);
+            // while (!DataPersistenceManager.instance.IsSaved)
+            // {
+            //     Debug.Log("Wait");
+            // }
+            
+            DataPersistenceManager.instance.IsSaved = false;
             SceneManager.LoadScene(levelName);
         }
     }

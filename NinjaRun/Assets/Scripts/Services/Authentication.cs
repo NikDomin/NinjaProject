@@ -1,3 +1,4 @@
+using System;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine;
@@ -6,6 +7,7 @@ namespace Services
 {
     public class Authentication : MonoBehaviour
     {
+        public event Action OnSuccesAuthentication;
         private void Start()
         {
             if (!Social.localUser.authenticated)
@@ -21,7 +23,8 @@ namespace Services
             if (status == SignInStatus.Success)
             {
                 // Continue with Play Games Services
-                string name = PlayGamesPlatform.Instance.GetUserDisplayName();
+                OnSuccesAuthentication?.Invoke();
+                // string name = PlayGamesPlatform.Instance.GetUserDisplayName();
             }
             else
             {

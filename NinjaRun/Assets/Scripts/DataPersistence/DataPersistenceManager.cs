@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DataPersistence.Data;
-using GooglePlayGames.BasicApi;
-using GooglePlayGames.BasicApi.SavedGame;
+using Level;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D.Animation;
@@ -11,6 +13,7 @@ namespace DataPersistence
 {
     public class DataPersistenceManager : MonoBehaviour
     {
+        public event Action OnLoadEndSuccefully;
         [Header("Debugging")] 
         [SerializeField] private bool disableDataPersistence;
         
@@ -22,6 +25,11 @@ namespace DataPersistence
         [Header("Default values")]
         [SerializeField] private SpriteLibraryAsset defaultHeroSpriteLibraryAsset;
 
+        // [Header("Cloud Data Handler")] [SerializeField]
+        // private NewCloudDataHandler cloudDataHandler;
+        
+
+        
         public SpriteLibraryAsset DefaultHeroSpriteLibraryAsset
         {
             get { return defaultHeroSpriteLibraryAsset; }
@@ -30,12 +38,15 @@ namespace DataPersistence
         public FileDataHandler dataHandler { get; private set; }
         // public CloudDataHandler CloudDataHandler { get; private set; }
         
-        private GameData gameData;
+        public GameData gameData;
+        public GameData GameDataToLoad;
+        public bool IsSaved;
         private List<IDataPersistence> dataPersistenceObjects;
-        
+        private CloudDataHandler cloudDataHandler;
         
         public static DataPersistenceManager instance { get; private set; }
 
+        [SerializeField]private LoadScreen loadScreen;
         
         
         #region Mono
@@ -47,6 +58,7 @@ namespace DataPersistence
             {
                 Debug.LogError("Found more than one Data Persistence Manager in the scene. Destroying the newest one.");
                 Destroy(gameObject);
+                
                 return;
             }
             if(disableDataPersistence)
@@ -57,33 +69,36 @@ namespace DataPersistence
             
             
             dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+            cloudDataHandler = new CloudDataHandler();
             // CloudDataHandler = new CloudDataHandler(DataSource.ReadNetworkOnly,
             //     ConflictResolutionStrategy.UseMostRecentlySaved, "saveData");
-            
-        }
-        
-        private void OnEnable()
-        {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-            
+            loadScreen = FindObjectOfType<LoadScreen>();
         }
 
+   
+
+
+        private void OnEnable()
+        {
+            loadScreen.ShowLoadScreen();
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            cloudDataHandler.OnSaveCallback += CloudSaveCallback;
+            
+        }
         private void OnDisable()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
-            
+            if(cloudDataHandler != null) 
+                cloudDataHandler.OnSaveCallback -= CloudSaveCallback;
         }
-        
         private void Start()
         {
-            
-         
         }
 
-        private void OnApplicationQuit()
-        {
-            SaveGame();
-        }        
+        // private void OnApplicationQuit()
+        // {
+        //     SaveGame();
+        // }        
 
         #endregion
 
@@ -103,50 +118,89 @@ namespace DataPersistence
         
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            loadScreen = FindObjectOfType<LoadScreen>();
             Debug.Log("OnSceneLoaded");
+            CloudSaveGameUI.Instance.LogText.text += "On Scene Loaded ";
             dataPersistenceObjects = FindAllDataPersistenceObjects();
+            
             LoadGame();
         }
         
-        private void LoadGame()
+        public void LoadGame()
         {
             if (disableDataPersistence)
+            {
+                loadScreen.HideLoadScreen();                
                 return;
+            }
 
             if (Social.localUser.authenticated)
             {
+                
                 //Try get data from cloud
-                // gameData = CloudDataHandler.Load() ?? dataHandler.Load();
-                dataHandler.Load();
+                CloudSaveGameUI.Instance.LogText.text += "CloudLoadGame from manager";
+                cloudDataHandler.LoadData();
+                /////
+                gameData = GameDataToLoad;
+                CloudSaveGameUI.Instance.LogText.text += "After load game data:";
+                CloudSaveGameUI.Instance.LogText.text += "coins count: " + gameData.CoinsCount;
+                
+
             }
             else
             {
                 //Load data from a file
+                CloudSaveGameUI.Instance.LogText.text += "Load from jsonfile";
+
                 gameData = dataHandler.Load();
+                if(gameData == null)
+                    NewGame();
+                LoadToObjects(gameData);
+                
+                //Disable Load Screen
+              
+                
+                // if (this.gameData == null)
+                // {
+                //     Debug.LogWarning("No data was found. Init data to defaults.");
+                //     NewGame();
+                // }
+                // foreach (var item in dataPersistenceObjects)
+                // {
+                //     item.LoadData(gameData);
+                // }
             }
             
-            if (this.gameData == null)
+
+            
+        }
+        public void LoadToObjects(GameData gameData)
+        {
+            CloudSaveGameUI.Instance.LogText.text += " Load To Objects";
+            if (gameData == null)
             {
                 Debug.LogWarning("No data was found. Init data to defaults.");
-                NewGame();
+                gameData = new GameData();
             }
-
             foreach (var item in dataPersistenceObjects)
             {
                 item.LoadData(gameData);
             }
-
+            loadScreen.HideLoadScreen();
+            OnLoadEndSuccefully?.Invoke();
         }
 
         public void SaveGame()
         {
             if (disableDataPersistence)
                 return;
+            loadScreen.ShowLoadScreen();
             
             // if we don't have any AnimationData to save, log a warning here
             if (this.gameData == null)
             {
                 Debug.LogWarning("No AnimationData was found. A New Game needs to be started before AnimationData can be saved.");
+                // loadScreen.HideLoadScreen();
                 return;
             }
             
@@ -154,9 +208,37 @@ namespace DataPersistence
             {
                 item.SaveData(gameData);
             }
-            //
-            // CloudDataHandler.Save(gameData);
-            dataHandler.Save(gameData);
+
+            
+            
+            if (Social.localUser.authenticated)
+            {
+                CloudSaveGameUI.Instance.LogText.text += "Cloud save from manager";
+                cloudDataHandler.Save(gameData);
+                // IsSaved = true;
+            }
+
+            if (!Social.localUser.authenticated)
+            {
+                CloudSaveGameUI.Instance.LogText.text += "save to drive";
+                dataHandler.Save(gameData);
+                IsSaved = true;
+                // loadScreen.HideLoadScreen();
+            }
+        }
+        private void CloudSaveCallback(bool isSavedToCloud)
+        {
+            CloudSaveGameUI.Instance.LogText.text += "Cloud Save Callback with: " + isSavedToCloud;
+            IsSaved = isSavedToCloud;
+            //if saved to cloud failed
+            if (!IsSaved)
+            {
+                //save to disk 
+                CloudSaveGameUI.Instance.LogText.text += "save to drive";
+                dataHandler.Save(gameData);
+                IsSaved = true;
+            }
+            // loadScreen.HideLoadScreen();
         }
 
         private List<IDataPersistence> FindAllDataPersistenceObjects()
@@ -168,6 +250,8 @@ namespace DataPersistence
 
             return new List<IDataPersistence>(dataPersistenceObjects);
         }
+
+     
        
     }
 }

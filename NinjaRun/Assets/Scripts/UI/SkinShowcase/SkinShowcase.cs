@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Agent.Player;
 using Coins;
 using DataPersistence;
@@ -45,6 +47,8 @@ namespace UI.SkinShowcase
             skinShop.OnSuccessPurchase += SuccessPurchase;
             skinShowcaseActionHandler.OnEquipSkin += PlayerEquipSomeSkin;
         }
+
+
         private void OnDisable()
         {
             BuyButton.onClick.RemoveListener(TryBuy);
@@ -117,12 +121,25 @@ namespace UI.SkinShowcase
 
         private void SuccessPurchase()
         {
+            StartCoroutine(SuccessPurchaseIEnumerable());
+        }
+        private IEnumerator SuccessPurchaseIEnumerable()
+        {
             skinShowcaseActionHandler.PurchasedSkinsCount++;
             if(skinShowcaseActionHandler.PurchasedSkinsCount >= 15)
                 Achievement.Instance.NinjaModel();
             
             isPurchased = true;
             DataPersistenceManager.instance.SaveGame();
+            yield return new WaitUntil(() => DataPersistenceManager.instance.IsSaved);
+            
+            // while (!DataPersistenceManager.instance.IsSaved)
+            // {
+            //     Debug.Log("Wait");
+            // }
+            
+            DataPersistenceManager.instance.IsSaved = false;
+            
             BuyButton.gameObject.SetActive(false);
             EquipButton.gameObject.SetActive(true);
         }
@@ -144,7 +161,15 @@ namespace UI.SkinShowcase
                 
             //need to set interactable to other button
             EquipedSpriteLibraryID = id;
-            DataPersistenceManager.instance.SaveGame();
+            // DataPersistenceManager.instance.SaveGame();
+            // yield return new WaitUntil(() => DataPersistenceManager.instance.IsSaved);
+            // // while (!DataPersistenceManager.instance.IsSaved)
+            // // {
+            // //     Debug.Log("Wait");
+            // // }
+            //
+            // DataPersistenceManager.instance.IsSaved = false;
+            //
             EquipedSpriteLibraryID = -1;
         }
 
