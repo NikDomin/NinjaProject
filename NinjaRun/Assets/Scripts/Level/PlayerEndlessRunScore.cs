@@ -1,3 +1,4 @@
+using System;
 using Agent;
 using DataPersistence;
 using DataPersistence.Data;
@@ -23,7 +24,7 @@ namespace Level
 
         private void Start()
         {
-            currentMaxPosition = (int)transform.position.x;
+            currentMaxPosition = Convert.ToInt32(transform.position.x);
             isUpdateScore = true;
         }
 
@@ -31,7 +32,7 @@ namespace Level
         {
             if(!isUpdateScore)
                 return;
-            if (playerTransform.position.x > currentMaxPosition)
+            if (playerTransform.position.x > currentMaxPosition+0.8f)
             {
                 score++;
                 scoreText.text ="Score: " + score.ToString();

@@ -18,7 +18,7 @@ namespace DataPersistence.Data
         private bool isSaving;
         private GameData gameDataToSave;
         private GameData gameDataToLoad;
-        private GameData mainGameData;
+        // private GameData mainGameData;
 
         public CloudDataHandler()
         {
@@ -27,11 +27,11 @@ namespace DataPersistence.Data
         
         public void OpenSave(bool saving)
         {
-            CloudSaveGameUI.Instance.LogText.text += "";
-            CloudSaveGameUI.Instance.LogText.text += "Open save clicked";
+            // CloudSaveGameUI.Instance.LogText.text += "";
+            // CloudSaveGameUI.Instance.LogText.text += "Open save clicked";
             if (Social.localUser.authenticated)
             {
-                CloudSaveGameUI.Instance.LogText.text += "User is authenticated";
+                // CloudSaveGameUI.Instance.LogText.text += "User is authenticated";
                 isSaving = saving;
                 ((PlayGamesPlatform)Social.Active).SavedGame.OpenWithAutomaticConflictResolution("MyFileName", DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLongestPlaytime, OnSavedGameOpened);
             }
@@ -40,7 +40,7 @@ namespace DataPersistence.Data
             if (status == SavedGameRequestStatus.Success) {
                 if (isSaving)
                 {
-                    CloudSaveGameUI.Instance.LogText.text += "Status successful, attempting to save...";
+                    // CloudSaveGameUI.Instance.LogText.text += "Status successful, attempting to save...";
                     //convert to byte array
                     byte[] myData = System.Text.ASCIIEncoding.ASCII.GetBytes(GetSaveString());
 
@@ -53,7 +53,7 @@ namespace DataPersistence.Data
                 }
                 else
                 {
-                    CloudSaveGameUI.Instance.LogText.text += "Status successful, attempting to load...";
+                    // CloudSaveGameUI.Instance.LogText.text += "Status successful, attempting to load...";
                     // //loading
                     ((PlayGamesPlatform)Social.Active).SavedGame.ReadBinaryData(meta, LoadGameCallback);
                 }
@@ -65,9 +65,9 @@ namespace DataPersistence.Data
         {
             if (status == SavedGameRequestStatus.Success)
             {
-                CloudSaveGameUI.Instance.LogText.text += "load successful, attempting to read data...";
+                // CloudSaveGameUI.Instance.LogText.text += "load successful, attempting to read data...";
                 string loadedData = System.Text.ASCIIEncoding.ASCII.GetString(bytes);
-                CloudSaveGameUI.Instance.JsonText.text += "String from bytes: " + loadedData;
+                // CloudSaveGameUI.Instance.JsonText.text += "String from bytes: " + loadedData;
                 //Name|age
                 LoadSaveString(loadedData);
             }
@@ -79,11 +79,11 @@ namespace DataPersistence.Data
             DataPersistenceManager.instance.gameData = gameDataToLoad;
             DataPersistenceManager.instance.LoadToObjects(gameDataToLoad);
             
-            TestHandler.Instance.TestMainGameData = gameDataToLoad;
-            mainGameData = gameDataToLoad;
-            CloudSaveGameUI.Instance.JsonText.text += "";
-            CloudSaveGameUI.Instance.JsonText.text += "Data From Json: ";
-            CloudSaveGameUI.Instance.JsonText.text += "Coins From Json: " + mainGameData.CoinsCount.ToString();
+            // TestHandler.Instance.TestMainGameData = gameDataToLoad;
+            // mainGameData = gameDataToLoad;
+            // CloudSaveGameUI.Instance.JsonText.text += "";
+            // CloudSaveGameUI.Instance.JsonText.text += "Data From Json: ";
+            // CloudSaveGameUI.Instance.JsonText.text += "Coins From Json: " + mainGameData.CoinsCount.ToString();
         }
 
         private string GetSaveString()
@@ -98,13 +98,13 @@ namespace DataPersistence.Data
             {
                 // DataPersistenceManager.instance.IsSaved = true;
                 isSave = true;
-                CloudSaveGameUI.Instance.LogText.text += "Successfully save to the cloud";
+                // CloudSaveGameUI.Instance.LogText.text += "Successfully save to the cloud";
                 
             }
             else
             {
                 isSave = false;
-                CloudSaveGameUI.Instance.LogText.text += "Fail save to the cloud";
+                // CloudSaveGameUI.Instance.LogText.text += "Fail save to the cloud";
             }
             OnSaveCallback?.Invoke(isSave);
         }
@@ -113,30 +113,30 @@ namespace DataPersistence.Data
             gameDataToLoad = null;
             OpenSave(false);
             ///////////////////////
-            CloudSaveGameUI.Instance.JsonText.text += "Open Save End";
-            CloudSaveGameUI.Instance.JsonText.text += " ";
-            CloudSaveGameUI.Instance.JsonText.text += "Data From LoadData: ";
-            CloudSaveGameUI.Instance.JsonText.text += "Coins From LoadData: " + gameDataToLoad.CoinsCount.ToString();
-            // return gameDataToLoad;
+            // CloudSaveGameUI.Instance.JsonText.text += "Open Save End";
+            // CloudSaveGameUI.Instance.JsonText.text += " ";
+            // CloudSaveGameUI.Instance.JsonText.text += "Data From LoadData: ";
+            // CloudSaveGameUI.Instance.JsonText.text += "Coins From LoadData: " + gameDataToLoad.CoinsCount.ToString();
+            // // return gameDataToLoad;
         }
 
         public void Save(GameData gameData)
         {
             gameDataToSave = gameData; 
-            CloudSaveGameUI.Instance.LogText.text += "Save game clicked";
+            // CloudSaveGameUI.Instance.LogText.text += "Save game clicked";
             OpenSave(true);
         }
 
         public void LoadData()
         {
-            mainGameData = new GameData();
-            CloudSaveGameUI.Instance.LogText.text += "Load game clicked";
             Load();
+            // mainGameData = new GameData();
+            // CloudSaveGameUI.Instance.LogText.text += "Load game clicked";
             ///////////////
-            CloudSaveGameUI.Instance.OutputText.text += "";
-            CloudSaveGameUI.Instance.OutputText.text += "Hero sprite id: " + mainGameData.HeroSpriteLibraryID;
-            CloudSaveGameUI.Instance.OutputText.text += "Coin count: " + mainGameData.CoinsCount;
-            CloudSaveGameUI.Instance.OutputText.text += "level need to pass: " + mainGameData.levelNeedToPass;
+            // CloudSaveGameUI.Instance.OutputText.text += "";
+            // CloudSaveGameUI.Instance.OutputText.text += "Hero sprite id: " + mainGameData.HeroSpriteLibraryID;
+            // CloudSaveGameUI.Instance.OutputText.text += "Coin count: " + mainGameData.CoinsCount;
+            // CloudSaveGameUI.Instance.OutputText.text += "level need to pass: " + mainGameData.levelNeedToPass;
         }
     }
 }

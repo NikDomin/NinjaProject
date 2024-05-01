@@ -4,6 +4,7 @@ using Agent.Player;
 using Coins;
 using DataPersistence;
 using DataPersistence.Data;
+using Level;
 using Services;
 using TMPro;
 using UnityEngine;
@@ -130,6 +131,10 @@ namespace UI.SkinShowcase
                 Achievement.Instance.NinjaModel();
             
             isPurchased = true;
+            //
+            // SkinScrollHandler skinScrollHandler = FindObjectOfType<SkinScrollHandler>();
+            // skinScrollHandler.HideScroll();
+            
             DataPersistenceManager.instance.SaveGame();
             yield return new WaitUntil(() => DataPersistenceManager.instance.IsSaved);
             
@@ -138,7 +143,10 @@ namespace UI.SkinShowcase
             //     Debug.Log("Wait");
             // }
             
+            LoadScreen loadScreen = FindObjectOfType<LoadScreen>();
+            loadScreen.HideLoadScreen();
             DataPersistenceManager.instance.IsSaved = false;
+            // skinScrollHandler.ShowScroll();
             
             BuyButton.gameObject.SetActive(false);
             EquipButton.gameObject.SetActive(true);
@@ -151,7 +159,8 @@ namespace UI.SkinShowcase
             if(isEquipped)
                 return;
             isEquipped = true;
-
+            
+            BuyButton.gameObject.SetActive(false);
             EquipButton.interactable = false;
 
             Image image = EquipButton.GetComponent<Image>();
@@ -170,7 +179,7 @@ namespace UI.SkinShowcase
             //
             // DataPersistenceManager.instance.IsSaved = false;
             //
-            EquipedSpriteLibraryID = -1;
+            // EquipedSpriteLibraryID = -1;
         }
 
         private void PlayerEquipSomeSkin(int id)
@@ -184,6 +193,7 @@ namespace UI.SkinShowcase
                 var imageColor = image.color;
                 imageColor.a = 1f;
                 image.color = imageColor;
+                EquipedSpriteLibraryID = -1;
             }
         }
         

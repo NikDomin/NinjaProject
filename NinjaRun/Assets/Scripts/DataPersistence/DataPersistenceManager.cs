@@ -120,7 +120,7 @@ namespace DataPersistence
         {
             loadScreen = FindObjectOfType<LoadScreen>();
             Debug.Log("OnSceneLoaded");
-            CloudSaveGameUI.Instance.LogText.text += "On Scene Loaded ";
+            // CloudSaveGameUI.Instance.LogText.text += "On Scene Loaded ";
             dataPersistenceObjects = FindAllDataPersistenceObjects();
             
             LoadGame();
@@ -138,19 +138,19 @@ namespace DataPersistence
             {
                 
                 //Try get data from cloud
-                CloudSaveGameUI.Instance.LogText.text += "CloudLoadGame from manager";
+                // CloudSaveGameUI.Instance.LogText.text += "CloudLoadGame from manager";
                 cloudDataHandler.LoadData();
                 /////
                 gameData = GameDataToLoad;
-                CloudSaveGameUI.Instance.LogText.text += "After load game data:";
-                CloudSaveGameUI.Instance.LogText.text += "coins count: " + gameData.CoinsCount;
+                // CloudSaveGameUI.Instance.LogText.text += "After load game data:";
+                // CloudSaveGameUI.Instance.LogText.text += "coins count: " + gameData.CoinsCount;
                 
 
             }
             else
             {
                 //Load data from a file
-                CloudSaveGameUI.Instance.LogText.text += "Load from jsonfile";
+                // CloudSaveGameUI.Instance.LogText.text += "Load from jsonfile";
 
                 gameData = dataHandler.Load();
                 if(gameData == null)
@@ -176,7 +176,7 @@ namespace DataPersistence
         }
         public void LoadToObjects(GameData gameData)
         {
-            CloudSaveGameUI.Instance.LogText.text += " Load To Objects";
+            // CloudSaveGameUI.Instance.LogText.text += " Load To Objects";
             if (gameData == null)
             {
                 Debug.LogWarning("No data was found. Init data to defaults.");
@@ -213,14 +213,14 @@ namespace DataPersistence
             
             if (Social.localUser.authenticated)
             {
-                CloudSaveGameUI.Instance.LogText.text += "Cloud save from manager";
+                // CloudSaveGameUI.Instance.LogText.text += "Cloud save from manager";
                 cloudDataHandler.Save(gameData);
                 // IsSaved = true;
             }
 
             if (!Social.localUser.authenticated)
             {
-                CloudSaveGameUI.Instance.LogText.text += "save to drive";
+                // CloudSaveGameUI.Instance.LogText.text += "save to drive";
                 dataHandler.Save(gameData);
                 IsSaved = true;
                 // loadScreen.HideLoadScreen();
@@ -228,13 +228,13 @@ namespace DataPersistence
         }
         private void CloudSaveCallback(bool isSavedToCloud)
         {
-            CloudSaveGameUI.Instance.LogText.text += "Cloud Save Callback with: " + isSavedToCloud;
+            // CloudSaveGameUI.Instance.LogText.text += "Cloud Save Callback with: " + isSavedToCloud;
             IsSaved = isSavedToCloud;
             //if saved to cloud failed
             if (!IsSaved)
             {
                 //save to disk 
-                CloudSaveGameUI.Instance.LogText.text += "save to drive";
+                // CloudSaveGameUI.Instance.LogText.text += "save to drive";
                 dataHandler.Save(gameData);
                 IsSaved = true;
             }
