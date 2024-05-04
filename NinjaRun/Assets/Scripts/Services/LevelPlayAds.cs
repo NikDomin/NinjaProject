@@ -1,14 +1,36 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Agent.Player.PlayerStateMachine;
+using Level;
 using TMPro;
+using UI;
 using UnityEngine;
 
 namespace Services
 {
     public class LevelPlayAds : MonoBehaviour
     {
-        [Header("TEST")]
-        [SerializeField] private TextMeshProUGUI rewardText;
+
+        public event Action OnAdUnavailable;
+        public event Action OnAdWatchedSuccesfully;
+        public static LevelPlayAds Instance { get; private set; }
+        
         #region Mono
+
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                Debug.LogError("Found more than one LevelPlayAds in the scene. Destroying the newest one.");
+                Destroy(gameObject);
+                
+                return;
+            }
+            
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
 
         private void OnEnable()
         {
@@ -40,6 +62,11 @@ namespace Services
 
         private void Start()
         {
+            // GameOverPanel gameOverPanel = FindObjectOfType<GameOverPanel>();
+            // Debug.Log("GAME OVER PANEL: " + gameOverPanel);
+            Debug.Log("LEVEL PLAY ADS START");
+            IronSource.Agent.setMetaData("is_deviceid_optout","true");
+            IronSource.Agent.setMetaData("is_child_directed","true");
             IronSource.Agent.init ("1e5fbc715");
             IronSource.Agent.validateIntegration();
         }
@@ -77,7 +104,9 @@ namespace Services
         }
 // Indicates that no ads are available to be displayed
 // This replaces the RewardedVideoAvailabilityChangedEvent(false) event
-        void RewardedVideoOnAdUnavailable() {
+        void RewardedVideoOnAdUnavailable()
+        {
+            OnAdUnavailable?.Invoke();   
         }
 // The Rewarded Video ad view has opened. Your activity will loose focus.
         void RewardedVideoOnAdOpenedEvent(IronSourceAdInfo adInfo){
@@ -89,9 +118,17 @@ namespace Services
 // The placement parameter will include the reward data.
 // When using server-to-server callbacks, you may ignore this event and wait for the ironSource server callback.
         void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo){
-            //reward user
-            Debug.Log("######### REWARD ###########");
-            rewardText.text = "REWARD TO PLAYER";
+            // //reward user
+            var player = FindObjectOfType<PlayerState>(true).gameObject;
+            var checkPoints = FindAllActiveCheckPoints();
+            var firstCheckPoint = checkPoints
+                .Where(checkpoint => checkpoint.transform.position.x < player.transform.position.x)
+                .OrderByDescending(checkPoint => checkPoint.transform.position.x)
+                .First();
+            // CheckPoint checkPoint = checkPointsActivatedByPlayer.Max();
+            firstCheckPoint.SpawnHero(player);
+            OnAdWatchedSuccesfully?.Invoke();
+            
         }
 // The rewarded video ad was failed to show.
         void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo){
@@ -104,6 +141,12 @@ namespace Services
         
 
         #endregion
-        
+
+        private List<CheckPoint> FindAllActiveCheckPoints()
+        {
+            var checkPoints = FindObjectsOfType<CheckPoint>();
+
+            return new List<CheckPoint>(checkPoints);
+        }
     }
 }

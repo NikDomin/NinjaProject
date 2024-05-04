@@ -7,13 +7,13 @@ namespace Agent.Enemy
     public class EnemyDeath : MonoBehaviour
     {
         [field:SerializeField] public bool IsRefreshSwipeCount { get; private set; }
-        private Health enemyHealth;
+        private EnemyHealth enemyHealth;
 
         #region Mono
 
         private void Awake()
         {
-            enemyHealth = GetComponent<Health>();
+            enemyHealth = GetComponent<EnemyHealth>();
         }
 
         private void OnEnable()

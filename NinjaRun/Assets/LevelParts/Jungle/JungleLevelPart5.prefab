@@ -754,7 +754,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableDistance: 80
-  invokeCD: 1
+  invokeCD: 2
+  isHasCheckPoint: 1
 --- !u!1 &3847200279510954021
 GameObject:
   m_ObjectHideFlags: 0

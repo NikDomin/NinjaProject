@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Threading.Tasks;
 using Agent.Player.PlayerStateMachine;
 using Input;
@@ -72,7 +71,6 @@ namespace Movement
       
        
         // FOR TEST
-        [SerializeField] private TextMeshProUGUI currentSwipeCountText;
         
 
         #region Mono
@@ -85,15 +83,7 @@ namespace Movement
 
             playerState.OnLanding += ResetSwipeCount;
         }
-
-        private void FixedUpdate()
-        {
-            if (currentSwipeCountText != null)
-            {
-                currentSwipeCountText.text = currentSwipeCount.ToString();
-            }
-        }
-
+        
      
         private void OnDestroy()
         {
@@ -123,7 +113,7 @@ namespace Movement
         }
         private async void AwaitStartSwipe()
         {
-            await Task.Delay(10);
+            await Task.Delay(80);
             alreadyStartTouch = false;
         }
 
@@ -146,7 +136,7 @@ namespace Movement
 
         private async void AwaitEndSwipe()
         {
-            await Task.Delay(10);
+            await Task.Delay(80);
             alreadyEndTouch = false;
         }
 
@@ -201,6 +191,7 @@ namespace Movement
 
                 directionSwipe = endPosition - startPosition;
                 OnSwipe?.Invoke();
+                // ResetAllValue();
             }
         }
         
@@ -219,16 +210,16 @@ namespace Movement
 
         }
 
-        private void ResetAllValue()
+        public void ResetAllValue()
         {
             startPosition = Vector2.zero;
             endPosition = Vector2.zero;
             startTime = 0;
             endTime = 0;
-
+            alreadyStartTouch = false;
+            alreadyEndTouch = false;
+            ResetSwipeCount();
         }
-
-     
         
         private void ResetSwipeCount()
         {

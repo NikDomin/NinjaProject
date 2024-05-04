@@ -10,16 +10,23 @@ namespace Level
 {
     public class PlayerEndlessRunScore : MonoBehaviour, IDataPersistence
     {
+        public static PlayerEndlessRunScore Instance;
         [SerializeField] private TextMeshProUGUI scoreText;
         [SerializeField] private Transform playerTransform;
         private int currentMaxPosition;
         private int score = 0;
         private bool isUpdateScore;
         private bool isBeginnerRunnerAlreadyCompleted;
-        
+
+        private void Awake()
+        {
+            if (Instance == null)
+                Instance = this;
+        }
+
         private void OnEnable()
         {
-            playerTransform.GetComponent<Health>().OnDead.AddListener(StopUpdateScore);  
+            playerTransform.GetComponent<PlayerHealth>().OnDead.AddListener(StopUpdateScore);  
         }
 
         private void Start()
@@ -32,13 +39,13 @@ namespace Level
         {
             if(!isUpdateScore)
                 return;
-            if (playerTransform.position.x > currentMaxPosition+0.8f)
+            if (playerTransform.position.x > currentMaxPosition+1f)
             {
                 score++;
                 scoreText.text ="Score: " + score.ToString();
                 currentMaxPosition = (int)playerTransform.position.x;
                 
-                if(!isBeginnerRunnerAlreadyCompleted && score >= 5000)
+                if(!isBeginnerRunnerAlreadyCompleted && score >= 2000)
                     Achievement.Instance.BeginnerRunner();
             }
         }
@@ -50,8 +57,14 @@ namespace Level
             {
                 
             });
-            playerTransform.GetComponent<Health>().OnDead.RemoveListener(StopUpdateScore);  
+            playerTransform.GetComponent<PlayerHealth>().OnDead.RemoveListener(StopUpdateScore);  
 
+        }
+
+        public void ContinueUpdateScore()
+        {
+            isUpdateScore = true;
+            playerTransform.GetComponent<PlayerHealth>().OnDead.AddListener(StopUpdateScore);  
         }
 
         public void LoadData(GameData data)

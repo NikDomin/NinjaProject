@@ -7,7 +7,7 @@ namespace Level
     public class EntityRandomSpawner: MonoBehaviour
     {
         [SerializeField] private Spawnable[] spawnables;
-        
+        private bool isFirstSpawn = true;
         private void OnEnable()
         {
             SpawnRandomObject();
@@ -16,6 +16,14 @@ namespace Level
         private void SpawnRandomObject()
         {
             float totalWeight = 0f;
+            
+            if (!isFirstSpawn)
+            {
+                foreach (var spawnable in spawnables)
+                {
+                    spawnable.prefab.SetActive(false);
+                }    
+            }
 
             foreach (Spawnable spawnable in spawnables)
             {
@@ -36,6 +44,8 @@ namespace Level
                     return;
                 }
             }
+
+            isFirstSpawn = false;
         }
     }
     

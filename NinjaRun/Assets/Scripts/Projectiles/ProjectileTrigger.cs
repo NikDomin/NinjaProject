@@ -27,9 +27,9 @@ namespace Projectiles
             }
             else if ((playerLevel.value & (1 << other.gameObject.layer)) > 0)
             {
-                if (other.TryGetComponent(out Health health))
+                if (other.TryGetComponent(out Hittable hittable))
                 {
-                    health.GetHit(); 
+                    hittable.GetHit(); 
                     gameObject.SetActive(false);
                 }
             }

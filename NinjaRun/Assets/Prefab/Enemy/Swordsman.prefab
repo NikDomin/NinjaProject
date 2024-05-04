@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6803228437389277338}
   - component: {fileID: 6803228437389277341}
   - component: {fileID: 6803228437389277333}
-  - component: {fileID: 6803228437389277343}
+  - component: {fileID: 8786461726889806317}
   - component: {fileID: 6803228437389277342}
   - component: {fileID: 6803228437389277328}
   - component: {fileID: 6803228437389277330}
@@ -149,7 +149,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.07703853, y: -0.15175724}
   m_Size: {x: 1.1062627, y: 2.614725}
   m_Direction: 0
---- !u!114 &6803228437389277343
+--- !u!114 &8786461726889806317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,14 +158,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6803228437389277336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d25585d40acd334dbd3b2d1f7f6c60a, type: 3}
+  m_Script: {fileID: 11500000, guid: 50093f37f74249bc9e66401b3b418ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnDead:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6803228438609109516}
-        m_TargetAssemblyTypeName: Assets.Scripts.Agent.Enemy.EnemyHolder, Assembly-CSharp
+        m_TargetAssemblyTypeName: Agent.Enemy.EnemyHolder, Assembly-CSharp
         m_MethodName: EnableDeadEnemy
         m_Mode: 1
         m_Arguments:

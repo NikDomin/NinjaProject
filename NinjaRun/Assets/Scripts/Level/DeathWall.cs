@@ -5,7 +5,8 @@ namespace Level
     public class DeathWall : MonoBehaviour
     {
         public static DeathWall deathWall;
-        
+
+        public bool CanDisableLevelParts;
         [SerializeField] private Transform player;
         [SerializeField] private float speed, pullEfect, length = 100f;
         private float startPosX, temp, distance;
@@ -21,6 +22,7 @@ namespace Level
         void Start()
         {
             startPosX = transform.position.x;
+            CanDisableLevelParts = true;
         }
 
         // Update is called once per frame

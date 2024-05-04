@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using DataPersistence;
+using Services;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +12,8 @@ namespace UI
     {
         [SerializeField] private Button homeButton;
         [SerializeField] private Button restartButton;
+        [SerializeField] private Button watchAdButton;
+        [SerializeField] private Image noAdImage;
         
         public override void EnablePanel()
         {
@@ -18,15 +21,23 @@ namespace UI
 
             homeButton.onClick.AddListener(ToMainMenu);
             restartButton.onClick.AddListener(ResetLevel);
+            watchAdButton.onClick.AddListener(WatchAd);
+            watchAdButton.interactable = true;
+            // LevelPlayAds.Instance.OnAdUnavailable += RewardedVideoUnavailable;
+            // LevelPlayAds.Instance.OnAdWatchedSuccesfully += AdWatched;
         }
-
-
+        
         public override void EnablePanelWithDelay(int time)
         {
             base.EnablePanelWithDelay(time);
             
             homeButton.onClick.AddListener(ToMainMenu);
             restartButton.onClick.AddListener(ResetLevel);
+            watchAdButton.onClick.AddListener(WatchAd);
+            watchAdButton.interactable = true;
+            // LevelPlayAds.Instance.OnAdUnavailable += RewardedVideoUnavailable;
+            // LevelPlayAds.Instance.OnAdWatchedSuccesfully += AdWatched;
+
         }
 
         public override void DisablePanel()
@@ -35,7 +46,13 @@ namespace UI
             
             homeButton.onClick.RemoveListener(ToMainMenu);
             restartButton.onClick.RemoveListener(ResetLevel);
+            watchAdButton.onClick.RemoveListener(WatchAd);
+            // LevelPlayAds.Instance.OnAdUnavailable -= RewardedVideoUnavailable;
+            // LevelPlayAds.Instance.OnAdWatchedSuccesfully -= AdWatched;
+            noAdImage.gameObject.SetActive(false);
+
         }
+
 
         private void ResetLevel()
         {
@@ -74,7 +91,25 @@ namespace UI
             DataPersistenceManager.instance.IsSaved = false;
             SceneManager.LoadScene("MainMenu");
         }
+        
+        private void WatchAd()
+        {
+            watchAdButton.interactable = false;
+            LevelPlayAds.Instance.ShowRewardedAd();
+            DisablePanel();
+           
+        }
+
 
         #endregion
+
+        // private void RewardedVideoUnavailable()
+        // {
+        //     noAdImage.gameObject.SetActive(true);
+        // }
+        // private void AdWatched()
+        // {
+        //     DisablePanel();
+        // }
     }
 }

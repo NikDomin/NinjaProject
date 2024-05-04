@@ -11,17 +11,17 @@ namespace Assets.Scripts.Agent
 
     public class DamageReceiver : MonoBehaviour, IDamageable
     {
-        private Health health;
+        private Hittable hittable;
 
         private void Awake()
         {
-            health = GetComponent<Health>();
+            hittable = GetComponent<Hittable>();
         }
 
 
         public void Damage()
         {
-            health.GetHit();
+            hittable.GetHit();
         }
     }
 }

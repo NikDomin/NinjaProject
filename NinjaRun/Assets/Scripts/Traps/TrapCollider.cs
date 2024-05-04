@@ -26,7 +26,7 @@ namespace Traps
             {
                 OnTrapCollision?.Invoke();
                 
-                var collisionHealth = collision.gameObject.GetComponent<Health>();
+                var collisionHealth = collision.gameObject.GetComponent<Hittable>();
                 collisionHealth.GetHit();
             }
         }
@@ -40,7 +40,7 @@ namespace Traps
             {
                 OnTrapCollision?.Invoke();
                 
-                var collisionHealth = item.gameObject.GetComponent<Health>();
+                var collisionHealth = item.gameObject.GetComponent<Hittable>();
                 collisionHealth.GetHit();
             }
         }
