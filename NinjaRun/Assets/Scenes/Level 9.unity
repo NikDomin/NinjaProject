@@ -3059,10 +3059,6 @@ PrefabInstance:
       propertyPath: trail
       value: 
       objectReference: {fileID: 502396606}
-    - target: {fileID: 8108421511935773254, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: trail
-      value: 
-      objectReference: {fileID: 502396606}
     - target: {fileID: 8108421511935773257, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3115,24 +3111,11 @@ PrefabInstance:
       propertyPath: OnDead.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 515831895}
-    - target: {fileID: 8108421511935773263, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: OnDead.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EnablePanelWithDelay
-      objectReference: {fileID: 0}
-    - target: {fileID: 8108421511935773263, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: OnDead.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: SwitchCancellationToken
-      objectReference: {fileID: 0}
-    - target: {fileID: 8108421511935773263, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
-      propertyPath: OnDead.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UI.GameOverPanel, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 8108421511935773309, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
       propertyPath: m_Name
       value: Ninja
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1810419568, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae52172367420444a95eb37aaaac87fa, type: 3}
 --- !u!4 &811525045 stripped
 Transform:

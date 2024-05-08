@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Agent.Player.PlayerStateMachine;
 using Input;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 
 namespace Movement
@@ -24,6 +24,8 @@ namespace Movement
         public event Action<Vector2> OnSwipeStart;
         public event Action<Vector2> OnSwipeEnd;
         public event Action OnSwipe;
+
+       
 
         [SerializeField] private float minimumDistance = 1f;
         [SerializeField] private float maximumTime = 1f;
@@ -84,7 +86,6 @@ namespace Movement
             playerState.OnLanding += ResetSwipeCount;
         }
         
-     
         private void OnDestroy()
         {
             playerState.OnLanding -= ResetSwipeCount;
@@ -97,6 +98,17 @@ namespace Movement
 
         public void SwipeStartHandler(Vector2 position, float time)
         {
+            Vector3 screenPoint = ScreenUtils.WorldToScreen(Camera.main, position);
+            // Debug.Log("Start handler: " + screenPoint);
+            if (screenPoint.x < Screen.width / 10f && screenPoint.y > Screen.height / 1.35f)
+            {
+                // ResetPositions();
+                return;
+            }
+            if(screenPoint.x ==0 || screenPoint.y == 0)
+                return;
+      
+            // Debug.Log("Start swipe position:" + position);
             if (alreadyStartTouch)
             {
                 AwaitStartSwipe();
@@ -119,6 +131,19 @@ namespace Movement
 
         public void SwipeEndHandler(Vector2 position, float time)
         {
+            // Debug.Log("Swipe end position:" + position);
+            
+            Vector3 screenPoint = ScreenUtils.WorldToScreen(Camera.main, position);
+            // Debug.Log("End handler: " + screenPoint);
+            if(screenPoint.x < Screen.width/10f && screenPoint.y > Screen.height/1.35f)
+            {
+                // ResetPositions();
+                return;
+            }
+            
+            if(screenPoint.x ==0 || screenPoint.y == 0)
+                return;
+            
             if (alreadyEndTouch)
             {
                 AwaitEndSwipe();
@@ -180,11 +205,13 @@ namespace Movement
 
         private void DetectSwipe()
         {
+            // Debug.Log("#####################");
             // Debug.Log($"Vector swipe distance: {Vector3.Distance(startPosition,endPosition)}");
-            
+     
             if (Vector3.Distance(startPosition, endPosition) >= minimumDistance &&
                 (endTime - startTime) <= maximumTime)
             {
+                // Debug.Log("Jump swipe distance: "+ Vector3.Distance(startPosition, endPosition));
                 --currentSwipeCount;
                 
                 Debug.DrawLine(startPosition, endPosition, Color.red, 5f);
@@ -220,6 +247,12 @@ namespace Movement
             alreadyEndTouch = false;
             ResetSwipeCount();
         }
+
+        // private void ResetPositions()
+        // {
+        //     startPosition = Vector2.zero;
+        //     endPosition = Vector2.zero;
+        // }
         
         private void ResetSwipeCount()
         {

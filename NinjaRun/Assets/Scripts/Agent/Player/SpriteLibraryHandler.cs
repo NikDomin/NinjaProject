@@ -8,19 +8,20 @@ namespace Agent.Player
 {
     public class SpriteLibraryHandler : MonoBehaviour
     {
-        public static SpriteLibraryHandler LibraryHandler;
+        public static SpriteLibraryHandler Instance;
         
         [SerializeField] private SpriteLibraryDictionary spriteLibraryDictionary;
 
         public Dictionary<int, SpriteLibraryAsset> SpriteLibraryDictionary { get; private set; }
         private void Awake()
         {
-            if (SpriteLibraryDictionary == null)
+            if (Instance != null)
             {
-                LibraryHandler = this;
+                Destroy(gameObject);
+                return;
             }
+            Instance = this;
             DontDestroyOnLoad(gameObject);
-            LibraryHandler = this;
             SpriteLibraryDictionary = spriteLibraryDictionary.ToDictionary();
         }
 

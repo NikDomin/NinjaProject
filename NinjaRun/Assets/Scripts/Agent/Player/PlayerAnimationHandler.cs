@@ -23,7 +23,7 @@ namespace Agent.Player
 
         public void LoadData(GameData data)
         {
-            var spriteDictionary = SpriteLibraryHandler.LibraryHandler.SpriteLibraryDictionary;
+            var spriteDictionary = SpriteLibraryHandler.Instance.SpriteLibraryDictionary;
             int id = data.HeroSpriteLibraryID;
             
             spriteDictionary.TryGetValue(id, out spriteLibrarySpriteLibraryAsset);

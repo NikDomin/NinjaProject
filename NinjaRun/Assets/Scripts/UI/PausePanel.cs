@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utils;
 
@@ -13,13 +12,12 @@ namespace UI
         [SerializeField] private Button continueButton;
         [SerializeField] private Button homeButton;
         [SerializeField] private Button optionsButton;
+     
         
-        
-
         public override void EnablePanel()
         {
             base.EnablePanel();
-            
+        
             TimeManager.Instance.PauseGame();
             
             continueButton.onClick.AddListener(ContinueGame);
@@ -31,6 +29,7 @@ namespace UI
         {
             base.DisablePanel();
             
+           
             TimeManager.Instance.UnpauseGame();
             
             continueButton.onClick.RemoveListener(ContinueGame);

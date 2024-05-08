@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139ab586e5c47db41b29dd1e0fa83f08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumDistance: 1
+  minimumDistance: 5
   maximumTime: 1
   directionThreshold: 0.9
   maxSwipeCount: 2
@@ -367,7 +367,6 @@ MonoBehaviour:
   <impactsStrength>k__BackingField: 20
   <forceType>k__BackingField: 1
   <JumpType>k__BackingField: 1
-  currentSwipeCountText: {fileID: 0}
 --- !u!114 &8108421511935773255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,8 +455,8 @@ MonoBehaviour:
   - {fileID: 8108421512471527705}
   - {fileID: 8108421512012921315}
   m_Bounds:
-    m_Center: {x: -0.20328277, y: -0.1044631, z: 0}
-    m_Extent: {x: 0.50431395, y: 2.093985, z: 0}
+    m_Center: {x: -0.20328307, y: -0.1044631, z: 0}
+    m_Extent: {x: 0.5043142, y: 2.093985, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0

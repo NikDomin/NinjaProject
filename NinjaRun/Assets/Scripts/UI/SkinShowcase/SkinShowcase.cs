@@ -60,7 +60,7 @@ namespace UI.SkinShowcase
 
         private void Start()
         {
-            var spriteDictionary = SpriteLibraryHandler.LibraryHandler.SpriteLibraryDictionary;
+            var spriteDictionary = SpriteLibraryHandler.Instance.SpriteLibraryDictionary;
             spriteDictionary.TryGetValue(id, out spriteLibrarySpriteLibraryAsset);
             spriteLibrary.spriteLibraryAsset = spriteLibrarySpriteLibraryAsset;
                 

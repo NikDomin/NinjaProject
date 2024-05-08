@@ -7,7 +7,7 @@ namespace Level
     public class EntityRandomSpawner: MonoBehaviour
     {
         [SerializeField] private Spawnable[] spawnables;
-        private bool isFirstSpawn = true;
+        
         private void OnEnable()
         {
             SpawnRandomObject();
@@ -17,17 +17,10 @@ namespace Level
         {
             float totalWeight = 0f;
             
-            if (!isFirstSpawn)
-            {
-                foreach (var spawnable in spawnables)
-                {
-                    spawnable.prefab.SetActive(false);
-                }    
-            }
-
             foreach (Spawnable spawnable in spawnables)
             {
-                totalWeight += spawnable.spawnWeight;
+                totalWeight += spawnable.spawnWeight; 
+                spawnable.prefab.SetActive(false);
             }
 
             int randomValue = Random.Range(0, Convert.ToInt32(totalWeight));
@@ -44,8 +37,6 @@ namespace Level
                     return;
                 }
             }
-
-            isFirstSpawn = false;
         }
     }
     

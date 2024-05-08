@@ -8,7 +8,7 @@ namespace UI.SkinShowcase
 {
     public class SkinShowcaseActionHandler : MonoBehaviour, IDataPersistence
     {
-        [FormerlySerializedAs("purchasedSkinsCount")] public int PurchasedSkinsCount;
+        [FormerlySerializedAs("purchasedSkinsCount")] public int PurchasedSkinsCount = 1;
         public event Action<int> OnEquipSkin;
      
         [SerializeField] private SkinShowcase[] skinShowcases;
@@ -27,7 +27,7 @@ namespace UI.SkinShowcase
 
         public void SaveData(GameData data)
         {
-            if(PurchasedSkinsCount!<=0)
+            if(PurchasedSkinsCount >= 0)
                 data.PurchasedSkinsCount = PurchasedSkinsCount;
         }
 

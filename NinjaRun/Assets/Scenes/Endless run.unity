@@ -188,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4525339525515884521, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4525339525515884521, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -798,7 +798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4922501677345188437, guid: 75d4a2c3f64ec4d45b0224c6d1ee6ee4, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4922501677345188437, guid: 75d4a2c3f64ec4d45b0224c6d1ee6ee4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -969,7 +969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4923641224627169707, guid: 0497889a21525fc4d9dacb14e7f1c535, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4923641224627169707, guid: 0497889a21525fc4d9dacb14e7f1c535, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1153,7 +1153,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1041165083}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1445,7 +1445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1974448548417374547, guid: 39ef2909dcb5b7c4983baa835fc224fc, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1974448548417374547, guid: 39ef2909dcb5b7c4983baa835fc224fc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1800,7 +1800,7 @@ MonoBehaviour:
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1842,12 +1842,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 593738915}
   - {fileID: 1929235160}
   - {fileID: 557799233}
   - {fileID: 851865528}
   - {fileID: 27838175}
   - {fileID: 468694024}
-  - {fileID: 593738915}
   - {fileID: 1000721018}
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -3977,7 +3977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5420193279601251054, guid: b867aaeb558395a44abf5693c2d01af4, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5420193279601251054, guid: b867aaeb558395a44abf5693c2d01af4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4581,12 +4581,28 @@ PrefabInstance:
       value: SwitchCancellationToken
       objectReference: {fileID: 0}
     - target: {fileID: 1912987903624627886, guid: 6645a7f04e6880a4286813bd5fdf66a6, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912987903624627886, guid: 6645a7f04e6880a4286813bd5fdf66a6, type: 3}
       propertyPath: trail
       value: 
       objectReference: {fileID: 2061253116}
     - target: {fileID: 1912987903624627886, guid: 6645a7f04e6880a4286813bd5fdf66a6, type: 3}
+      propertyPath: CantTapText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912987903624627886, guid: 6645a7f04e6880a4286813bd5fdf66a6, type: 3}
+      propertyPath: maximumTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912987903624627886, guid: 6645a7f04e6880a4286813bd5fdf66a6, type: 3}
       propertyPath: maxSwipeCount
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912987903624627886, guid: 6645a7f04e6880a4286813bd5fdf66a6, type: 3}
+      propertyPath: minimumDistance
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7641106889777624814, guid: 6645a7f04e6880a4286813bd5fdf66a6, type: 3}
       propertyPath: trail
