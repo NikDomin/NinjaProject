@@ -27,6 +27,7 @@ namespace DataPersistence.Data
         
         public void OpenSave(bool saving)
         {
+            Debug.Log("OpenSave");
             // CloudSaveGameUI.Instance.LogText.text += "";
             // CloudSaveGameUI.Instance.LogText.text += "Open save clicked";
             if (Social.localUser.authenticated)
@@ -65,8 +66,10 @@ namespace DataPersistence.Data
         {
             if (status == SavedGameRequestStatus.Success)
             {
+                Debug.Log("Success loadGameCallback");
                 // CloudSaveGameUI.Instance.LogText.text += "load successful, attempting to read data...";
                 string loadedData = System.Text.ASCIIEncoding.ASCII.GetString(bytes);
+                Debug.Log("Load data String: " + loadedData);
                 // CloudSaveGameUI.Instance.JsonText.text += "String from bytes: " + loadedData;
                 //Name|age
                 LoadSaveString(loadedData);
@@ -74,7 +77,11 @@ namespace DataPersistence.Data
         }
         private void LoadSaveString(string loadedData)
         {
+            Debug.Log("Load Save String");
             gameDataToLoad = JsonUtility.FromJson<GameData>(loadedData);
+            if(gameDataToLoad != null) 
+                Debug.Log("GameDataToLoad coins: " + gameDataToLoad.CoinsCount);
+            
             // DataPersistenceManager.instance.GameDataToLoad = gameDataToLoad;
             DataPersistenceManager.instance.gameData = gameDataToLoad;
             DataPersistenceManager.instance.LoadToObjects(gameDataToLoad);

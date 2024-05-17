@@ -10,10 +10,15 @@ namespace Services
     public class Authentication : MonoBehaviour
     {
         public event Action OnSuccesAuthentication;
+        public event Action OnFailedAuthentication;
         [SerializeField] private Image errorAutomaticAuthentication;
         [Header("Menu UI")] 
         [SerializeField] private Image menuImage;
         [SerializeField] private Button settingsButton;
+        [SerializeField] private Button achievementButton;
+        [SerializeField] private Button leaderBoardButton;
+
+        private DataPersistenceManager dataPersistenceManager;
 
         private void Awake()
         {
@@ -23,17 +28,20 @@ namespace Services
 
         private void OnEnable()
         {
-            DataPersistenceManager.instance.OnLoadEndSuccefully += LoadSuccesfully;
+            
+            dataPersistenceManager = FindObjectOfType<DataPersistenceManager>();
+            Debug.Log("Authentication subscribe to OnLoadEndSuccesfully with DataPersistenceManger: " + dataPersistenceManager.name);
+            dataPersistenceManager.OnLoadEndSuccefully += LoadSuccesfully;
         }
 
         private void OnDisable()
         {
-            DataPersistenceManager.instance.OnLoadEndSuccefully -= LoadSuccesfully;
-   
+           dataPersistenceManager.OnLoadEndSuccefully -= LoadSuccesfully;
         }
 
         private void LoadSuccesfully()
         {
+            Debug.Log("LoadSuccesfully");
             settingsButton.interactable = true;
             menuImage.gameObject.SetActive(true);
         }
@@ -84,6 +92,7 @@ namespace Services
             }
             else
             {
+                OnFailedAuthentication?.Invoke();
                 Debug.LogError("Error during manual authentication in PlayGamePlatform");
             }
         }

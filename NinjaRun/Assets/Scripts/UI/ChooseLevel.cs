@@ -1,5 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using DataPersistence;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
@@ -9,6 +13,7 @@ namespace UI
         [SerializeField] private ChooseLevelButtons[] buttonsArray;
         [SerializeField] private Button rightButton, leftButton;
         private int currentActiveButtonsArray;
+        private DataPersistenceManager dataPersistenceManager;
 
         private void Awake()
         {
@@ -27,7 +32,9 @@ namespace UI
         {
             rightButton.onClick.RemoveListener(ToTheRight);
             leftButton.onClick.RemoveListener(ToTheLeft);
+        
         }
+
 
         private void ToTheLeft()
         {
@@ -39,6 +46,8 @@ namespace UI
             buttonsArray[currentActiveButtonsArray].EnableButtons();
         }
 
+        
+        
         private void ToTheRight()
         {
             currentActiveButtonsArray++;
@@ -56,16 +65,72 @@ namespace UI
                 array.DisableButtons();
             }
         }
+
+        public void FindLevelNeedToPass()
+        {
+            int levelNeedToPass;
+            List <LevelSelector> completedLevels = GetCompletedLevels();
+            if (completedLevels == null || completedLevels.Count == 0)
+            {
+                // set first level need to pass;
+                levelNeedToPass = 1;
+            }
+            else
+            {
+                levelNeedToPass = completedLevels.Max(level => level.LevelName);
+                levelNeedToPass++;
+            }
+            var allLevels = GetAllLevels();
+            if (allLevels == null)
+            { 
+                Debug.LogError("Cant find levels");
+                return;
+            }
+            if (levelNeedToPass > allLevels.Count)
+                return;
+                
+            LevelSelector LevelSelectorNeedToPass = allLevels.FirstOrDefault(level => level.LevelName == levelNeedToPass);
+            LevelSelectorNeedToPass.SetLevelNeedToComplete();
+        }
+
+        private List<LevelSelector> GetCompletedLevels()
+        {
+            List<LevelSelector> completedLevels = new List<LevelSelector>();
+            foreach (var buttonArray in buttonsArray)
+            {
+                foreach (var levelSelector in buttonArray.buttonLevelSelector)
+                {
+                    if (levelSelector.IsLevelPassed)
+                        completedLevels.Add(levelSelector);
+                    
+                }
+            }
+            return completedLevels;
+        }
+
+        private List<LevelSelector> GetAllLevels()
+        {
+            List<LevelSelector> allLevels = new List<LevelSelector>();
+            foreach (var buttonArray in buttonsArray)
+            {
+                foreach (var level in buttonArray.buttonLevelSelector)
+                {
+                    allLevels.Add(level);
+                }
+            }
+
+            return allLevels;
+        }
     }
 
     [Serializable]
     public class ChooseLevelButtons
     {
-        [field: SerializeField] public Button[] buttons;
+        [field: SerializeField] public LevelSelector[] buttonLevelSelector;
 
         public void DisableButtons()
         {
-            foreach (var button in buttons)
+            foreach (var button in buttonLevelSelector)
             {
                 button.gameObject.SetActive(false);
             }
@@ -73,7 +138,7 @@ namespace UI
 
         public void EnableButtons()
         {
-            foreach (var button in buttons)
+            foreach (var button in buttonLevelSelector)
             {
                 button.gameObject.SetActive(true);
             }

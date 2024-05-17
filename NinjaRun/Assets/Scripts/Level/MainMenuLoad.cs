@@ -17,12 +17,16 @@ namespace Level
 
         private void OnEnable()
         {
+            manager = FindObjectOfType<DataPersistenceManager>();
             authentication.OnSuccesAuthentication += Load;
+            authentication.OnFailedAuthentication += LoadWithFailedAuthenctication;
         }
         private void OnDisable()
         {
             authentication.OnSuccesAuthentication -= Load;
+            authentication.OnFailedAuthentication -= LoadWithFailedAuthenctication;
         }
+
 
         private void Load()
         {
@@ -30,6 +34,11 @@ namespace Level
                 manager.LoadGame();
         }
 
+        private void LoadWithFailedAuthenctication()
+        {
+            if(manager!=null)
+                manager.LoadGame();
+        }
 
         // private void Start()
         // {

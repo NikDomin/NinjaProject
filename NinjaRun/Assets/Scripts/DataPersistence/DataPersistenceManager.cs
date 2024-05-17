@@ -6,14 +6,17 @@ using DataPersistence.Data;
 using Level;
 using UI;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D.Animation;
+using Utils;
 
 namespace DataPersistence
 {
     public class DataPersistenceManager : MonoBehaviour
     {
         public event Action OnLoadEndSuccefully;
+   
         [Header("Debugging")] 
         [SerializeField] private bool disableDataPersistence;
         
@@ -39,7 +42,7 @@ namespace DataPersistence
         // public CloudDataHandler CloudDataHandler { get; private set; }
         
         public GameData gameData;
-        public GameData GameDataToLoad;
+        // public GameData GameDataToLoad;
         public bool IsSaved;
         private List<IDataPersistence> dataPersistenceObjects;
         private CloudDataHandler cloudDataHandler;
@@ -118,30 +121,44 @@ namespace DataPersistence
         
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            
             loadScreen = FindObjectOfType<LoadScreen>();
             Debug.Log("OnSceneLoaded");
             // CloudSaveGameUI.Instance.LogText.text += "On Scene Loaded ";
             dataPersistenceObjects = FindAllDataPersistenceObjects();
+            
+            // if on main menu and not authenticated - return
+            var sceneName = SceneManager.GetActiveScene().name;
+            if(sceneName == "MainMenu" && !Social.localUser.authenticated)
+                return;
             
             LoadGame();
         }
         
         public void LoadGame()
         {
+            if(TimeManager.Instance != null) 
+                TimeManager.Instance.PauseGame();
+            
+            Debug.Log("Load Game Start");
             if (disableDataPersistence)
             {
-                loadScreen.HideLoadScreen();                
+                Debug.LogWarning("Data Persistence has disable flag");
+                loadScreen.HideLoadScreen();
+                if(TimeManager.Instance != null) 
+                    TimeManager.Instance.UnpauseGame();
                 return;
+                
             }
 
             if (Social.localUser.authenticated)
             {
-                
+                Debug.Log("Local User authenticated, try load from cloud");
                 //Try get data from cloud
                 // CloudSaveGameUI.Instance.LogText.text += "CloudLoadGame from manager";
                 cloudDataHandler.LoadData();
                 /////
-                gameData = GameDataToLoad;
+                // gameData = GameDataToLoad;
                 // CloudSaveGameUI.Instance.LogText.text += "After load game data:";
                 // CloudSaveGameUI.Instance.LogText.text += "coins count: " + gameData.CoinsCount;
                 
@@ -152,6 +169,7 @@ namespace DataPersistence
                 //Load data from a file
                 // CloudSaveGameUI.Instance.LogText.text += "Load from jsonfile";
 
+                Debug.Log("User is not authenticated, try load from disk");
                 gameData = dataHandler.Load();
                 if(gameData == null)
                     NewGame();
@@ -176,6 +194,7 @@ namespace DataPersistence
         }
         public void LoadToObjects(GameData gameData)
         {
+            Debug.Log("Load to objects");
             // CloudSaveGameUI.Instance.LogText.text += " Load To Objects";
             if (gameData == null)
             {
@@ -186,8 +205,19 @@ namespace DataPersistence
             {
                 item.LoadData(gameData);
             }
+            Debug.Log("HideLoadScreen");
             loadScreen.HideLoadScreen();
+            Debug.Log("OnLoadEnd");
             OnLoadEndSuccefully?.Invoke();
+           
+            //if on choose level scene
+            var ChooseLevel = FindObjectOfType<ChooseLevel>();
+            if (ChooseLevel != null)
+            {
+                ChooseLevel.FindLevelNeedToPass();
+            }
+            if(TimeManager.Instance != null) 
+                TimeManager.Instance.UnpauseGame();
         }
 
         public void SaveGame()
@@ -200,7 +230,7 @@ namespace DataPersistence
             if (this.gameData == null)
             {
                 Debug.LogWarning("No AnimationData was found. A New Game needs to be started before AnimationData can be saved.");
-                // loadScreen.HideLoadScreen();
+                loadScreen.HideLoadScreen();
                 return;
             }
             

@@ -46,12 +46,12 @@ namespace Level
             }
             data.LevelPassed.Add(LevelName, isLevelPassed);
 
-            if (isLevelPassed && LevelName == data.levelNeedToPass)
-            {
-                int levelPassed = Convert.ToInt32(LevelName);
-                levelPassed++;
-                data.levelNeedToPass = levelPassed.ToString();
-            }
+            // if (isLevelPassed && LevelName == data.levelNeedToPass)
+            // {
+            //     int levelPassed = Convert.ToInt32(LevelName);
+            //     levelPassed++;
+            //     data.levelNeedToPass = levelPassed.ToString();
+            // }
         }
     }
 }

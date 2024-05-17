@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using DataPersistence;
 using DataPersistence.Data;
 using Input;
@@ -14,6 +15,15 @@ namespace UI
     {
         [FormerlySerializedAs("level")] [SerializeField] private string levelName;
         [SerializeField] private bool testIsLevelPassed;
+        public bool IsLevelPassed
+        {
+            get { return testIsLevelPassed;}
+        }
+
+        public int LevelName
+        {
+            get { return Convert.ToInt32(levelName); }
+        }
         [SerializeField] private Image lockImage;
 
      
@@ -34,6 +44,13 @@ namespace UI
         public void LoadScene()
         {
             StartCoroutine(LoadSceneWithSave());
+        }
+
+        public void SetLevelNeedToComplete()
+        {
+            SetImageAlpha(0.5f);
+            lockImage.gameObject.SetActive(false);
+            GetComponent<Button>().interactable = true;
         }
         private IEnumerator LoadSceneWithSave()
         {
@@ -56,6 +73,7 @@ namespace UI
             imageColor.a = alpha;
             image.color = imageColor;
         }
+        
 
         #region SaveSystem
 
@@ -67,12 +85,12 @@ namespace UI
                 lockImage.gameObject.SetActive(false);
                 GetComponent<Button>().interactable = true;
             }
-            else if (!testIsLevelPassed && levelName == data.levelNeedToPass)
-            {
-                SetImageAlpha(0.5f);
-                lockImage.gameObject.SetActive(false);
-                GetComponent<Button>().interactable = true;
-            }
+            // else if (!testIsLevelPassed && levelName == data.levelNeedToPass)
+            // {
+            //     SetImageAlpha(0.5f);
+            //     lockImage.gameObject.SetActive(false);
+            //     GetComponent<Button>().interactable = true;
+            // }
             else if (!testIsLevelPassed)
             {
                 SetImageAlpha(0.5f);

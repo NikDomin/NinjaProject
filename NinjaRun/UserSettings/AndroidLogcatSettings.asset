@@ -3,28 +3,16 @@
     "m_SelectedProcess": {
         "deviceId": "11f84fd0",
         "name": "com.RoflanCode.NinjaJumpRunner",
-        "processId": 26484,
+        "processId": 29120,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownProcessesForSerialization": [
         {
             "deviceId": "11f84fd0",
-            "name": "com.android.settings",
-            "processId": 24757,
-            "exited": true
-        },
-        {
-            "deviceId": "11f84fd0",
             "name": "com.miui.home",
             "processId": 5057,
             "exited": false
-        },
-        {
-            "deviceId": "11f84fd0",
-            "name": "com.RoflanCode.NinjaJumpRunner",
-            "processId": 25940,
-            "exited": true
         },
         {
             "deviceId": "11f84fd0",
@@ -42,6 +30,18 @@
             "deviceId": "11f84fd0",
             "name": "com.RoflanCode.NinjaJumpRunner",
             "processId": 26484,
+            "exited": true
+        },
+        {
+            "deviceId": "11f84fd0",
+            "name": "com.RoflanCode.NinjaJumpRunner",
+            "processId": 28706,
+            "exited": true
+        },
+        {
+            "deviceId": "11f84fd0",
+            "name": "com.RoflanCode.NinjaJumpRunner",
+            "processId": 29120,
             "exited": false
         }
     ],

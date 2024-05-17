@@ -22,11 +22,22 @@ namespace UI
                 gameObject.SetActive(false);
                 return;
             }
-            
-            virtualCamera = (CinemachineVirtualCamera)FindObjectOfType(typeof(CinemachineVirtualCamera));
+            //virtual 18
+            //main 20
+
+            virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+            // virtualCamera = (CinemachineVirtualCamera)FindObjectOfType(typeof(CinemachineVirtualCamera));
 
             if (PlayerPrefs.GetInt("MainCameraPPU") == 0 || PlayerPrefs.GetFloat("VirtualCameraSize") == 0f)
             {
+                if (Screen.width < 1920)
+                {
+                    Camera.main.GetComponent<PixelPerfectCamera>().assetsPPU = 20;
+                    virtualCamera.m_Lens.OrthographicSize = 18f;
+                    PlayerPrefs.SetInt("MainCameraPPU", 20);
+                    PlayerPrefs.SetFloat("VirtualCameraSize", 18f);
+                    return;
+                }
                 Camera.main.GetComponent<PixelPerfectCamera>().assetsPPU = 30;
                 virtualCamera.m_Lens.OrthographicSize = 18f;
                 PlayerPrefs.SetInt("MainCameraPPU", 30);
@@ -41,14 +52,34 @@ namespace UI
         }
         public void SetBigCameraSize()
         {
-            Camera.main.GetComponent<PixelPerfectCamera>().assetsPPU = 24;
-            virtualCamera.m_Lens.OrthographicSize = 22.4f;
-            PlayerPrefs.SetInt("MainCameraPPU", 24);
-            PlayerPrefs.SetFloat("VirtualCameraSize", 22.4f);
+            if (Screen.width < 1920)
+            {
+                Camera.main.GetComponent<PixelPerfectCamera>().assetsPPU = 18;
+                virtualCamera.m_Lens.OrthographicSize = 20f;
+                PlayerPrefs.SetInt("MainCameraPPU", 18);
+                PlayerPrefs.SetFloat("VirtualCameraSize", 20f);
+                return;
+            }
+            else
+            {
+                Camera.main.GetComponent<PixelPerfectCamera>().assetsPPU = 24;
+                virtualCamera.m_Lens.OrthographicSize = 22.4f;
+                PlayerPrefs.SetInt("MainCameraPPU", 24);
+                PlayerPrefs.SetFloat("VirtualCameraSize", 22.4f);
+            }
         }
 
         public void SetMediumCameraSize()
         {
+            if (Screen.width < 1920)
+            {
+                Camera.main.GetComponent<PixelPerfectCamera>().assetsPPU = 20;
+                virtualCamera.m_Lens.OrthographicSize = 18f;
+                PlayerPrefs.SetInt("MainCameraPPU", 20);
+                PlayerPrefs.SetFloat("VirtualCameraSize", 18f);
+                return;
+            }
+            
             Camera.main.GetComponent<PixelPerfectCamera>().assetsPPU = 30;
             virtualCamera.m_Lens.OrthographicSize = 18f;
             PlayerPrefs.SetInt("MainCameraPPU", 30);
@@ -57,6 +88,14 @@ namespace UI
 
         public void SetSmallCameraSize()
         {
+            if (Screen.width < 1920)
+            {
+                Camera.main.GetComponent<PixelPerfectCamera>().assetsPPU = 23;
+                virtualCamera.m_Lens.OrthographicSize = 16f;
+                PlayerPrefs.SetInt("MainCameraPPU", 23);
+                PlayerPrefs.SetFloat("VirtualCameraSize", 16f);
+                return;
+            }
             Camera.main.GetComponent<PixelPerfectCamera>().assetsPPU = 35;
             virtualCamera.m_Lens.OrthographicSize = 15.4f;
             PlayerPrefs.SetInt("MainCameraPPU", 35);
