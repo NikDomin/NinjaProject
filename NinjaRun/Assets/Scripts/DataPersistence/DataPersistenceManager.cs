@@ -230,8 +230,8 @@ namespace DataPersistence
             if (this.gameData == null)
             {
                 Debug.LogWarning("No AnimationData was found. A New Game needs to be started before AnimationData can be saved.");
+                gameData = new GameData();
                 loadScreen.HideLoadScreen();
-                return;
             }
             
             foreach (var item in dataPersistenceObjects)
