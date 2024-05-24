@@ -777,6 +777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelComplete
       objectReference: {fileID: 0}
+    - target: {fileID: 8229547251463639512, guid: 8b414c474382e18448d04ef0e515650d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8229547251463639527, guid: 8b414c474382e18448d04ef0e515650d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -24242,7 +24246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3842180524254740738, guid: 9842956a9dea64541b6f28d2e965a214, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3842180524254740738, guid: 9842956a9dea64541b6f28d2e965a214, type: 3}
       propertyPath: m_AnchorMax.x

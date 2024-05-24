@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using Level.Resettable;
+using UnityEngine;
 
 namespace Movement
 {
-    public class PatrolMovement : MonoBehaviour
+    public class PatrolMovement : MonoBehaviour, IResettable
     {
         [SerializeField] private Transform firstPoint;
         [SerializeField] private Transform secondPoint;
@@ -10,12 +12,25 @@ namespace Movement
         [SerializeField] private float patrolSpeed;
 
         private Transform currentPoint;
+        private Vector3 resetPosition;
         
+        private void OnEnable()
+        {
+            resetPosition = surikenHandler.position;
+        }
+
         private void Start()
         {
             currentPoint = firstPoint;
         }
 
+        public void Reset()
+        {
+            currentPoint = firstPoint;
+            surikenHandler.position = resetPosition;
+            gameObject.SetActive(true);
+            
+        }
 
         // Update is called once per frame
         void FixedUpdate()

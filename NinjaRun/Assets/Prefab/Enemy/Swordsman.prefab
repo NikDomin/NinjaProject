@@ -575,6 +575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6803228438609109515}
   - component: {fileID: 6803228438609109516}
+  - component: {fileID: 7615821439622355046}
   m_Layer: 0
   m_Name: Swordsman
   m_TagString: Untagged
@@ -590,7 +591,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6803228438609109514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.214966, y: 27.535389, z: -0.07702235}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -616,6 +617,18 @@ MonoBehaviour:
   enemy: {fileID: 6803228437389277337}
   deadTransform: {fileID: 6803228437849417086}
   animationEventHandler: {fileID: 6803228437849417083}
+--- !u!114 &7615821439622355046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6803228438609109514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf98d8d365543829f199e224af5555c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6803228438680502371
 GameObject:
   m_ObjectHideFlags: 0

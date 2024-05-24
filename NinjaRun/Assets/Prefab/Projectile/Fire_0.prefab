@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7719051785078348013}
   - component: {fileID: 7670262266136544555}
   - component: {fileID: 8974406253807416956}
+  - component: {fileID: 6922423722313565767}
   m_Layer: 0
   m_Name: Fire_0
   m_TagString: Untagged
@@ -166,3 +167,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToLive: 1
+--- !u!114 &6922423722313565767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4517697543004013559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c157ef591d454bb99c29d415e4b1de9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

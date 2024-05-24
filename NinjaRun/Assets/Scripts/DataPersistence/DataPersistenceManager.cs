@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataPersistence.Data;
 using Level;
+using Services;
 using UI;
 using UnityEngine;
 using UnityEngine.Events;
@@ -94,10 +96,21 @@ namespace DataPersistence
             if(cloudDataHandler != null) 
                 cloudDataHandler.OnSaveCallback -= CloudSaveCallback;
         }
-        private void Start()
+        
+        void OnApplicationFocus(bool hasFocus)
         {
+            if (!hasFocus)
+            {
+                var levelPlayAds = FindObjectOfType<LevelPlayAds>();
+                if (levelPlayAds == null)
+                    return;
+                if (levelPlayAds.isAdsPlaying)
+                    return;
+                //Save
+                StartCoroutine(SaveWhenFocusLost());
+            }
         }
-
+        
         // private void OnApplicationQuit()
         // {
         //     SaveGame();
@@ -269,6 +282,14 @@ namespace DataPersistence
                 IsSaved = true;
             }
             // loadScreen.HideLoadScreen();
+        }
+
+        private IEnumerator SaveWhenFocusLost()
+        {
+            SaveGame();
+            yield return new WaitUntil(() => IsSaved);
+            IsSaved = false;
+            loadScreen.HideLoadScreen();
         }
 
         private List<IDataPersistence> FindAllDataPersistenceObjects()

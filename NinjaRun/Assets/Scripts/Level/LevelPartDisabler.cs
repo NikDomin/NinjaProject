@@ -10,6 +10,7 @@ namespace Level
         [SerializeField] private float disableDistance;
         [SerializeField] private float invokeCD;
         [SerializeField] private bool isHasCheckPoint;
+        public bool isDisable;
         
         private NewLevelPool levelPool;
         private LevelPart levelPart;
@@ -25,7 +26,8 @@ namespace Level
 
         private void Start()
         {
-            InvokeRepeating(nameof(TryDisableLevelParts), 0, invokeCD);
+            if(isDisable) 
+                InvokeRepeating(nameof(TryDisableLevelParts), 0, invokeCD);
         }
 
         private void TryDisableLevelParts()

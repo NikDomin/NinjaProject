@@ -467,7 +467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5205499054424064542, guid: 4687e1a907e22f2429903b0a5df68dbd, type: 3}
       propertyPath: orthographic size
-      value: 18
+      value: 22.4
       objectReference: {fileID: 0}
     - target: {fileID: 5205499054424064542, guid: 4687e1a907e22f2429903b0a5df68dbd, type: 3}
       propertyPath: m_AllowDynamicResolution
@@ -2277,7 +2277,7 @@ PrefabInstance:
       objectReference: {fileID: 454810625}
     - target: {fileID: 1776130161722677703, guid: ecedeb5fc5844c24fa1bfb3288d7c121, type: 3}
       propertyPath: m_Lens.OrthographicSize
-      value: 18
+      value: 22.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecedeb5fc5844c24fa1bfb3288d7c121, type: 3}

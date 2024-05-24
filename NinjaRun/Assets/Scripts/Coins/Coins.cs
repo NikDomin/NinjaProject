@@ -16,5 +16,6 @@ namespace Coins
             PopupText.Instance.GetTextCanvas("+" + $" {coinsToAdd}", transform.position);
             OnPickUpCoins?.Invoke();
         }
+
     }
 }

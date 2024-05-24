@@ -1,8 +1,9 @@
+using Level.Resettable;
 using UnityEngine;
 
 namespace Agent.Enemy.EnemyMovement
 {
-    public class EnemyFlyMovement: EnemyAbstractMovement
+    public class EnemyFlyMovement: EnemyAbstractMovement, IResettable
     {
         [SerializeField] private Transform firstPosition;
         [SerializeField] private Transform secondPosition;
@@ -10,16 +11,26 @@ namespace Agent.Enemy.EnemyMovement
         
         private Vector2 directionVector;
         private Rigidbody2D _rigidbody2D;
-
+        private Vector3 resetPosition;
+        
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             IsCanMove = true;
         }
 
+
         private void OnEnable()
         {
+            resetPosition = transform.position;
             ChangeDirection(firstPosition.position - transform.position);
+        }
+        public void Reset()
+        {
+            transform.position = resetPosition;
+            gameObject.SetActive(true);
+            ChangeDirection(firstPosition.position - transform.position);
+    
         }
 
         public override void Movement()

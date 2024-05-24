@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Agent.Player.PlayerStateMachine;
 using Level;
+using Level.Add;
 using TMPro;
 using UI;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace Services
         public event Action OnAdUnavailable;
         public event Action OnAdWatchedSuccesfully;
         public static LevelPlayAds Instance { get; private set; }
+
+        public bool isAdsPlaying;
         
         #region Mono
 
@@ -83,10 +86,12 @@ namespace Services
         {
             if (IronSource.Agent.isRewardedVideoAvailable())
             {
+                isAdsPlaying = true;
                 IronSource.Agent.showRewardedVideo();
             }
             else
             {
+                isAdsPlaying = false;
                 Debug.Log("Reward video not available");
             }
         }
@@ -106,6 +111,7 @@ namespace Services
 // This replaces the RewardedVideoAvailabilityChangedEvent(false) event
         void RewardedVideoOnAdUnavailable()
         {
+            isAdsPlaying = false;
             OnAdUnavailable?.Invoke();   
         }
 // The Rewarded Video ad view has opened. Your activity will loose focus.
@@ -127,6 +133,16 @@ namespace Services
                 .First();
             // CheckPoint checkPoint = checkPointsActivatedByPlayer.Max();
             firstCheckPoint.SpawnHero(player);
+            var watchedAddsObjects = FindAllWatchedAddObjects();
+            if (watchedAddsObjects != null)
+            {
+                foreach (var item in watchedAddsObjects)
+                {
+                    item.SuccessWatchedAdd();
+                }
+            }
+
+            isAdsPlaying = false;
             OnAdWatchedSuccesfully?.Invoke();
             
         }
@@ -147,6 +163,16 @@ namespace Services
             var checkPoints = FindObjectsOfType<CheckPoint>();
 
             return new List<CheckPoint>(checkPoints);
+        }
+        
+        private List<IWatchedAdd> FindAllWatchedAddObjects()
+        {
+            //Find all the scripts that implement the AnimationData saving interface
+            // FindObjectsofType takes in an optional boolean to include inactive gameobjects
+            IEnumerable<IWatchedAdd> WatchedAddsObjects = FindObjectsOfType<MonoBehaviour>(true)
+                .OfType<IWatchedAdd>();
+
+            return new List<IWatchedAdd>(WatchedAddsObjects);
         }
     }
 }

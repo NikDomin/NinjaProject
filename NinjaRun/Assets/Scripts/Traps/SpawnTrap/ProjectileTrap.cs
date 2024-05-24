@@ -2,6 +2,7 @@ using System;
 using NewObjectPool;
 using ObjectsPool;
 using Projectiles;
+using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Utils;
@@ -24,12 +25,18 @@ namespace Traps.SpawnTrap
         private ISpawnTrap spawnTrap;
         private PoolMono<ProjectileTrigger> projectilePool;
         private Animator animator;
+
+        private GameOverPanel gameOverPanel;
         
         
         private readonly int ShootingKey = Animator.StringToHash("Shooting");
-        
+
+        #region MONO
+
         private void Awake()
         {
+            gameOverPanel = FindObjectOfType<GameOverPanel>(true);
+            
             projectilePool = new PoolMono<ProjectileTrigger>(objectToSpawn, poolPreloadCount);
             projectilePool.autoExpand = poolAutoExpand;
             
@@ -39,15 +46,32 @@ namespace Traps.SpawnTrap
             InvokeRepeating(nameof(StartAttack), 1f, reloadTimeSeconds);
         }
 
-        private void OnDisable()
+        private void OnEnable()
         {
-            // projectilePool.ReturnAllElement();
+            gameOverPanel.OnEndResetLevel += Reset;
         }
 
+        private void OnDisable()
+        {
+            gameOverPanel.OnEndResetLevel -= Reset;
+        }
         private void OnValidate()
         {
             transform.rotation = GameUtils.GetRotation(GameUtils.GetDirection(trapDirection));
         }
+
+        #endregion
+
+        private void Reset()
+        {
+            CancelInvoke(nameof(StartAttack));
+              
+            projectilePool = new PoolMono<ProjectileTrigger>(objectToSpawn, poolPreloadCount);
+            projectilePool.autoExpand = poolAutoExpand;
+            
+            InvokeRepeating(nameof(StartAttack), 1f, reloadTimeSeconds);
+        }
+
 
         public void ProjectileShoot()
         {

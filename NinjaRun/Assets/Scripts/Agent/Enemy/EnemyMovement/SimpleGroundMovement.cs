@@ -1,8 +1,10 @@
+using System;
+using Level.Resettable;
 using UnityEngine;
 
 namespace Agent.Enemy.EnemyMovement
 {
-    public class SimpleGroundMovement : MonoBehaviour
+    public class SimpleGroundMovement : MonoBehaviour, IResettable
     {
         [SerializeField] private Transform leftCorner;
         [SerializeField] private Transform rightCorner;
@@ -10,6 +12,7 @@ namespace Agent.Enemy.EnemyMovement
         
         private Vector2 directionVector;
         private Rigidbody2D _rigidbody;
+        private Vector3 resetPosition;
 
         #region Mono
 
@@ -17,6 +20,12 @@ namespace Agent.Enemy.EnemyMovement
         {
             _rigidbody = GetComponent<Rigidbody2D>();
         }
+
+        private void OnEnable()
+        {
+            resetPosition = transform.position;
+        }
+
         private void Start()
         {
             ChangeDirection(Vector2.right);
@@ -28,7 +37,14 @@ namespace Agent.Enemy.EnemyMovement
         }
 
         #endregion
-        
+
+        public void Reset()
+        {
+            transform.position = resetPosition;
+            ChangeDirection(Vector2.right);
+            gameObject.SetActive(true);
+        }
+
         private void Movement()
         {
             

@@ -1,5 +1,6 @@
 ﻿using System;
 using Level.LevelSpawners;
+using Level.Resettable;
 using UnityEngine;
 
 namespace Level
@@ -8,7 +9,7 @@ namespace Level
     // {
     //     public virtual void Spawn(int id){}
     // }
-    public class LevelGenerator : MonoBehaviour
+    public class LevelGenerator : MonoBehaviour, IResettable
     {
         [SerializeField] private Transform player;
         [SerializeField] private float distanceSpawnLevelPart = 200f;
@@ -26,8 +27,6 @@ namespace Level
             // levelPool = GetComponent<LevelPool>();
             newLevelPool = GetComponent<NewLevelPool>();
             levelPartSpawner = GetComponent<ILevelPartSpawner>();
-            
-            
         }
 
         private void Start()
@@ -48,6 +47,13 @@ namespace Level
                 
                 levelPartSpawner.Spawn(SpawnLevelPart);
             }
+        }
+
+        public void Reset()
+        {
+            newLevelPool.ResetSlots();
+            levelPartsCount = newLevelPool.GetLevelPartsCount();
+            endTransform = transform;
         }
 
         private void SpawnLevelPart(int id)

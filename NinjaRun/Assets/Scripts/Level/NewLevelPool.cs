@@ -39,6 +39,14 @@ namespace Level
 
             return count;
         }
+        public void ResetSlots()
+        {
+            foreach (var item in levelPartSlots)
+            {
+                item.levelPartPool = new PoolMono<LevelPart>(item.levelPart, item.poolPreloadCount, transform);
+                item.levelPartPool.autoExpand = true;
+            }
+        }
     }
 
     [Serializable]

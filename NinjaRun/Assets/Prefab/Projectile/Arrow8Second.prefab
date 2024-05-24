@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1336111370537799447}
   - component: {fileID: 9024406713856837118}
   - component: {fileID: 7136435673150370234}
+  - component: {fileID: 7064624098106253163}
   m_Layer: 0
   m_Name: Arrow8Second
   m_TagString: Untagged
@@ -180,3 +181,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToLive: 8
+--- !u!114 &7064624098106253163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097265887028662682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c157ef591d454bb99c29d415e4b1de9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

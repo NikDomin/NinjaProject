@@ -2,13 +2,14 @@
 using Agent.Enemy;
 using Assets.Scripts.Agent;
 using Assets.Scripts.Agent.Player;
+using Level.Resettable;
 using ObjectsPool;
 using UnityEngine;
 using Utils;
 
 namespace Agent.Player
 {
-    public class PlayerAttack : AttackComponent
+    public class PlayerAttack : AttackComponent, IResettable
     {
         private PlayerAnimationHandler animationHandler;
         [SerializeField] private Transform AttackEffect;
@@ -81,6 +82,11 @@ namespace Agent.Player
         }
 
         #endregion
+
+        public void Reset()
+        {
+            attackEffectObjectPool = new GameObjectPool(AttackEffect.gameObject, 2);
+        }
 
         private IEnumerator DelayEndEffect()
         {

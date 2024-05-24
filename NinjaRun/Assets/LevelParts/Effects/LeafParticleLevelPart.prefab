@@ -4906,3 +4906,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disableDistance: 60
   invokeCD: 1
+  isHasCheckPoint: 0
+  isDisable: 1

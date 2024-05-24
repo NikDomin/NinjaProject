@@ -1,3 +1,4 @@
+using Level.Resettable;
 using Movement;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace Agent.Enemy.EnemyMovement
         WithEnemyAi,
         Simple,
     }
-    public class EnemyOnGroundMovement: EnemyAbstractMovement
+    public class EnemyOnGroundMovement: EnemyAbstractMovement, IResettable
     {
         [SerializeField] private Transform leftCorner;
         [SerializeField] private Transform rightCorner;
@@ -21,6 +22,7 @@ namespace Agent.Enemy.EnemyMovement
         private Vector2 directionVector;
         private Rigidbody2D _rigidbody;
         private EnemyAnimator enemyAnimator;
+        private Vector3 resetPosition;
         
         #region Mono
 
@@ -32,6 +34,7 @@ namespace Agent.Enemy.EnemyMovement
 
         private void OnEnable()
         {
+            resetPosition = transform.position;
             ChangeDirection(Vector2.right);
         }
 
@@ -55,6 +58,13 @@ namespace Agent.Enemy.EnemyMovement
             Gizmos.DrawWireSphere(transform.TransformPoint(groundCheckPosition), groundCheckRadius);
         }
         #endregion
+
+        public void Reset()
+        {
+            transform.position = resetPosition;
+            gameObject.SetActive(true);
+            ChangeDirection(Vector2.right);
+        }
 
         public override void Movement()
         {

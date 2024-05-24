@@ -2,13 +2,14 @@ using System;
 using Agent;
 using DataPersistence;
 using DataPersistence.Data;
+using Level.Resettable;
 using Services;
 using TMPro;
 using UnityEngine;
 
 namespace Level
 {
-    public class PlayerEndlessRunScore : MonoBehaviour, IDataPersistence
+    public class PlayerEndlessRunScore : MonoBehaviour, IDataPersistence, IResettable
     {
         public static PlayerEndlessRunScore Instance;
         [SerializeField] private TextMeshProUGUI scoreText;
@@ -17,6 +18,8 @@ namespace Level
         private int score = 0;
         private bool isUpdateScore;
         private bool isBeginnerRunnerAlreadyCompleted;
+
+        #region Mono
 
         private void Awake()
         {
@@ -50,6 +53,9 @@ namespace Level
             }
         }
 
+        #endregion
+
+        
         private void StopUpdateScore()
         {
             isUpdateScore = false;
@@ -67,6 +73,15 @@ namespace Level
             playerTransform.GetComponent<PlayerHealth>().OnDead.AddListener(StopUpdateScore);  
         }
 
+        public void Reset()
+        {
+            currentMaxPosition = Convert.ToInt32(transform.position.x);
+            score = 0;
+            isUpdateScore = true;
+        }
+
+        #region SaveSystem
+
         public void LoadData(GameData data)
         {
             isBeginnerRunnerAlreadyCompleted = data.IsBeginnerRunnerAlreadyComplited;
@@ -76,5 +91,7 @@ namespace Level
         {
             data.IsBeginnerRunnerAlreadyComplited = isBeginnerRunnerAlreadyCompleted;
         }
+
+        #endregion
     }
 }

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 598413704498610859}
   - component: {fileID: 598413704498610852}
   - component: {fileID: 612366092073318486}
+  - component: {fileID: 3015896121499830551}
   m_Layer: 0
   m_Name: CopperCoin
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598413704498610853}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.75, y: 18.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -226,3 +227,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SFXClips:
   - {fileID: 8300000, guid: a26b7bbfc4d70df42baa11f71f82926f, type: 3}
+--- !u!114 &3015896121499830551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598413704498610853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf98d8d365543829f199e224af5555c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

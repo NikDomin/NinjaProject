@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 7629404035007029790}
   - component: {fileID: 7629404035007029791}
   - component: {fileID: -2717411104860848870}
+  - component: {fileID: -782905014257401854}
   m_Layer: 0
   m_Name: JungleLevelPart4
   m_TagString: Untagged
@@ -311,6 +312,19 @@ MonoBehaviour:
   disableDistance: 70
   invokeCD: 5
   isHasCheckPoint: 1
+  isDisable: 1
+--- !u!114 &-782905014257401854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7629404035007029784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c157ef591d454bb99c29d415e4b1de9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7629404035061078025
 GameObject:
   m_ObjectHideFlags: 0
