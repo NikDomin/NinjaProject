@@ -35,10 +35,5 @@ namespace Agent.Player
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(transform.TransformPoint(CeilingCheckPosition), transform.TransformPoint(CeilingCheckPosition) + transform.up * CeilRayLength);
         }
-
-        //private void FixedUpdate()
-        //{
-        //    AgentUtils.SpriteDirection(transform, swipeDetection.directionSwipe);
-        //}
     }
 }

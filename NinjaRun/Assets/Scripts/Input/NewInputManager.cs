@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -44,8 +43,6 @@ namespace Input
             PlayerInput = GetComponent<PlayerInput>();
             mainCamera = Camera.main;
 
-
-            //new
             _primaryTouch = PlayerInput.actions["PrimaryContact"];
             _touchPosition = PlayerInput.actions["PrimaryPosition"];
             _startPosition = PlayerInput.actions["PrimaryStartPosition"];
@@ -53,20 +50,14 @@ namespace Input
 
         private void OnEnable()
         {
-
-            //new
             _primaryTouch.started += StartTouchPrimary;
             _primaryTouch.canceled += EndTouchPrimary;
         }
 
         private void OnDisable()
         {
-          
-            //new
             _primaryTouch.started -= StartTouchPrimary;
             _primaryTouch.canceled -= EndTouchPrimary;
-            
-
         }
 
         private void OnDestroy()
@@ -85,28 +76,25 @@ namespace Input
             isUseCancellationToken = true;
         }
 
-        private void EndTouchPrimary(InputAction.CallbackContext ctx)
-        {
-            OnEndTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, _touchPosition.ReadValue<Vector2>()), (float)ctx.startTime);
-            //Debug.Log("End touch");
-
-            
-
-        }
-
         private async void StartTouchPrimary(InputAction.CallbackContext ctx)
         {
             await Task.Delay(10);
 
-            OnStartTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, _startPosition.ReadValue<Vector2>()), (float)ctx.startTime);
+            OnStartTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera, 
+                _startPosition.ReadValue<Vector2>()), (float)ctx.startTime);
             if (isUseCancellationToken)
             {
                 TokenSource?.Cancel();
                 isUseCancellationToken = false;
             }
-                
-           
         }
+        
+        private void EndTouchPrimary(InputAction.CallbackContext ctx)
+        {
+            OnEndTouch?.Invoke(Utils.ScreenUtils.ScreenToWorld(mainCamera,
+                _touchPosition.ReadValue<Vector2>()), (float)ctx.startTime);
+        }
+
 
         
         

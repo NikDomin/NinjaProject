@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Agent.Player.PlayerStateMachine;
 using Input;
 using UnityEngine;
-using UnityEngine.UI;
 using Utils;
 
 namespace Movement
@@ -123,6 +122,7 @@ namespace Movement
 
             SwipeStart(position, time);
         }
+        
         private async void AwaitStartSwipe()
         {
             await Task.Delay(80);
@@ -247,12 +247,6 @@ namespace Movement
             alreadyEndTouch = false;
             ResetSwipeCount();
         }
-
-        // private void ResetPositions()
-        // {
-        //     startPosition = Vector2.zero;
-        //     endPosition = Vector2.zero;
-        // }
         
         private void ResetSwipeCount()
         {
