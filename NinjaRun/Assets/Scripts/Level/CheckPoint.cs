@@ -1,6 +1,7 @@
 using Agent;
 using Agent.Player.PlayerStateMachine;
-using Input;
+using Input.Old_Input.Types;
+using Input.Old_Input;
 using Movement;
 using UnityEngine;
 
@@ -14,7 +15,8 @@ namespace Level
             player.transform.position = transform.position;
             player.gameObject.SetActive(true);
             player.GetComponent<PlayerHealth>().SetInvulnerability(2f);
-            NewInputManager.PlayerInput.SwitchCurrentActionMap("Touch");
+            // NewInputManager.PlayerInput.SwitchCurrentActionMap("Touch");
+            OldInputManager.Instance.ChangeActionMap(ActionMaps.Touch);
             player.GetComponent<NewSwipeDetection>().ResetAllValue();
             var playerState = player.GetComponent<PlayerState>();
             playerState.StateMachine.ChangeState(playerState.FlyState);

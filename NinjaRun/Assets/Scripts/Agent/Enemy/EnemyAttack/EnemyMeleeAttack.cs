@@ -156,7 +156,6 @@ namespace Agent.Enemy.EnemyAttack
             tokenSource = null;
 
             enemyAi.EnemyAnimator.Anim.SetTrigger(enemyAi.EnemyAnimator.AttackTriggerKey);
-
         }
 
         private void AttackPlayer()

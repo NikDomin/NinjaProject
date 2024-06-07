@@ -1,4 +1,5 @@
 using System.Collections;
+using Input.Old_Input;
 using Movement;
 using UnityEngine;
 
@@ -54,7 +55,7 @@ namespace Input
             isTrailCoroutineRunning = true;
             while (true)
             {
-                trail.transform.position = NewInputManager.Instance.PrimaryPosition();
+                trail.transform.position = OldInputManager.Instance.GetCurrentPosition();
                 yield return null;
                 isTrailCoroutineRunning = false;
             }

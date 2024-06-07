@@ -27,7 +27,8 @@ namespace Assets.Scripts.Components
 
             distance = (mainCamera.transform.position.x * parallaxEffect);
 
-            transform.position = new Vector3(startPos + distance, transform.position.y, transform.position.z);
+            transform.position = new Vector3(startPos + distance, 
+                transform.position.y, transform.position.z);
 
             if (temp > startPos+ length)
             {

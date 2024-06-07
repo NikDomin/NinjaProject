@@ -43,11 +43,6 @@ namespace Sound
 
                 if (rand <= cumulativeChance)
                 {
-                    //play sound
-                    // string path = Path.Combine("Sound/", item.AudioClipName);
-                    // audioSource.clip = Resources.Load<AudioClip>(path);
-                    // audioSource.Play();
-
                     AudioClip audioClip = await LoadAudioClip(item.AudioClipName);
                     audioSource.clip = audioClip;
                     audioSource.Play();

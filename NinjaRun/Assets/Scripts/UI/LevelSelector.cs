@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections;
+using Input.Old_Input.Types;
 using DataPersistence;
 using DataPersistence.Data;
-using Input;
+using Input.Old_Input;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,7 +31,7 @@ namespace UI
         
         private void Start()
         {
-            NewInputManager.PlayerInput.SwitchCurrentActionMap("UI");
+            OldInputManager.Instance.ChangeActionMap(ActionMaps.UI);
             
             GetComponentInChildren<TextMeshProUGUI>().text = levelName;
         }

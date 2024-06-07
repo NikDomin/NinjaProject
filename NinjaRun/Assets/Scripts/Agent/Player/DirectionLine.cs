@@ -1,5 +1,6 @@
 using System.Collections;
 using Input;
+using Input.Old_Input;
 using Movement;
 using UnityEngine;
 
@@ -53,13 +54,13 @@ namespace Agent.Player
             {
                 Vector2 direction;
                 lineRenderer.SetPosition(0, transform.position);
-                if (Vector2.Distance(startSwipePosition, NewInputManager.Instance.PrimaryPosition()) < 20f)
+                if (Vector2.Distance(startSwipePosition, OldInputManager.Instance.GetCurrentPosition()) < 20f)
                 {
-                    direction = (NewInputManager.Instance.PrimaryPosition() - startSwipePosition)/2;
+                    direction = (OldInputManager.Instance.GetCurrentPosition() - startSwipePosition)/2;
                 }
                 else
                 {
-                    direction =  ( NewInputManager.Instance.PrimaryPosition() - startSwipePosition).normalized * 12f;
+                    direction =  ( OldInputManager.Instance.GetCurrentPosition() - startSwipePosition).normalized * 12f;
                 }
                 
                 lineRenderer.SetPosition(1, transform.position + (Vector3)direction);

@@ -1,6 +1,7 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Input.Old_Input.Types;
 using Input;
+using Input.Old_Input;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,8 @@ namespace UI
         
         public virtual void EnablePanel()
         {
-            NewInputManager.PlayerInput.SwitchCurrentActionMap("UI");
+            // NewInputManager.PlayerInput.SwitchCurrentActionMap("UI");
+            OldInputManager.Instance.ChangeActionMap(ActionMaps.UI);
             
             gameObject.SetActive(true);
             
@@ -25,8 +27,8 @@ namespace UI
         {
             try
             {
-                await Delay(time);
-                NewInputManager.PlayerInput.SwitchCurrentActionMap("UI");
+                await Delay(time); 
+                OldInputManager.Instance.ChangeActionMap(ActionMaps.UI);
                 gameObject.SetActive(true);
 
                 if (pauseButton != null)
@@ -34,8 +36,8 @@ namespace UI
             }
             catch
             {
-                NewInputManager.PlayerInput.SwitchCurrentActionMap("UI");
-                
+                OldInputManager.Instance.ChangeActionMap(ActionMaps.UI);
+
                 gameObject.SetActive(true);
                 
                 if(pauseButton != null)
@@ -53,11 +55,11 @@ namespace UI
         public virtual void DisablePanel()
         {
             
-            NewInputManager.PlayerInput.SwitchCurrentActionMap("Touch");
-            
+            OldInputManager.Instance.ChangeActionMap(ActionMaps.Touch);
+
             
             //Fix stupid BUG when I cant press the pause button
-            NewInputManager.PlayerInput.actions.Enable();
+            // NewInputManager.PlayerInput.actions.Enable();
 
             gameObject.SetActive(false);
             

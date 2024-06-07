@@ -169,7 +169,8 @@ namespace Agent.Enemy.EnemyAttack
             if (playerCollider == null)
                 return;
             
-            ShootProjectile(projectilePool, transform, (playerCollider.transform.position - transform.position));
+            ShootProjectile(projectilePool, transform, 
+                (playerCollider.transform.position - transform.position));
             OnShoot?.Invoke();
         }
 

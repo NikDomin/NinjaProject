@@ -39,6 +39,7 @@ namespace Input
             //Token
             TokenSource = new CancellationTokenSource();
             Token = TokenSource.Token;
+            
 
             PlayerInput = GetComponent<PlayerInput>();
             mainCamera = Camera.main;

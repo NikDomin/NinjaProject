@@ -41,7 +41,8 @@ namespace Agent.Enemy.EnemyMovement
         private void FixedUpdate()
         {
             //enemy on the ground?
-            IsCanMove = PositionCheck.GroundCheck(transform.TransformPoint(groundCheckPosition), groundCheckRadius, groundLayer);
+            IsCanMove = PositionCheck.GroundCheck(transform.TransformPoint(groundCheckPosition), 
+                groundCheckRadius, groundLayer);
             if (!IsCanMove)
                 enemyAnimator.Anim.SetBool(enemyAnimator.DropOutKey, true);
             else
@@ -58,14 +59,7 @@ namespace Agent.Enemy.EnemyMovement
             Gizmos.DrawWireSphere(transform.TransformPoint(groundCheckPosition), groundCheckRadius);
         }
         #endregion
-
-        public void Reset()
-        {
-            transform.position = resetPosition;
-            gameObject.SetActive(true);
-            ChangeDirection(Vector2.right);
-        }
-
+        
         public override void Movement()
         {
             base.Movement();
@@ -77,6 +71,14 @@ namespace Agent.Enemy.EnemyMovement
             
             _rigidbody.velocity = new Vector2(runSpeed * directionVector.x * Time.deltaTime, -2);
         }
+
+        public void Reset()
+        {
+            transform.position = resetPosition;
+            gameObject.SetActive(true);
+            ChangeDirection(Vector2.right);
+        }
+
         
         private void ChangeDirection(Vector2 newDirection)
         {

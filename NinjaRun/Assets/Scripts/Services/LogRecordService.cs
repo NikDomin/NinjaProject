@@ -75,7 +75,7 @@ namespace Services
         }
         
         
-        //Save log  when focous is lost
+        //Save log  when focus is lost
         void OnApplicationFocus(bool hasFocus)
         {
             if (!hasFocus)

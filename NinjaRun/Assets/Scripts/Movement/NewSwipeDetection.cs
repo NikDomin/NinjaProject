@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Agent.Player.PlayerStateMachine;
 using Input;
+using Input.Old_Input;
 using UnityEngine;
 using Utils;
 
@@ -59,12 +60,12 @@ namespace Movement
 
         
         public Rigidbody2D _rigidbody2D { get; private set; }
+        private Camera mainCamera;
         private PlayerState playerState;
         
         private Vector2 startPosition;
-        private float startTime;
         private Vector2 endPosition;
-        private float endTime;
+
 
         private bool alreadyStartTouch;
         private bool alreadyEndTouch;
@@ -83,6 +84,8 @@ namespace Movement
             currentSwipeCount = maxSwipeCount;
 
             playerState.OnLanding += ResetSwipeCount;
+
+            mainCamera = Camera.main;
         }
         
         private void OnDestroy()
@@ -95,24 +98,30 @@ namespace Movement
 
         #region SwipeHandler
 
-        public void SwipeStartHandler(Vector2 position, float time)
+        public void SwipeStartHandler(Vector2 position)
         {
-            Vector3 screenPoint = ScreenUtils.WorldToScreen(Camera.main, position);
-            // Debug.Log("Start handler: " + screenPoint);
-            if (screenPoint.x < Screen.width / 10f && screenPoint.y > Screen.height / 1.35f)
-            {
-                // ResetPositions();
+            
+            // Vector3 screenPoint = ScreenUtils.WorldToScreen(Camera.main, position);
+            // // Debug.Log("Start handler: " + screenPoint);
+            // if (screenPoint.x < Screen.width / 10f && screenPoint.y > Screen.height / 1.35f)
+            // {
+            //     // ResetPositions();
+            //     return;
+            // }
+            // if(screenPoint.x ==0 || screenPoint.y == 0)
+            //     return;
+            //
+            // // Debug.Log("Start swipe position:" + position);
+            // if (alreadyStartTouch)
+            // {
+            //     AwaitStartSwipe();
+            //     return;
+            // }
+            if (position.x < Screen.width / 10f && position.y > Screen.height / 1.3f)
                 return;
-            }
-            if(screenPoint.x ==0 || screenPoint.y == 0)
+            if (position.x == 0 || position.y == 0)
                 return;
-      
-            // Debug.Log("Start swipe position:" + position);
-            if (alreadyStartTouch)
-            {
-                AwaitStartSwipe();
-                return;
-            }
+            
 
             if (currentSwipeCount <= 0)
             {
@@ -120,48 +129,53 @@ namespace Movement
                 return;
             }
 
-            SwipeStart(position, time);
+            SwipeStart(position);
         }
         
         private async void AwaitStartSwipe()
         {
-            await Task.Delay(80);
+            await Task.Delay(20);
             alreadyStartTouch = false;
         }
 
-        public void SwipeEndHandler(Vector2 position, float time)
+        public void SwipeEndHandler(Vector2 position)
         {
-            // Debug.Log("Swipe end position:" + position);
-            
-            Vector3 screenPoint = ScreenUtils.WorldToScreen(Camera.main, position);
-            // Debug.Log("End handler: " + screenPoint);
-            if(screenPoint.x < Screen.width/10f && screenPoint.y > Screen.height/1.35f)
-            {
-                // ResetPositions();
-                return;
-            }
-            
-            if(screenPoint.x ==0 || screenPoint.y == 0)
-                return;
-            
-            if (alreadyEndTouch)
-            {
-                AwaitEndSwipe();
-                return;
-            }
+            // // Debug.Log("Swipe end position:" + position);
+            //
+            // Vector3 screenPoint = ScreenUtils.WorldToScreen(Camera.main, position);
+            // // Debug.Log("End handler: " + screenPoint);
+            // if(screenPoint.x < Screen.width/10f && screenPoint.y > Screen.height/1.35f)
+            // {
+            //     // ResetPositions();
+            //     return;
+            // }
+            //
+            // if(screenPoint.x ==0 || screenPoint.y == 0)
+            //     return;
+            //
+            // if (alreadyEndTouch)
+            // {
+            //     AwaitEndSwipe();
+            //     return;
+            // }
 
+            if (position.x < Screen.width / 10f && position.y > Screen.height / 1.3f)
+                return;
+            if (position.x == 0 || position.y == 0)
+                return;
+            
             if (currentSwipeCount <= 0)
             {
                 AwaitEndSwipe();
                 return;
             }
             
-            SwipeEnd(position, time);
+            SwipeEnd(position);
         }
 
         private async void AwaitEndSwipe()
         {
-            await Task.Delay(80);
+            await Task.Delay(20);
             alreadyEndTouch = false;
         }
 
@@ -172,33 +186,33 @@ namespace Movement
             currentSwipeCount = maxSwipeCount;
         }
         
-        private void SwipeStart(Vector2 position, float time)
+        private void SwipeStart(Vector2 position)
         {
             alreadyStartTouch = true;
-            startPosition = position;
-            startTime = time;
+            startPosition = ScreenUtils.ScreenToWorld(mainCamera,position);
             
             //ChangeTimeScale
             TimeManager.Instance.ChangeGameTimeScale(0.5f);
 
           
 
-            var cursorPosition = NewInputManager.Instance.PrimaryPosition();
-            OnSwipeStart?.Invoke(cursorPosition);
+            // var cursorPosition = OldInputManager.Instance.GetCurrentPosition();
+            // Debug.Log("OnSwipeStart: " + cursorPosition);
+            OnSwipeStart?.Invoke(startPosition);
         }
 
-        private void SwipeEnd(Vector2 position, float time)
+        private void SwipeEnd(Vector2 position)
         {
             alreadyEndTouch = true;
-            endPosition = position;
-            endTime = time;
+            endPosition = ScreenUtils.ScreenToWorld(mainCamera,position);
 
             //ChangeTimeScale
             TimeManager.Instance.ChangeGameTimeScale(1);
 
             
-            var cursorPosition = NewInputManager.Instance.PrimaryPosition();
-            OnSwipeEnd?.Invoke(cursorPosition);
+            // var cursorPosition = OldInputManager.Instance.GetCurrentPosition();
+            // Debug.Log("OnSwipeEnd: " + cursorPosition);
+            OnSwipeEnd?.Invoke(endPosition);
             
             DetectSwipe();
         }
@@ -208,8 +222,7 @@ namespace Movement
             // Debug.Log("#####################");
             // Debug.Log($"Vector swipe distance: {Vector3.Distance(startPosition,endPosition)}");
      
-            if (Vector3.Distance(startPosition, endPosition) >= minimumDistance &&
-                (endTime - startTime) <= maximumTime)
+            if (Vector3.Distance(startPosition, endPosition) >= minimumDistance)
             {
                 // Debug.Log("Jump swipe distance: "+ Vector3.Distance(startPosition, endPosition));
                 --currentSwipeCount;
@@ -241,8 +254,6 @@ namespace Movement
         {
             startPosition = Vector2.zero;
             endPosition = Vector2.zero;
-            startTime = 0;
-            endTime = 0;
             alreadyStartTouch = false;
             alreadyEndTouch = false;
             ResetSwipeCount();
