@@ -2,13 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using DataPersistence.Data;
 using Level;
 using Services;
 using UI;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D.Animation;
 using Utils;
@@ -18,7 +16,9 @@ namespace DataPersistence
     public class DataPersistenceManager : MonoBehaviour
     {
         public event Action OnLoadEndSuccefully;
-   
+
+        #region SerializeField
+
         [Header("Debugging")] 
         [SerializeField] private bool disableDataPersistence;
         
@@ -30,11 +30,12 @@ namespace DataPersistence
         [Header("Default values")]
         [SerializeField] private SpriteLibraryAsset defaultHeroSpriteLibraryAsset;
 
-        // [Header("Cloud Data Handler")] [SerializeField]
-        // private NewCloudDataHandler cloudDataHandler;
-        
+        [SerializeField]private LoadScreen loadScreen;
 
-        
+        #endregion
+
+        #region PublicFields
+
         public SpriteLibraryAsset DefaultHeroSpriteLibraryAsset
         {
             get { return defaultHeroSpriteLibraryAsset; }
@@ -46,13 +47,16 @@ namespace DataPersistence
         public GameData gameData;
         // public GameData GameDataToLoad;
         public bool IsSaved;
-        private List<IDataPersistence> dataPersistenceObjects;
-        private CloudDataHandler cloudDataHandler;
-        
         public static DataPersistenceManager instance { get; private set; }
 
-        [SerializeField]private LoadScreen loadScreen;
+        #endregion
         
+        #region PrivateFields
+
+        private List<IDataPersistence> dataPersistenceObjects;
+        private CloudDataHandler cloudDataHandler;
+
+        #endregion
         
         #region Mono
 
@@ -97,9 +101,9 @@ namespace DataPersistence
                 cloudDataHandler.OnSaveCallback -= CloudSaveCallback;
         }
         
-        void OnApplicationFocus(bool hasFocus)
+        void OnApplicationPause(bool pauseStatus)
         {
-            if (!hasFocus)
+            if (pauseStatus)
             {
                 var levelPlayAds = FindObjectOfType<LevelPlayAds>();
                 if (levelPlayAds == null)
@@ -117,37 +121,9 @@ namespace DataPersistence
         // }        
 
         #endregion
-
-
-        #if UNITY_EDITOR
-        public void CreateFileDataHandler()
-        {
-            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
-        }
-        #endif
         
-        private void NewGame()
-        {
-            gameData = new GameData();
-        }
+        #region LoadGame
 
-        
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            
-            loadScreen = FindObjectOfType<LoadScreen>();
-            Debug.Log("OnSceneLoaded");
-            // CloudSaveGameUI.Instance.LogText.text += "On Scene Loaded ";
-            dataPersistenceObjects = FindAllDataPersistenceObjects();
-            
-            // if on main menu and not authenticated - return
-            var sceneName = SceneManager.GetActiveScene().name;
-            if(sceneName == "MainMenu" && !Social.localUser.authenticated)
-                return;
-            
-            LoadGame();
-        }
-        
         public void LoadGame()
         {
             if(TimeManager.Instance != null) 
@@ -187,19 +163,6 @@ namespace DataPersistence
                 if(gameData == null)
                     NewGame();
                 LoadToObjects(gameData);
-                
-                //Disable Load Screen
-              
-                
-                // if (this.gameData == null)
-                // {
-                //     Debug.LogWarning("No data was found. Init data to defaults.");
-                //     NewGame();
-                // }
-                // foreach (var item in dataPersistenceObjects)
-                // {
-                //     item.LoadData(gameData);
-                // }
             }
             
 
@@ -232,6 +195,10 @@ namespace DataPersistence
             if(TimeManager.Instance != null) 
                 TimeManager.Instance.UnpauseGame();
         }
+
+        #endregion
+
+        #region SaveGame
 
         public void SaveGame()
         {
@@ -292,6 +259,10 @@ namespace DataPersistence
             loadScreen.HideLoadScreen();
         }
 
+        #endregion
+
+        #region PrivateMethods
+
         private List<IDataPersistence> FindAllDataPersistenceObjects()
         {
             //Find all the scripts that implement the AnimationData saving interface
@@ -301,8 +272,36 @@ namespace DataPersistence
 
             return new List<IDataPersistence>(dataPersistenceObjects);
         }
+        
+        private void NewGame()
+        {
+            gameData = new GameData();
+        }
 
-     
-       
+        
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            
+            loadScreen = FindObjectOfType<LoadScreen>();
+            Debug.Log("OnSceneLoaded");
+            // CloudSaveGameUI.Instance.LogText.text += "On Scene Loaded ";
+            dataPersistenceObjects = FindAllDataPersistenceObjects();
+            
+            // if on main menu and not authenticated - return
+            var sceneName = SceneManager.GetActiveScene().name;
+            if(sceneName == "MainMenu" && !Social.localUser.authenticated)
+                return;
+            
+            LoadGame();
+        }
+
+        #endregion
+
+        #if UNITY_EDITOR
+        public void CreateFileDataHandler()
+        {
+            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+        }
+        #endif
     }
 }

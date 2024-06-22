@@ -559,6 +559,10 @@ PrefabInstance:
       value: DataPersistenceManager
       objectReference: {fileID: 0}
     - target: {fileID: 5929245224051132745, guid: 5ffd5bf7f4dfad344af4f9b38fd2cc77, type: 3}
+      propertyPath: useEncryption
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929245224051132745, guid: 5ffd5bf7f4dfad344af4f9b38fd2cc77, type: 3}
       propertyPath: cloudDataHandler
       value: 
       objectReference: {fileID: 0}
@@ -1612,6 +1616,9 @@ MonoBehaviour:
     onSwipeDetected:
       m_PersistentCalls:
         m_Calls: []
+  OnEscapeClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &519657526
 Transform:
   m_ObjectHideFlags: 0
@@ -4470,18 +4477,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1462127431}
     m_Modifications:
-    - target: {fileID: 4525339524287685973, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339524287685973, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339524287685973, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4525339524372053933, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -4490,41 +4485,9 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1120371271}
-    - target: {fileID: 4525339524391496351, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339524391496351, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339524584482172, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339524584482172, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339525283311475, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339525283311475, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339525283311475, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4525339525515884502, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
       propertyPath: m_Name
       value: SettingsMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339525515884502, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4525339525515884521, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
       propertyPath: m_Pivot.x
@@ -4608,26 +4571,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4525339525515884521, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339525537866439, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339525537866439, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339525596645394, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339525596645394, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525339525596645394, guid: c4670b0cb5756f44ca08ac88d682dec9, type: 3}
-      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5051,6 +4994,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871318566}
   m_CullTransparentMesh: 1
+--- !u!1 &1913543227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1913543229}
+  - component: {fileID: 1913543228}
+  m_Layer: 0
+  m_Name: QuitGame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1913543228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913543227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a71c3a114b44b6ca7b15b7c0b683317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1913543229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913543227}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 79.59, y: 24.29, z: -0.05821389}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1974635001
 GameObject:
   m_ObjectHideFlags: 0

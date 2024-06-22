@@ -1,14 +1,22 @@
 ﻿using System;
 using Agent.Player.PlayerStateMachine.States;
 using Assets.Scripts.Agent;
-using Assets.Scripts.Agent.Player;
+using Level.Resettable;
 using Movement;
 using UnityEngine;
 
 namespace Agent.Player.PlayerStateMachine
 {
-    public class PlayerState : MonoBehaviour
+    public class PlayerState : MonoBehaviour, IResettable
     {
+        #region Events
+
+        public event Action OnLanding;
+        public event Action OnLevelReset;
+
+        #endregion
+        #region PublicFields
+
         public NewSwipeDetection SwipeDetection { get; private set; }
         public MovementComponent MovementComponent { get; private set; }
         public PlayerAnimator PlayerAnimator { get; private set; }
@@ -17,6 +25,10 @@ namespace Agent.Player.PlayerStateMachine
         public AttackComponent AttackComponent { get; private set; } 
         //time
         public PlayerAnimationHandler AnimationHandler { get; private set; }
+        
+
+        #endregion
+        #region States
 
         public Assets.Scripts.Agent.Player.PlayerStateMachine.PlayerStateMachine StateMachine;
         public RunState RunState { get; set; }
@@ -25,11 +37,17 @@ namespace Agent.Player.PlayerStateMachine
         public OnCeilingState OnCeilingState { get; set; }
         public FlyState FlyState { get; set; }
         public AttackState AttackState { get; set; }
+        
 
-        public event Action OnLanding;
-
+        #endregion
+        
+        #region PrivateFields
 
         [SerializeField] private string currentStateName;
+
+        #endregion
+
+        #region Mono
 
         private void Awake()
         {
@@ -69,9 +87,16 @@ namespace Agent.Player.PlayerStateMachine
             StateMachine.CurrentState.PhysicUpdate();
         }
 
+        #endregion
+
         public void LandingTrigger()
         {
             OnLanding?.Invoke();
+        }
+
+        public void Reset()
+        {
+            OnLevelReset?.Invoke();
         }
     }
 }

@@ -22,7 +22,8 @@ namespace Agent.Player.PlayerStateMachine.States
             
             playerState.SwipeDetection.OnSwipe += TryJumpSwitching;
             playerState.PlayerAnimator.Anim.SetTrigger(playerState.PlayerAnimator.OnCeilTriggerKey);
-
+            playerState.OnLevelReset += LevelReset;
+            
             playerState.LandingTrigger();
             
             playerState.MovementComponent._rigidbody2D.gravityScale = 0;
@@ -36,9 +37,11 @@ namespace Agent.Player.PlayerStateMachine.States
             base.ExitState();
 
             playerState.SwipeDetection.OnSwipe -= TryJumpSwitching;
+            playerState.OnLevelReset -= LevelReset;
 
             playerState.PlayerAnimator.Anim.SetTrigger(playerState.PlayerAnimator.EndCeilTriggerKey);
         }
+
 
         public override void FrameUpdate()
         {
@@ -74,6 +77,10 @@ namespace Agent.Player.PlayerStateMachine.States
                 if(colliders == 0)
                     playerState.StateMachine.ChangeState(playerState.FlyState);
             }
+        }
+        private void LevelReset()
+        {
+            playerState.StateMachine.ChangeState(playerState.FlyState);
         }
     }
 }

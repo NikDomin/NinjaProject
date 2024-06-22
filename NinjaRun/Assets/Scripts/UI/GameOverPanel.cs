@@ -62,7 +62,7 @@ namespace UI
         private void ResetLevel()
         {
             // StartCoroutine(ResetLevelIEnumerable());
-            TestReset();
+            RestartLevel();
         }
         private void ToMainMenu()
         {
@@ -72,16 +72,20 @@ namespace UI
 
         #region ButtonsListeners
 
-        private void TestReset()
+        private void RestartLevel()
         {
             // return player to start position
             Transform player = FindObjectOfType<NewSwipeDetection>(true).transform;
             player.position = player.GetComponent<PlayerStartPosition>().StartPosition;
+            //Set player velocity to zero
+            Rigidbody2D playerRigidBogy = player.GetComponent<Rigidbody2D>();
+            playerRigidBogy.gravityScale = 0;
+            playerRigidBogy.velocity = Vector3.zero;
+            playerRigidBogy.angularVelocity = 0;
             
             player.gameObject.SetActive(true);
             player.gameObject.GetComponent<NewSwipeDetection>().ResetAllValue();
             
-            // return death wall to start position
             var deathWallNewPositionX = player.position.x - 20;
             DeathWall.deathWall.transform.position =
                 new Vector3(deathWallNewPositionX, DeathWall.deathWall.transform.position.y);
@@ -99,6 +103,10 @@ namespace UI
             
             //Action
             OnEndResetLevel?.Invoke();
+            
+            //Return player gravityScale
+            playerRigidBogy.gravityScale = 1;
+            
             //Disable Panel
             DisablePanel();
         }

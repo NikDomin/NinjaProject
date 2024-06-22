@@ -17,6 +17,7 @@
             StateName = "AttackState";
 
             playerState.PlayerAnimator.Anim.SetTrigger(playerState.PlayerAnimator.AttackTriggerKey);
+            playerState.OnLevelReset += LevelReset;
 
             //time
             playerState.AnimationHandler.TestActionTrigger();
@@ -25,7 +26,9 @@
         public override void ExitState()
         {
             base.ExitState();
+            playerState.OnLevelReset -= LevelReset;
         }
+
 
         public override void FrameUpdate()
         {
@@ -40,6 +43,10 @@
         }
 
         public void TryFlySwitching()
+        {
+            playerState.StateMachine.ChangeState(playerState.FlyState);
+        }
+        private void LevelReset()
         {
             playerState.StateMachine.ChangeState(playerState.FlyState);
         }

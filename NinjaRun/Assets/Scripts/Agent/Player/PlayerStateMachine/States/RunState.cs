@@ -6,6 +6,8 @@ using Utils;
 
 namespace Agent.Player.PlayerStateMachine.States
 {
+    #region Interface
+
     interface IJumpState
     {
         public void TryJumpSwitching();
@@ -36,6 +38,8 @@ namespace Agent.Player.PlayerStateMachine.States
         public void TryAttackSwitching();
     }
 
+    #endregion
+
     public class RunState : BasedState, IJumpState, IOnWallState, IFlyState
     {
         private PlayerState playerState;
@@ -58,6 +62,7 @@ namespace Agent.Player.PlayerStateMachine.States
             
             playerState.SwipeDetection.OnSwipe += TryJumpSwitching;
             playerState.PlayerAnimator.Anim.SetBool(playerState.PlayerAnimator.IsRunningKey, true);
+            playerState.OnLevelReset += ResetLevel;
 
             playerState.LandingTrigger();
             
@@ -79,8 +84,10 @@ namespace Agent.Player.PlayerStateMachine.States
             base.ExitState();
             playerState.SwipeDetection.OnSwipe -= TryJumpSwitching;
             playerState.PlayerAnimator.Anim.SetBool(playerState.PlayerAnimator.IsRunningKey, false);
+            playerState.OnLevelReset -= ResetLevel;
 
         }
+
 
         public override void FrameUpdate()
         {
@@ -112,13 +119,6 @@ namespace Agent.Player.PlayerStateMachine.States
 
         public void TryOnWallSwitching()
         {
-            // if (PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right, playerState.MovementComponent.WallRayLength,
-            //         playerState.MovementComponent.GroundLayer) && 
-            //     !PositionCheck.PlatformCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition),
-            //         playerState.transform.right, playerState.MovementComponent.WallRayLength, playerState.MovementComponent.GroundLayer))
-            // {
-            //     playerState.StateMachine.ChangeState(playerState.OnWallState);
-            // }
             var colliders = playerState.MovementComponent.WallDetection.OverlapBox();
             if(colliders.Length != 0)
                 playerState.StateMachine.ChangeState(playerState.FlyState);
@@ -130,19 +130,14 @@ namespace Agent.Player.PlayerStateMachine.States
             if (!PositionCheck.GroundCheck(playerState.transform.TransformPoint(playerState.MovementComponent.GroundCheckPosition),
                 playerState.MovementComponent.GroundCheckRadius, playerState.MovementComponent.GroundLayer))
             {
-                // //dont on wall check
-                // if (!PositionCheck.ObstacleCheck(playerState.transform.TransformPoint(playerState.MovementComponent.WallCheckPosition), playerState.transform.right, playerState.MovementComponent.WallRayLength,
-                //         playerState.MovementComponent.GroundLayer))
-                // {
-                //     playerState.StateMachine.ChangeState(playerState.FlyState);
-                // }
-
-                //dont on wall check
-                
                 var colliders = playerState.MovementComponent.WallDetection.OverlapBoxNonAlloc();
                 if(colliders == 0)
                     playerState.StateMachine.ChangeState(playerState.FlyState);
             }
+        }
+        private void ResetLevel()
+        {
+            playerState.StateMachine.ChangeState(playerState.FlyState);
         }
     }
 }

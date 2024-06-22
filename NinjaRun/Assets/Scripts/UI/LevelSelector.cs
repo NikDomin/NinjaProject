@@ -38,7 +38,6 @@ namespace UI
 
         private void OnValidate()
         {
-           
             GetComponentInChildren<TextMeshProUGUI>().text = levelName;
         }
         

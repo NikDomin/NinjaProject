@@ -46,24 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disableDataPersistence: 0
   fileName: data.json
-  useEncryption: 0
+  useEncryption: 1
   defaultHeroSpriteLibraryAsset: {fileID: 7108339969198208228, guid: 7272e7720f7610546b65df0ceb82f7a6, type: 3}
+  loadScreen: {fileID: 0}
   gameData:
-    CoinsCount: 0
-    HeroSpriteLibraryID: 0
-    LevelPassed:
-      keys: []
-      values: 
-    levelNeedToPass: 1
-    PurchasedSkins:
-      keys: 00000000
-      values: 01
-    PurchasedSkinsCount: 1
-    MasterVolume: 1
-    SFXVolume: 1
-    MusicVolume: 1
-    IsBeginnerRunnerAlreadyComplited: 0
-  GameDataToLoad:
     CoinsCount: 0
     HeroSpriteLibraryID: 0
     LevelPassed:

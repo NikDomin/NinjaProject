@@ -8,7 +8,11 @@ namespace Agent.Player
 
         private void Awake()
         {
-            StartPosition = transform.position;
+            StartPosition = new Vector3(
+                        transform.position.x,
+                        transform.position.y + 0.15f,
+                        transform.position.z
+                    );
         }
     }
 }

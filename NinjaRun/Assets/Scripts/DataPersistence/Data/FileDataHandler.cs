@@ -9,7 +9,7 @@ namespace DataPersistence.Data
         private string dataDirPath = "";
         private string dataFileName = "";
         private bool useEncryption = false;
-        private readonly string encryptionCodeWord = "word";
+        private readonly string encryptionCodeWord = "Arolf";
         private readonly string backupExtension = ".bak";
 
         public FileDataHandler(string dataDirPath, string dataFileName, bool useEncryption)
@@ -48,6 +48,8 @@ namespace DataPersistence.Data
                 catch (Exception e)
                 {
                     Debug.LogError("Error occured when trying to save data to file: " + fullPath + "\n" + e);
+                    DeleteSaveFile();
+                    Load();
                     throw;
                 }
             }

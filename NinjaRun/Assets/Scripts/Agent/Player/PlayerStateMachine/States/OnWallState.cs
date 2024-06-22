@@ -23,6 +23,7 @@ namespace Agent.Player.PlayerStateMachine.States
             StateName = "OnWallState";
             playerState.SwipeDetection.OnSwipe += TryJumpSwitching;
             playerState.PlayerAnimator.Anim.SetTrigger(playerState.PlayerAnimator.OnWallTriggerKey);
+            playerState.OnLevelReset += ResetLevel;
 
             playerState.LandingTrigger();
             
@@ -35,9 +36,11 @@ namespace Agent.Player.PlayerStateMachine.States
         {
             base.ExitState();
             playerState.SwipeDetection.OnSwipe -= TryJumpSwitching;
+            playerState.OnLevelReset -= ResetLevel;
 
             playerState.PlayerAnimator.Anim.SetTrigger(playerState.PlayerAnimator.EndWallTriggerKey);
         }
+
 
         public override void FrameUpdate()
         {
@@ -75,6 +78,10 @@ namespace Agent.Player.PlayerStateMachine.States
                     playerState.StateMachine.ChangeState(playerState.FlyState);
 
             }
+        }
+        private void ResetLevel()
+        {
+            playerState.StateMachine.ChangeState(playerState.FlyState);
         }
     }
 }

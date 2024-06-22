@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
@@ -22,6 +23,8 @@ namespace Input.Old_Input
         #region Private Fields
 
         private SwipeData _swipe;
+
+        private int clickCount;
         
         #endregion
 
@@ -78,6 +81,8 @@ namespace Input.Old_Input
         /// </summary>
         public UnityEvent<SwipeDirection> OnSwipeDetected => _events.onSwipeDetected;
 
+        public UnityEvent OnEscapeClicked;
+
         #endregion
 
         public static OldInputManager Instance;
@@ -95,7 +100,18 @@ namespace Input.Old_Input
         private void Update()
         {
             if (_isPaused) return;
-            
+
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
+            {
+                clickCount++;
+                StartCoroutine(ClickTime());
+
+                if (clickCount > 1)
+                {
+                    OnEscapeClicked?.Invoke();
+                }
+            }
+                
             if(actionMap == ActionMaps.UI)
                 return;
 
@@ -243,5 +259,11 @@ namespace Input.Old_Input
         }
       
         #endregion
+
+        private IEnumerator ClickTime()
+        {
+            yield return new WaitForSecondsRealtime(1f);
+            clickCount = 0;
+        }
     }
 }
