@@ -841,6 +841,9 @@ MonoBehaviour:
     onSwipeDetected:
       m_PersistentCalls:
         m_Calls: []
+  OnEscapeClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &223326341
 Transform:
   m_ObjectHideFlags: 0

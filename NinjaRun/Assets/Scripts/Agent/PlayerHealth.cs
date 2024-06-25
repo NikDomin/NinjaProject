@@ -40,6 +40,13 @@ namespace Agent
             
             OnDead.Invoke();
             EffectsHandler.Instance.EnableHitParticle(transform.position);
+            
+            //Set player velocity to zero
+            Rigidbody2D playerRigidBogy = GetComponent<Rigidbody2D>();
+            playerRigidBogy.gravityScale = 0;
+            playerRigidBogy.velocity = Vector3.zero;
+            playerRigidBogy.angularVelocity = 0;
+            
             gameObject.SetActive(false);
             DeathWall.deathWall.CanDisableLevelParts = false;
         }

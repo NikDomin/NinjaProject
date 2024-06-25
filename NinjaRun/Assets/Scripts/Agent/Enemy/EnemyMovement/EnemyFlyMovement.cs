@@ -1,5 +1,7 @@
+using System;
 using Level.Resettable;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Agent.Enemy.EnemyMovement
 {
@@ -18,19 +20,19 @@ namespace Agent.Enemy.EnemyMovement
             _rigidbody2D = GetComponent<Rigidbody2D>();
             IsCanMove = true;
         }
-
-
+        
         private void OnEnable()
         {
             resetPosition = transform.position;
-            ChangeDirection(firstPosition.position - transform.position);
+            ChangeDirection((firstPosition.position - transform.position).normalized);
         }
+        
+
         public void Reset()
         {
             transform.position = resetPosition;
             gameObject.SetActive(true);
-            ChangeDirection(firstPosition.position - transform.position);
-    
+            ChangeDirection((firstPosition.position - transform.position).normalized);
         }
 
         public override void Movement()

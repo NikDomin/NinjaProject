@@ -76,16 +76,12 @@ namespace Agent.Enemy.EnemyMovement
         {
             transform.position = resetPosition;
             gameObject.SetActive(true);
-            ChangeDirection(Vector2.right);
         }
-
         
         private void ChangeDirection(Vector2 newDirection)
         {
             directionVector = newDirection;
             OnChangeDirectionVector?.Invoke(newDirection);
         }
-        
-        
     }
 }

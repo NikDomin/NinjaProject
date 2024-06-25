@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Level.Resettable;
 using NewObjectPool;
 using Projectiles;
 using UnityEngine;
@@ -9,7 +10,7 @@ using Utils;
 
 namespace Agent.Enemy.EnemyAttack
 {
-    public class EnemyRangedAttack: EnemyAttack
+    public class EnemyRangedAttack: EnemyAttack, IResettable
     {
         public UnityEvent OnShoot;
         
@@ -37,7 +38,10 @@ namespace Agent.Enemy.EnemyAttack
             checkPlayerDetection = GetComponent<AgentBoxDetection>();
             enemyAi = GetComponent<EnemyAI>();
             exclamationEventHandler = exclamationPoint.gameObject.GetComponent<EnemyAnimationEventHandler>();
+        }
 
+        private void OnEnable()
+        {
             projectilePool = new PoolMono<ProjectileTrigger>(projectileObject, poolPreloadCount);
             projectilePool.autoExpand = true;
         }
@@ -61,6 +65,14 @@ namespace Agent.Enemy.EnemyAttack
 
         #endregion
 
+        public void Reset()
+        {
+            projectilePool = new PoolMono<ProjectileTrigger>(projectileObject, poolPreloadCount);
+            projectilePool.autoExpand = true;
+            
+            DeniedAttack();
+            Attacking = false;
+        }
 
         #region TryAttack
 
@@ -142,6 +154,8 @@ namespace Agent.Enemy.EnemyAttack
 
         #endregion
 
+        #region Attack
+
         protected override void StartAttackPlayer()
         {
             Attacking = true;
@@ -160,7 +174,6 @@ namespace Agent.Enemy.EnemyAttack
             tokenSource = null;
 
             enemyAi.EnemyAnimator.Anim.SetTrigger(enemyAi.EnemyAnimator.AttackTriggerKey);
-
         }
         
         private void AttackPlayer()
@@ -193,13 +206,14 @@ namespace Agent.Enemy.EnemyAttack
             TryAttacking = false;
             Attacking = false;
             
-             
             //Sprite Direction
             AgentUtils.SpriteDirection(transform, enemyAi.DirectionVector);
-
         }
         
+        
 
+        #endregion
+        
         private RaycastHit2D GetPlayerRaycast()
         {
             Collider2D playerCollider = GetPlayerCollider(checkPlayerDetection.Buffer);

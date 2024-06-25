@@ -1,5 +1,4 @@
-﻿using System;
-using Level.Resettable;
+﻿using Level.Resettable;
 using UnityEngine;
 
 namespace Movement

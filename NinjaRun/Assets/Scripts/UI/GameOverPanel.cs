@@ -77,11 +77,11 @@ namespace UI
             // return player to start position
             Transform player = FindObjectOfType<NewSwipeDetection>(true).transform;
             player.position = player.GetComponent<PlayerStartPosition>().StartPosition;
-            //Set player velocity to zero
-            Rigidbody2D playerRigidBogy = player.GetComponent<Rigidbody2D>();
-            playerRigidBogy.gravityScale = 0;
-            playerRigidBogy.velocity = Vector3.zero;
-            playerRigidBogy.angularVelocity = 0;
+            // //Set player velocity to zero
+            // Rigidbody2D playerRigidBogy = player.GetComponent<Rigidbody2D>();
+            // playerRigidBogy.gravityScale = 0;
+            // playerRigidBogy.velocity = Vector3.zero;
+            // playerRigidBogy.angularVelocity = 0;
             
             player.gameObject.SetActive(true);
             player.gameObject.GetComponent<NewSwipeDetection>().ResetAllValue();
@@ -105,6 +105,7 @@ namespace UI
             OnEndResetLevel?.Invoke();
             
             //Return player gravityScale
+            Rigidbody2D playerRigidBogy = player.GetComponent<Rigidbody2D>();
             playerRigidBogy.gravityScale = 1;
             
             //Disable Panel

@@ -83,10 +83,7 @@ namespace DataPersistence
             //     ConflictResolutionStrategy.UseMostRecentlySaved, "saveData");
             loadScreen = FindObjectOfType<LoadScreen>();
         }
-
-   
-
-
+        
         private void OnEnable()
         {
             loadScreen.ShowLoadScreen();
