@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using DataPersistence.Data;
 using Level;
-using Services;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -98,19 +97,19 @@ namespace DataPersistence
                 cloudDataHandler.OnSaveCallback -= CloudSaveCallback;
         }
         
-        void OnApplicationPause(bool pauseStatus)
-        {
-            if (pauseStatus)
-            {
-                var levelPlayAds = FindObjectOfType<LevelPlayAds>();
-                if (levelPlayAds == null)
-                    return;
-                if (levelPlayAds.isAdsPlaying)
-                    return;
-                //Save
-                StartCoroutine(SaveWhenFocusLost());
-            }
-        }
+        // void OnApplicationPause(bool pauseStatus)
+        // {
+        //     if (pauseStatus)
+        //     {
+        //         var levelPlayAds = FindObjectOfType<LevelPlayAds>();
+        //         if (levelPlayAds == null)
+        //             return;
+        //         if (levelPlayAds.isAdsPlaying)
+        //             return;
+        //         //Save
+        //         StartCoroutine(SaveWhenFocusLost());
+        //     }
+        // }
         
         // private void OnApplicationQuit()
         // {

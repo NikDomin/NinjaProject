@@ -4,16 +4,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using Agent.Enemy.EnemyMovement;
 using Assets.Scripts.Agent;
+using Level.Resettable;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Agent.Enemy.EnemyAttack
 {
     [RequireComponent(typeof(EnemyAI), typeof(AgentBoxDetection))]
-    public class EnemyMeleeAttack : EnemyAttack
+    public class EnemyMeleeAttack : EnemyAttack, IResettable
     {
         public UnityEvent OnAttack;
-        
+
+        #region PrivateFields
+
         [SerializeField] private Transform exclamationPoint;
         [SerializeField] private int moveAttackVelocity;
         
@@ -30,6 +33,8 @@ namespace Agent.Enemy.EnemyAttack
         private CancellationTokenSource tokenSource = null;
         private CancellationToken token;
         
+
+        #endregion
 
         #region Mono
 
@@ -77,24 +82,7 @@ namespace Agent.Enemy.EnemyAttack
         }
 
         #endregion
-
-        protected override void DetectPlayer()
-        {
-            base.DetectPlayer();
-
-            if(TryAttacking)
-                return;
-            if (Attacking)
-                return;
-
-            int colliderCount = checkPlayerDetection.OverlapBoxNonAlloc();
-            
-            if (colliderCount == 0)
-                return;
-            
-            TryAttack();
-        }
-
+        
         #region TryAttack
 
         private void TryAttack()
@@ -142,8 +130,25 @@ namespace Agent.Enemy.EnemyAttack
         }
 
         #endregion
-       
 
+        #region Override
+
+        protected override void DetectPlayer()
+        {
+            base.DetectPlayer();
+
+            if(TryAttacking)
+                return;
+            if (Attacking)
+                return;
+
+            int colliderCount = checkPlayerDetection.OverlapBoxNonAlloc();
+            
+            if (colliderCount == 0)
+                return;
+            
+            TryAttack();
+        }
         protected override void StartAttackPlayer()
         {
             base.StartAttackPlayer();
@@ -158,21 +163,25 @@ namespace Agent.Enemy.EnemyAttack
             enemyAi.EnemyAnimator.Anim.SetTrigger(enemyAi.EnemyAnimator.AttackTriggerKey);
         }
 
+        #endregion
+
+        #region PrivateMethods
+
         private void AttackPlayer()
         {
-           var box = AttackPlayerDetection.OverlapBox();
-           if (box == null)
-               return;
-           if (box.Length == 0)
-               return;
+            var box = AttackPlayerDetection.OverlapBox();
+            if (box == null)
+                return;
+            if (box.Length == 0)
+                return;
 
-           foreach (var item in box)
-           {
+            foreach (var item in box)
+            {
                 if (item.TryGetComponent(out IDamageable damageable))
                 {
                     damageable.Damage();
                 }
-           }
+            }
         }
         
         private void DeniedAttack()
@@ -195,6 +204,14 @@ namespace Agent.Enemy.EnemyAttack
         {
             OnAttack?.Invoke();
             rigidbody2D.velocity = enemyAi.DirectionVector * moveAttackVelocity;
+        }
+
+        #endregion
+
+        public void Reset()
+        {
+            TryAttacking = false;
+            Attacking = false;
         }
     }
 }

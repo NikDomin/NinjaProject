@@ -13,7 +13,9 @@ namespace Agent.Enemy.EnemyAttack
     public class EnemyRangedAttack: EnemyAttack, IResettable
     {
         public UnityEvent OnShoot;
-        
+
+        #region PrivateFields
+
         [SerializeField] private Transform exclamationPoint;
         [SerializeField] private LayerMask playerLayer;
         [SerializeField] private LayerMask raycastLayers;
@@ -29,6 +31,8 @@ namespace Agent.Enemy.EnemyAttack
 
         private CancellationTokenSource tokenSource = null;
         private CancellationToken token;
+
+        #endregion
         
         #region Mono
 
@@ -213,7 +217,9 @@ namespace Agent.Enemy.EnemyAttack
         
 
         #endregion
-        
+
+        #region PrivateMethods
+
         private RaycastHit2D GetPlayerRaycast()
         {
             Collider2D playerCollider = GetPlayerCollider(checkPlayerDetection.Buffer);
@@ -252,5 +258,7 @@ namespace Agent.Enemy.EnemyAttack
 
             return null;
         }
+
+        #endregion
     }
 }
